@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="icon" href="/assets/favicon.ico"> -->
+    <title>Infinite</title>
+    <!-- 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- 共用樣式 -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+    <div class="container customer-list">
+      <!-- header -->
+      <div class="header">
+        <button class="header-menu">
+          <img src="/assets/images/icon_menu.svg" alt="menu">
+        </button>
+        <div class="header-logo">
+          <img src="/assets/images/logo.png" alt="logo">
+        </div>
+      </div>
+      <!-- content -->
+      <main class="main">
+        <!-- top -->
+        <div class="customer-list-top">
+          <div class="common-title">客戶基本資料</div>
+          <div class="customer-list-buttons">
+            <!-- search -->
+            <button class="customer-list-button" onclick="popupManager.show('customerSearch')">
+              <img src="/assets/images/icon_search.svg" alt="search">
+            </button>
+            <!-- add -->
+            <button class="customer-list-button" onclick="window.location.href='/customer-add.html'">
+              <img src="/assets/images/icon_add.svg" alt="add">
+            </button>
+          </div>
+        </div>
+        <!-- total -->
+        <div class="customer-list-total">
+          <div class="customer-list-total-text">共有 20 筆資料</div>
+          <button class="customer-list-clean-button" id="cleanSearchButton" onclick="cleanSearch()"> 
+            <img src="/assets/images/icon_close_primary.svg" alt="clean">
+            清除查詢條件
+          </button>
+        </div>
+        <!-- list -->
+        <div class="customer-list-list">
+          <div class="customer-list-item" onclick="popupManager.show('customerDetail')">
+            <div class="top-line"></div>
+            <div class="customer-list-item-content">
+              <!-- top -->
+              <div class="customer-list-item-content-top">
+                <!-- tax id -->
+                <div class="customer-list-item-content-tax-id common-text">12345678</div>
+                <!-- operate -->
+                <div class="customer-list-item-content-top-operate">
+                  <!-- edit -->
+                  <button class="customer-list-item-content-top-operate-button" >
+                    <img src="/assets/images/icon_edit.svg" alt="edit">
+                  </button>
+                  <!-- record -->
+                  <button class="customer-list-item-content-top-operate-button" onclick="handleRecord()">
+                    <img src="/assets/images/icon_record.svg" alt="record">
+                  </button>
+                </div>
+              </div>
+              <!-- company -->
+              <div class="common-sub-title">日盛台駿</div>
+              <!-- bottom -->
+              <div class="customer-list-item-content-bottom">
+                <!-- info -->
+                <div class="item-content-bottom-info">
+                  <div class="customer-list-item-content-bottom-info-item">
+                    <div class="label common-text-gray">聯絡人</div>
+                    <div class="content common-text">王小明</div>
+                  </div>
+                  <div class="customer-list-item-content-bottom-info-item">
+                    <div class="label common-text-gray">註冊地址</div>
+                    <div class="content common-text">台北市松山區南京東路一段 132 號</div>
+                  </div>
+                </div>
+                <!-- go to detail -->
+                <button class="customer-list-item-content-bottom-button">
+                  <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="customer-list-item" onclick="popupManager.show('customerDetail')">
+            <div class="top-line"></div>
+            <div class="customer-list-item-content">
+              <!-- top -->
+              <div class="customer-list-item-content-top">
+                <!-- tax id -->
+                <div class="customer-list-item-content-tax-id common-text">12345678</div>
+                <!-- operate -->
+                <div class="customer-list-item-content-top-operate">
+                  <!-- edit -->
+                  <button class="customer-list-item-content-top-operate-button" >
+                    <img src="/assets/images/icon_edit.svg" alt="edit">
+                  </button>
+                  <!-- record -->
+                  <button class="customer-list-item-content-top-operate-button" onclick="handleRecord()">
+                    <img src="/assets/images/icon_record.svg" alt="record">
+                  </button>
+                </div>
+              </div>
+              <!-- company -->
+              <div class="common-sub-title">日盛台駿</div>
+              <!-- bottom -->
+              <div class="customer-list-item-content-bottom">
+                <!-- info -->
+                <div class="item-content-bottom-info">
+                  <div class="customer-list-item-content-bottom-info-item">
+                    <div class="label common-text-gray">聯絡人</div>
+                    <div class="content common-text">王小明</div>
+                  </div>
+                  <div class="customer-list-item-content-bottom-info-item">
+                    <div class="label common-text-gray">註冊地址</div>
+                    <div class="content common-text">台北市松山區南京東路一段 132 號</div>
+                  </div>
+                </div>
+                <!-- go to detail -->
+                <button class="customer-list-item-content-bottom-button">
+                  <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="customer-list-item" onclick="popupManager.show('customerDetail')">
+            <div class="top-line"></div>
+            <div class="customer-list-item-content">
+              <!-- top -->
+              <div class="customer-list-item-content-top">
+                <!-- tax id -->
+                <div class="customer-list-item-content-tax-id common-text">12345678</div>
+                <!-- operate -->
+                <div class="customer-list-item-content-top-operate">
+                  <!-- edit -->
+                  <button class="customer-list-item-content-top-operate-button" >
+                    <img src="/assets/images/icon_edit.svg" alt="edit">
+                  </button>
+                  <!-- record -->
+                  <button class="customer-list-item-content-top-operate-button" onclick="handleRecord()">
+                    <img src="/assets/images/icon_record.svg" alt="record">
+                  </button>
+                </div>
+              </div>
+              <!-- company -->
+              <div class="common-sub-title">日盛台駿</div>
+              <!-- bottom -->
+              <div class="customer-list-item-content-bottom">
+                <!-- info -->
+                <div class="item-content-bottom-info">
+                  <div class="customer-list-item-content-bottom-info-item">
+                    <div class="label common-text-gray">聯絡人</div>
+                    <div class="content common-text">王小明</div>
+                  </div>
+                  <div class="customer-list-item-content-bottom-info-item">
+                    <div class="label common-text-gray">註冊地址</div>
+                    <div class="content common-text">台北市松山區南京東路一段 132 號</div>
+                  </div>
+                </div>
+                <!-- go to detail -->
+                <button class="customer-list-item-content-bottom-button">
+                  <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="customer-list-item" onclick="popupManager.show('customerDetail')">
+            <div class="top-line"></div>
+            <div class="customer-list-item-content">
+              <!-- top -->
+              <div class="customer-list-item-content-top">
+                <!-- tax id -->
+                <div class="customer-list-item-content-tax-id common-text">12345678</div>
+                <!-- operate -->
+                <div class="customer-list-item-content-top-operate">
+                  <!-- edit -->
+                  <button class="customer-list-item-content-top-operate-button" >
+                    <img src="/assets/images/icon_edit.svg" alt="edit">
+                  </button>
+                  <!-- record -->
+                  <button class="customer-list-item-content-top-operate-button" onclick="handleRecord()">
+                    <img src="/assets/images/icon_record.svg" alt="record">
+                  </button>
+                </div>
+              </div>
+              <!-- company -->
+              <div class="common-sub-title">日盛台駿</div>
+              <!-- bottom -->
+              <div class="customer-list-item-content-bottom">
+                <!-- info -->
+                <div class="item-content-bottom-info">
+                  <div class="customer-list-item-content-bottom-info-item">
+                    <div class="label common-text-gray">聯絡人</div>
+                    <div class="content common-text">王小明</div>
+                  </div>
+                  <div class="customer-list-item-content-bottom-info-item">
+                    <div class="label common-text-gray">註冊地址</div>
+                    <div class="content common-text">台北市松山區南京東路一段 132 號</div>
+                  </div>
+                </div>
+                <!-- go to detail -->
+                <button class="customer-list-item-content-bottom-button">
+                  <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="customer-list-item" onclick="popupManager.show('customerDetail')">
+            <div class="top-line"></div>
+            <div class="customer-list-item-content">
+              <!-- top -->
+              <div class="customer-list-item-content-top">
+                <!-- tax id -->
+                <div class="customer-list-item-content-tax-id common-text">12345678</div>
+                <!-- operate -->
+                <div class="customer-list-item-content-top-operate">
+                  <!-- edit -->
+                  <button class="customer-list-item-content-top-operate-button" >
+                    <img src="/assets/images/icon_edit.svg" alt="edit">
+                  </button>
+                  <!-- record -->
+                  <button class="customer-list-item-content-top-operate-button" onclick="handleRecord()">
+                    <img src="/assets/images/icon_record.svg" alt="record">
+                  </button>
+                </div>
+              </div>
+              <!-- company -->
+              <div class="common-sub-title">日盛台駿</div>
+              <!-- bottom -->
+              <div class="customer-list-item-content-bottom">
+                <!-- info -->
+                <div class="item-content-bottom-info">
+                  <div class="customer-list-item-content-bottom-info-item">
+                    <div class="label common-text-gray">聯絡人</div>
+                    <div class="content common-text">王小明</div>
+                  </div>
+                  <div class="customer-list-item-content-bottom-info-item">
+                    <div class="label common-text-gray">註冊地址</div>
+                    <div class="content common-text">台北市松山區南京東路一段 132 號</div>
+                  </div>
+                </div>
+                <!-- go to detail -->
+                <button class="customer-list-item-content-bottom-button">
+                  <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="customer-list-item" onclick="popupManager.show('customerDetail')">
+            <div class="top-line"></div>
+            <div class="customer-list-item-content">
+              <!-- top -->
+              <div class="customer-list-item-content-top">
+                <!-- tax id -->
+                <div class="customer-list-item-content-tax-id common-text">12345678</div>
+                <!-- operate -->
+                <div class="customer-list-item-content-top-operate">
+                  <!-- edit -->
+                  <button class="customer-list-item-content-top-operate-button" >
+                    <img src="/assets/images/icon_edit.svg" alt="edit">
+                  </button>
+                  <!-- record -->
+                  <button class="customer-list-item-content-top-operate-button" onclick="handleRecord()">
+                    <img src="/assets/images/icon_record.svg" alt="record">
+                  </button>
+                </div>
+              </div>
+              <!-- company -->
+              <div class="common-sub-title">日盛台駿</div>
+              <!-- bottom -->
+              <div class="customer-list-item-content-bottom">
+                <!-- info -->
+                <div class="item-content-bottom-info">
+                  <div class="customer-list-item-content-bottom-info-item">
+                    <div class="label common-text-gray">聯絡人</div>
+                    <div class="content common-text">王小明</div>
+                  </div>
+                  <div class="customer-list-item-content-bottom-info-item">
+                    <div class="label common-text-gray">註冊地址</div>
+                    <div class="content common-text">台北市松山區南京東路一段 132 號</div>
+                  </div>
+                </div>
+                <!-- go to detail -->
+                <button class="customer-list-item-content-bottom-button">
+                  <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="customer-list-item" onclick="popupManager.show('customerDetail')">
+            <div class="top-line"></div>
+            <div class="customer-list-item-content">
+              <!-- top -->
+              <div class="customer-list-item-content-top">
+                <!-- tax id -->
+                <div class="customer-list-item-content-tax-id common-text">12345678</div>
+                <!-- operate -->
+                <div class="customer-list-item-content-top-operate">
+                  <!-- edit -->
+                  <button class="customer-list-item-content-top-operate-button" >
+                    <img src="/assets/images/icon_edit.svg" alt="edit">
+                  </button>
+                  <!-- record -->
+                  <button class="customer-list-item-content-top-operate-button" onclick="handleRecord()">
+                    <img src="/assets/images/icon_record.svg" alt="record">
+                  </button>
+                </div>
+              </div>
+              <!-- company -->
+              <div class="common-sub-title">日盛台駿</div>
+              <!-- bottom -->
+              <div class="customer-list-item-content-bottom">
+                <!-- info -->
+                <div class="item-content-bottom-info">
+                  <div class="customer-list-item-content-bottom-info-item">
+                    <div class="label common-text-gray">聯絡人</div>
+                    <div class="content common-text">王小明</div>
+                  </div>
+                  <div class="customer-list-item-content-bottom-info-item">
+                    <div class="label common-text-gray">註冊地址</div>
+                    <div class="content common-text">台北市松山區南京東路一段 132 號</div>
+                  </div>
+                </div>
+                <!-- go to detail -->
+                <button class="customer-list-item-content-bottom-button">
+                  <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="customer-list-item" onclick="popupManager.show('customerDetail')">
+            <div class="top-line"></div>
+            <div class="customer-list-item-content">
+              <!-- top -->
+              <div class="customer-list-item-content-top">
+                <!-- tax id -->
+                <div class="customer-list-item-content-tax-id common-text">12345678</div>
+                <!-- operate -->
+                <div class="customer-list-item-content-top-operate">
+                  <!-- edit -->
+                  <button class="customer-list-item-content-top-operate-button" >
+                    <img src="/assets/images/icon_edit.svg" alt="edit">
+                  </button>
+                  <!-- record -->
+                  <button class="customer-list-item-content-top-operate-button" onclick="handleRecord()">
+                    <img src="/assets/images/icon_record.svg" alt="record">
+                  </button>
+                </div>
+              </div>
+              <!-- company -->
+              <div class="common-sub-title">日盛台駿</div>
+              <!-- bottom -->
+              <div class="customer-list-item-content-bottom">
+                <!-- info -->
+                <div class="item-content-bottom-info">
+                  <div class="customer-list-item-content-bottom-info-item">
+                    <div class="label common-text-gray">聯絡人</div>
+                    <div class="content common-text">王小明</div>
+                  </div>
+                  <div class="customer-list-item-content-bottom-info-item">
+                    <div class="label common-text-gray">註冊地址</div>
+                    <div class="content common-text">台北市松山區南京東路一段 132 號</div>
+                  </div>
+                </div>
+                <!-- go to detail -->
+                <button class="customer-list-item-content-bottom-button">
+                  <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+                </button>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        <!-- more -->
+        <div class="customer-list-more">
+          <button class="button-primary-outline">顯示下 10 筆資料</button>
+        </div>
+      </main>
+
+
+
+      <!-- search popup -->
+      <div class="popup-overlay" id="customerSearchOverlay">
+        <div class="popup-content">
+          <div class="popup-header">
+            <div class="common-title">查詢客戶資料</div>
+            <button class="popup-close-btn" onclick="popupManager.hide('customerSearch')">
+              <img src="/assets/images/icon_close.svg" alt="close">
+            </button>
+          </div>
+          <div class="popup-body">
+            <div class="popup-body-from">
+              <div class="form-group">
+                <label class="form-label common-text-md">客戶統編</label>
+                <input type="text" class="form-input" placeholder="請輸入">
+              </div>
+              <div class="form-group">
+                <label class="form-label common-text-md">客戶名稱</label>
+                <input type="text" class="form-input" placeholder="請輸入">
+              </div>
+              <div class="form-group">
+                <label class="form-label common-text-md">成立日期</label>
+                <input type="date" class="form-input" placeholder="請輸入">
+              </div>
+              <div class="form-group">
+                <label class="form-label common-text-md">歸戶名稱</label>
+                <input type="text" class="form-input" placeholder="請輸入">
+              </div>
+            </div>
+            <div class="popup-form-button">
+              <button class="button-primary" id="searchSubmitButton" onclick="searchSubmit()">查詢</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- record popup -->
+      <div class="popup-overlay" id="customerRecordOverlay">
+        <div class="popup-content">
+          <div class="popup-brown-area">
+            <div class="popup-header">
+              <div class="common-title">案件承作歷程</div>
+              <button class="popup-close-btn" onclick="popupManager.hide('customerRecord')">
+                <img src="/assets/images/icon_close.svg" alt="close">
+              </button>
+            </div>
+            <div class="popup-brown-area-content">
+              <div class="popup-brown-area-content-item">
+                <div class="common-text">12345678</div>
+                <div class="common-sub-title">日盛台駿</div>
+              </div>
+              <div class="popup-brown-area-content-info">
+                <div class="popup-brown-area-content-info-item">
+                  <div class="common-text-gray">維護部門</div>
+                  <div class="common-text">2AF0002 - 分期2科 (中彰投)</div>
+                </div>
+                <div class="popup-brown-area-content-info-item">
+                  <div class="common-text-gray">維護經辦</div>
+                  <div class="common-text">-</div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="popup-body">
+            <div class="record_table_group_container">
+              <div class="record_table_group">
+                <div class="record_table_group_title">
+                  <img src="/assets/images/icon_quill.svg" alt="quill">
+                  分期
+                </div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>部門</th>
+                      <th>已無本餘<br>達半年以上</th>
+                      <th>送件中</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>中彰投分期部</td>
+                      <td class="no">否</td>
+                      <td class="no">否</td>
+                    </tr>
+                    <tr>
+                      <td>台北分期部</td>
+                      <td>是</td>
+                      <td>是</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="record_table_group">
+                <div class="record_table_group_title">
+                  <img src="/assets/images/icon_quill.svg" alt="quill">
+                  企金
+                </div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>部門</th>
+                      <th>已無本餘<br>達半年以上</th>
+                      <th>送件中</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>中彰投分期部</td>
+                      <td class="no">否</td>
+                      <td class="no">否</td>
+                    </tr>
+                    <tr>
+                      <td>台北分期部</td>
+                      <td>是</td>
+                      <td>是</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- detail popup -->
+      <div class="popup-overlay" id="customerDetailOverlay">
+        <div class="popup-content">
+          <div class="popup-brown-area">
+            <div class="popup-header">
+              <div class="common-title">客戶基本資料</div>
+              <button class="popup-close-btn" onclick="popupManager.hide('customerDetail')">
+                <img src="/assets/images/icon_close.svg" alt="close">
+              </button>
+            </div>
+            <div class="popup-brown-area-content">
+              <div class="popup-brown-area-content-item">
+                <div class="common-text">12345678</div>
+                <div class="common-sub-title">日盛台駿</div>
+              </div>
+            </div>
+          </div>
+          <div class="popup-body no-x-padding">
+            <div class="detail-body-content">
+              <!-- 公司 -->
+              <div class="detail-group">
+                <div class="detail-group-title">
+                  <img src="/assets/images/icon_quill.svg" alt="quill">
+                  公司
+                </div>
+                <div class="detail-group-content">
+                  <div class="common-info-item">
+                    <div class="label">客戶英文名稱</div>
+                    <div class="content">內容內容內容</div>
+                  </div>
+                  <div class="common-info-item">
+                    <div class="label">成立日期</div>
+                    <div class="content">2000/01/01</div>
+                  </div>
+                  <div class="common-info-item">
+                    <div class="label">歸戶編號</div>
+                    <div class="content">12345678</div>
+                  </div>
+                  <div class="common-info-item">
+                    <div class="label">歸戶名稱</div>
+                    <div class="content">日盛</div>
+                  </div>
+                  <div class="common-info-item">
+                    <div class="label">職業別代號</div>
+                    <div class="content">01 - 職業別</div>
+                  </div>
+                  <div class="common-info-item">
+                    <div class="label">行業別代號</div>
+                    <div class="content">01 - 行業別</div>
+                  </div>
+                  <div class="common-info-item">
+                    <div class="label">實收資本額</div>
+                    <div class="content">2,000 萬元</div>
+                  </div>
+                  <div class="common-info-item">
+                    <div class="label">年營業額</div>
+                    <div class="content">2,000 萬元</div>
+                  </div>
+                  <div class="common-info-item">
+                    <div class="label">註冊地址</div>
+                    <div class="content">100 台北市松山區南京東路一段 132 號</div>
+                  </div>
+                  <div class="common-info-item">
+                    <div class="label">軍(工)廠所地址</div>
+                    <div class="content">100 台北市松山區南京東路一段 132 號</div>
+                  </div>
+
+                </div>
+              </div>
+              <!-- 負責人 -->
+              <div class="detail-group">
+                <div class="detail-group-title">
+                  <img src="/assets/images/icon_quill.svg" alt="quill">
+                  負責人
+                </div>
+                <div class="detail-group-content">
+                  <div class="common-info-item">
+                    <div class="label">負責人</div>
+                    <div class="content">王小明</div>
+                  </div>
+                  <div class="common-info-item">
+                    <div class="label">負責人身份證字號</div>
+                    <div class="content">A123456789</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/assets/js/popup.js"></script>
+    <script>
+      function searchSubmit() {
+        popupManager.hide('customerSearch');
+        document.getElementById('cleanSearchButton').style.display = 'flex';
+      }
+      function cleanSearch() {
+        document.getElementById('cleanSearchButton').style.display = 'none';
+      }
+      function handleRecord() {
+        popupManager.show('customerRecord');
+        event.stopPropagation();
+      }
+    </script>
+  </body>
+</html>
+<style scoped>
+/* customer list */
+.customer-list .customer-list-top {
+  margin: 16px 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.customer-list .customer-list-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.customer-list .customer-list-button {
+  width: 40px;
+  height: 40px;
+}
+.customer-list .customer-list-total {
+  font-size: 16px;
+  font-weight: 400;
+  color: #292929;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 46px;
+}
+.customer-list .customer-list-clean-button {
+  display: none;
+  align-items: center;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #004D71;
+}
+.customer-list .customer-list-clean-button img {
+  width: 24px;
+  height: 24px;
+}
+.customer-list .customer-list-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.customer-list .customer-list-item {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  position: relative;
+}
+.customer-list .customer-list-item .top-line{
+  width: 100%;
+  height: 9px;
+  background: linear-gradient(90deg, #887341 45.42%, #E0C583 98.61%);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.customer-list .customer-list-item .customer-list-item-content {
+  padding: 31px 16px 24px;
+}
+.customer-list .customer-list-item .customer-list-item-content .customer-list-item-content-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+.customer-list .customer-list-item .customer-list-item-content .customer-list-item-content-top .customer-list-item-content-top-operate {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.customer-list .customer-list-item .customer-list-item-content .customer-list-item-content-top .customer-list-item-content-top-operate .customer-list-item-content-top-operate-button {
+  width: 28px;
+  height: 28px;
+}
+.customer-list .customer-list-item .customer-list-item-content .customer-list-item-content-bottom {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}
+.customer-list .customer-list-item .customer-list-item-content .customer-list-item-content-bottom .item-content-bottom-info {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+.customer-list .customer-list-item .customer-list-item-content .customer-list-item-content-bottom .item-content-bottom-info .customer-list-item-content-bottom-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.customer-list .customer-list-item .customer-list-item-content .customer-list-item-content-bottom .item-content-bottom-info .customer-list-item-content-bottom-info-item .label {
+  width: 72px;
+}
+.customer-list .customer-list-item .customer-list-item-content .customer-list-item-content-bottom .item-content-bottom-info .customer-list-item-content-bottom-info-item .content {
+  flex: 1;
+}
+.customer-list .customer-list-item .customer-list-item-content .customer-list-item-content-bottom .customer-list-item-content-bottom-button {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+}
+.customer-list .customer-list-more {
+  margin-top: 33px;
+}
+
+/* record */
+.record_table_group_container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.record_table_group_container .record_table_group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.record_table_group_container .record_table_group .record_table_group_title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #9E7F54;
+}
+.record_table_group_container .record_table_group .record_table_group_title img {
+  width: 24px;
+  height: 24px;
+}
+.record_table_group_container .record_table_group table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.record_table_group_container .record_table_group table th {
+  background-color: #EFEFEF;
+  border-bottom: 1px solid #DCDCDC;
+  text-align: left;
+  padding: 8px 16px;
+  border-left: 1px solid #DCDCDC;
+  font-size: 16px;
+  font-weight: 400;
+  color: #292929;
+}
+.record_table_group_container .record_table_group table td{
+  border-left: 1px solid #DCDCDC;
+  border-bottom: 1px solid #DCDCDC;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #292929;
+}
+.record_table_group_container .record_table_group table th:first-child,
+.record_table_group_container .record_table_group table td:first-child {
+  border-left: none;
+  text-align: left;
+}
+.record_table_group_container .record_table_group table th:nth-child(2),
+.record_table_group_container .record_table_group table th:nth-child(3),
+.record_table_group_container .record_table_group table td:nth-child(2),
+.record_table_group_container .record_table_group table td:nth-child(3) {
+  text-align: center;
+}
+
+
+
+.record_table_group_container .record_table_group table td.no {
+  color: #F0423C;
+}
+</style>

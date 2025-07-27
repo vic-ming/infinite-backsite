@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="icon" href="/assets/favicon.ico"> -->
+    <title>Infinite</title>
+    <!-- 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- 共用樣式 -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+    <div class="container customer-add">
+      <!-- header -->
+      <div class="header">
+        <a class="header-menu" href="/customer-list.html">
+          <img src="/assets/images/icon_back.svg" alt="menu">
+        </a>
+        <div class="header-logo">
+          <img src="/assets/images/logo.png" alt="logo">
+        </div>
+      </div>
+      <!-- content -->
+      <main class="main">
+        <img src="/assets/images/add-customer-img.png" alt="customer-add" class="add-customer-img">
+
+        <div class="add-customer-form">
+          <div class="add-customer-form-item">
+            <label for="customer-tax-id" class="common-title">請輸入客戶統一編號</label>
+            <div class="w-100">
+              <input type="text" id="customer-tax-id" class="form-input" placeholder="請輸入" maxlength="8">
+              <div id="error-message" class="error-message"></div>
+            </div>
+          </div>
+          <button class="button-primary w-100" id="next-button" disabled onclick="handleNext()">
+            下一步
+          </button>
+        </div>
+      </main>
+
+
+    </div>
+  
+  </body>
+  <script>
+    const customerTaxIdInput = document.getElementById('customer-tax-id');
+    customerTaxIdInput.addEventListener('input', () => {
+      if (customerTaxIdInput.value.length === 8) {
+        document.getElementById('next-button').disabled = false;
+      } else {
+        document.getElementById('next-button').disabled = true;
+      }
+    });
+    function handleNext() {
+      if (customerTaxIdInput.value === '00000000') {
+        document.getElementById('error-message').style.display = 'block';
+        document.getElementById('error-message').innerHTML = '無維護此客戶權限，請輸入其他客戶統編';
+        document.getElementById('customer-tax-id').classList.add('error');
+      } else {
+        document.getElementById('error-message').style.display = 'none';
+        document.getElementById('error-message').innerHTML = '';
+        document.getElementById('customer-tax-id').classList.remove('error');
+        window.location.href = '/customer-detail.html';
+      }
+    }
+  </script>
+</html>
+<style scoped>
+main{
+  max-width: 300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 60px;
+  padding: 70px 0 0 !important;
+}
+.add-customer-img {
+  width: 220px;
+  object-fit: cover;
+}
+.add-customer-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+}
+.add-customer-form-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+.add-customer-form-item .form-input {
+  height: 46px;
+  padding: 0 16px;
+  border: 1px solid #BDBDBD;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #292929;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+.add-customer-form-item .form-input.error {
+  border-color: #FF0900;
+}
+.add-customer-form-item .error-message {
+  color: #FF0900;
+  font-size: 16px;
+  font-weight: 400;
+  display: none;
+  margin-top: 8px;
+}
+
+.form-input:focus {
+  border-color: #004D71;
+}
+
+.form-input::placeholder {
+  color: #BDBDBD;
+}
+.w-100 {
+  width: 100%;
+}
+</style>

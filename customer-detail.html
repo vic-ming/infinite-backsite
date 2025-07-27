@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="icon" href="/assets/favicon.ico"> -->
+    <title>Infinite</title>
+    <!-- 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- 共用樣式 -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+    <div class="container customer-add">
+      <!-- header -->
+      <div class="header">
+        <a class="header-menu" href="/customer-add.html">
+          <img src="/assets/images/icon_back.svg" alt="menu">
+        </a>
+        <div class="header-logo">
+          <img src="/assets/images/logo.png" alt="logo">
+        </div>
+      </div>
+      <!-- content -->
+      <main class="main">
+        <!-- tab -->
+        <div class="common-tab">
+          <div class="common-tab-item active">公司<div class="line"></div></div>
+          <div class="common-tab-item">負責人<div class="line"></div></div>
+          <div class="common-tab-item">登記資料<div class="line"></div></div>
+          <div class="common-tab-item">聯絡人<div class="line"></div></div>
+        </div>
+        <!-- 商業司資料提示 -->
+        <div class="customer-detail-check-data">
+          <div class="customer-detail-check-data-text">
+            <img src="/assets/images/icon_info.svg" alt="info">
+            已更新為最新商業司資料
+          </div>
+          <button class="customer-detail-check-data-button">查看詳情</button>
+        </div>
+        <!-- 內容 -->
+        <div class="customer-detail-content">
+          <!-- 公司 -->
+          <div class="customer-detail-content-area gray">
+            <div class="detail-group-top">
+              <div class="detail-group-title">
+                <img src="/assets/images/icon_quill.svg" alt="quill">
+                公司
+              </div>
+              <button onclick="popupManager.show('aiSummary')">
+                AI 摘要
+                <img src="/assets/images/icon_ai.svg" alt="ai">
+              </button>
+            </div>
+            <!-- 切換跨海企業客戶、商業司資料 -->
+            <div class="customer-detail-switch">
+              <div class="customer-detail-switch-item">
+                跨海企業客戶
+                <img src="/assets/images/icon_world.svg" alt="world">
+              </div>
+              <button class="customer-detail-switch-button" onclick="popupManager.show('businessDetail')">商業司資料</button>
+            </div>
+            <div class="form-group">
+              <label for="company-tax">客戶統編<span>*</span></label>
+              <input type="text" id="company-tax" class="form-input" placeholder="請輸入">
+            </div>
+            <div class="form-group">
+              <label for="company-name">客戶名稱<span>*</span></label>
+              <input type="text" id="company-name" class="form-input" placeholder="請輸入">
+            </div>
+            <div class="form-group">
+              <label for="company-date">成立日期</label>
+              <input type="date" id="company-date" class="form-input" placeholder="請輸入">
+            </div>
+            <div class="form-group">
+              <label for="company-account">歸戶編號<span>*</span></label>
+              <input type="text" id="company-account" class="form-input search" placeholder="請選擇" readonly>
+            </div>
+            <div class="form-group">
+              <label for="company-account-name">歸戶名稱<span>*</span></label>
+              <input type="text" id="company-account-name" class="form-input search" placeholder="請選擇" disabled>
+            </div>
+            <div class="form-group">
+              <label for="company-industry">職業別代號</label>
+              <input type="text" id="company-industry" class="form-input search" placeholder="請輸入" readonly>
+            </div>
+            <div class="form-group">
+              <label for="company-industry-name">行業別<span>*</span></label>
+              <input type="text" id="company-industry-name" class="form-input search" placeholder="請輸入" readonly>
+            </div>
+            <div class="form-group">
+              <label for="company-capital">實收資本額</label>
+              <div class="amount-wrapper">
+                <input type="text" id="company-capital" class="form-input amount" placeholder="請輸入">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="company-year-sales">年營業額</label>
+              <div class="amount-wrapper">
+                <input type="text" id="company-year-sales" class="form-input amount" placeholder="請輸入">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="company-address">註冊地址</label>
+              <div class="address-wrapper">
+                <div class="address-wrapper-item">
+                  <input type="text" id="company-address-code" class="form-input search" placeholder="請選擇" readonly>
+                  <input type="text" id="company-address-city" class="form-input" placeholder="" disabled>
+                </div>
+                <input type="text" id="company-address-detail" class="form-input" placeholder="請輸入">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="factory-address">軍(工)廠所地址</label>
+              <div class="address-wrapper">
+                <div class="address-wrapper-item">
+                  <input type="text" id="factory-address-code" class="form-input search" placeholder="請選擇" readonly>
+                  <input type="text" id="factory-address-city" class="form-input" placeholder="" disabled>
+                </div>
+                <input type="text" id="factory-address-detail" class="form-input" placeholder="請輸入">
+              </div>
+            </div>
+            <div class="form-group" id="invoice-address-wrapper">
+              <label for="invoice-address" class="invoice-address-label">
+                發票郵寄地址
+                <button onclick="deleteInvoiceAddress()">
+                  <img src="/assets/images/icon_delete.svg" alt="delete">
+                </button>
+              </label>
+              <div class="address-wrapper">
+                <div class="address-wrapper-item">
+                  <input type="text" id="invoice-address-code" class="form-input search" placeholder="請選擇" readonly>
+                  <input type="text" id="invoice-address-city" class="form-input" placeholder="" disabled>
+                </div>
+                <input type="text" id="invoice-address-detail" class="form-input" placeholder="請輸入">
+              </div>
+            </div>
+            <!-- 新增發票郵寄地址 -->
+            <button class="button-primary-outline" id="add-invoice-address-button" onclick="showInvoiceAddress()">
+              <img src="/assets/images/icon_plus.svg" alt="plus" class="icon-plus">
+              新增發票郵寄地址
+            </button>
+            <!-- 上市/上櫃註記 -->
+            <div class="form-checkbox-group">
+              <input type="checkbox" id="company-checkbox" class="form-checkbox">
+              <label for="company-checkbox">上市/上櫃註記</label>
+            </div>
+            <div class="form-group">
+              <label for="company-employee">經辦人員</label>
+              <input type="text" id="company-employee" class="form-input" placeholder="" disabled>
+            </div>
+            <div class="form-group">
+              <label for="company-department">維護部門<span>*</span></label>
+              <input type="text" id="company-department" class="form-input" placeholder="" disabled>
+            </div>
+            <!-- note -->
+            <div class="edit-note">
+              <div class="note-item">
+                <div class="label">新增人員</div>
+                <div class="content">王小明<span>2025/5/1 16:30</span></div>
+              </div>
+              <div class="note-item">
+                <div class="label">修改人員</div>
+                <div class="content">王小明<span>2025/5/2 16:30</span></div>
+              </div>
+            </div>
+
+            
+          </div>
+          <!-- 負責人 -->
+          <div class="customer-detail-content-area">
+            <div class="detail-group-top">
+              <div class="detail-group-title">
+                <img src="/assets/images/icon_quill.svg" alt="quill">
+                負責人
+              </div>
+              <button>
+                <img src="/assets/images/icon_scan.svg" alt="ai">
+              </button>
+            </div>
+            <div class="form-group">
+              <label for="company-manager">負責人<span>*</span></label>
+              <input type="text" id="company-manager" class="form-input" placeholder="請輸入">
+            </div>
+            <div class="form-group">
+              <label for="company-manager-id">負責人身分證字號<span>*</span></label>
+              <input type="text" id="company-manager-id" class="form-input" placeholder="請輸入">
+            </div>
+            <div class="form-group">
+              <label for="company-manager-birth">負責人生日</label>
+              <input type="date" id="company-manager-birth" class="form-input" placeholder="請輸入">
+            </div>
+            <div class="form-group">
+              <label for="company-manager-actual">實際經營者<span>*</span></label>
+              <input type="text" id="company-manager-actual" class="form-input" placeholder="請輸入">
+            </div>
+
+            <div class="form-group">
+              <label for="company-address">戶籍地址</label>
+              <div class="address-wrapper">
+                <div class="address-wrapper-item">
+                  <input type="text" id="company-address-code" class="form-input search" placeholder="請選擇" readonly>
+                  <input type="text" id="company-address-city" class="form-input" placeholder="" disabled>
+                </div>
+                <input type="text" id="company-address-detail" class="form-input" placeholder="請輸入">
+              </div>
+            </div>
+            <div class="form-group" id="manager-address-wrapper">
+              <label for="manager-address" class="manager-address-label">
+                負責人通訊地址
+                <button onclick="deleteManagerAddress()">
+                  <img src="/assets/images/icon_delete.svg" alt="delete">
+                </button>
+              </label>
+              <div class="address-wrapper">
+                <div class="address-wrapper-item">
+                  <input type="text" id="invoice-address-code" class="form-input search" placeholder="請選擇" readonly>
+                  <input type="text" id="invoice-address-city" class="form-input" placeholder="" disabled>
+                </div>
+                <input type="text" id="invoice-address-detail" class="form-input" placeholder="請輸入">
+              </div>
+            </div>
+            <!-- 新增負責人通訊地址 -->
+            <button class="button-primary-outline" id="add-manager-address-button" onclick="showManagerAddress()">
+              <img src="/assets/images/icon_plus.svg" alt="plus" class="icon-plus">
+              新增負責人通訊地址
+            </button> 
+          </div>
+          <!-- 登記資料 -->
+          <div class="customer-detail-content-area gray">
+            <div class="detail-group-top">
+              <div class="detail-group-title">
+                <img src="/assets/images/icon_quill.svg" alt="quill">
+                登記資料
+              </div>
+              <button>
+                <img src="/assets/images/icon_scan.svg" alt="ai">
+              </button>
+            </div>
+            <div class="form-group">
+              <label for="company-register-number">登記字號</label>
+              <input type="text" id="company-register-number" class="form-input" placeholder="請輸入">
+            </div>
+            <div class="form-group">
+              <label for="company-manager-birth">營利事業登記日期</label>
+              <input type="date" id="company-manager-birth" class="form-input" placeholder="請輸入">
+            </div>
+            <div class="form-group">
+              <label for="company-manager-actual">員工人數查詢</label>
+              <select id="company-manager-actual" class="form-input">
+                <option value="">請選擇</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="company-manager-sign-date">營利事業登記日期</label>
+              <input type="date" id="company-manager-sign-date" class="form-input" placeholder="請輸入">
+            </div>
+            <div class="form-group">
+              <label for="company-manager-other-file">其他登記文件</label>
+              <input type="text" id="company-manager-other-file" class="form-input" placeholder="請輸入">
+            </div>
+            <div class="form-group">
+              <label for="company-manager-other-date">其他登記日期</label>
+              <input type="date" id="company-manager-other-date" class="form-input" placeholder="請輸入">
+            </div>
+
+            <div class="form-group">
+              <label for="company-business-address">營業地址</label>
+              <div class="address-wrapper">
+                <div class="address-wrapper-item">
+                  <input type="text" id="company-business-address-code" class="form-input search" placeholder="請選擇" readonly>
+                  <input type="text" id="company-business-address-city" class="form-input" placeholder="" disabled>
+                </div>
+                <input type="text" id="company-business-address-detail" class="form-input" placeholder="請輸入">
+              </div>
+            </div>
+          </div>
+          <!-- 聯絡人 -->
+          <div class="customer-detail-content-area">
+            <div class="detail-group-top">
+              <div class="detail-group-title">
+                <img src="/assets/images/icon_quill.svg" alt="quill">
+                聯絡人
+              </div>
+            </div>
+            <div class="customer-detail-contact-list">
+              <div class="customer-detail-contact-item">
+                <div class="customer-detail-contact-item-title">聯絡人一</div>
+                <div class="form-group">
+                  <label for="company-contact-title">聯絡人職稱</label>
+                  <input type="text" id="company-contact-title" class="form-input" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="company-contact-name">聯絡人</label>
+                  <input type="text" id="company-contact-name" class="form-input" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="company-contact-phone">聯絡電話</label>
+                  <input type="text" id="company-contact-phone" class="form-input" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="company-contact-mobile">行動電話</label>
+                  <input type="text" id="company-contact-mobile" class="form-input" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="company-contact-fax">傳真號碼</label>
+                  <input type="text" id="company-contact-fax" class="form-input" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="company-contact-email">E-Mail</label>
+                  <input type="text" id="company-contact-email" class="form-input" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="company-contact-line">LINE ID</label>
+                  <input type="text" id="company-contact-line" class="form-input" placeholder="">
+                </div>
+              </div>
+            </div>
+          
+
+            <!-- 新增聯絡人 -->
+            <button class="button-primary-outline" id="add-contact-button" onclick="addContact()">
+              <img src="/assets/images/icon_plus.svg" alt="plus" class="icon-plus">
+              新增聯絡人
+            </button> 
+            
+          </div>
+        </div>
+
+        <!-- 儲存 -->
+        <div class="customer-detail-save">
+          <button class="button-primary">儲存</button>
+        </div>
+      </main>
+    </div>
+
+    <!-- 商業司資料 popup -->
+    <div class="popup-overlay" id="businessDetailOverlay">
+      <div class="popup-content">
+        <div class="popup-brown-area">
+          <div class="popup-header">
+            <div class="common-title">商業司資料</div>
+            <button class="popup-close-btn" onclick="popupManager.hide('businessDetail')">
+              <img src="/assets/images/icon_close.svg" alt="close">
+            </button>
+          </div>
+          <div class="popup-brown-area-content">
+            <div class="popup-brown-area-content-item">
+              <div class="common-text">12345678</div>
+              <div class="common-sub-title">日盛台駿</div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-body no-x-padding">
+          <div class="detail-body-content">
+            <div class="detail-group">
+              <div class="detail-group-content">
+                <div class="common-info-item">
+                  <div class="label">負責人</div>
+                  <div class="content">王小明</div>
+                </div>
+                <div class="common-info-item">
+                  <div class="label">公司地址</div>
+                  <div class="content">台北市松山區南京東路一段 13 號</div>
+                </div>
+                <div class="common-info-item">
+                  <div class="label">成立日期</div>
+                  <div class="content">2000/01/01</div>
+                </div>
+                <div class="common-info-item">
+                  <div class="label">資本額</div>
+                  <div class="content">2000 萬元</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI 摘要 popup -->
+    <div class="popup-overlay" id="aiSummaryOverlay">
+      <div class="popup-content">
+        <div class="popup-header">
+          <div class="common-title">AI 摘要</div>
+          <button class="popup-close-btn" onclick="popupManager.hide('aiSummary')">
+            <img src="/assets/images/icon_close.svg" alt="close">
+          </button>
+        </div>
+        <div class="popup-body ai-summary-body">
+          <p>日盛台駿(6958) 主要從事租賃業務，包括融資租賃、營業租賃以及車輛分期付款等。</p>
+          <p>此外，也跨足企業融資、綠能投資與融資等業務。 業務範圍涵蓋臺灣、中國大陸和泰國。</p>
+          <h2>更詳細的說明</h2>
+          <h3>融資租賃</h3>
+          <p>為企業提供設備、車輛等資產的融資租賃服務，讓企業能以租代買，取得所需資產。 </p>
+          <h3>營業租賃</h3>
+          <p>提供企業車輛、設備等資產的租賃服務，讓企業能彈性運用資產，降低固定資產的持有成本。 </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 確認彈窗 -->
+    <div id="confirm-modal" class="confirm-modal">
+      <div class="confirm-modal-content">
+        <div class="confirm-modal-title" id="confirm-modal-title"></div>
+        <div class="confirm-modal-message" id="confirm-modal-message"></div>
+        <div class="confirm-modal-buttons">
+          <button class="confirm-modal-cancel" onclick="hideConfirmModal()">取消</button>
+          <button class="confirm-modal-confirm" id="confirm-modal-confirm"></button>
+        </div>
+      </div>
+    </div>
+    <script src="/assets/js/popup.js"></script>
+    <script src="/assets/js/dialog.js"></script>
+  </body>
+  
+
+  <script>
+    const tabItems = document.querySelectorAll('.common-tab-item');
+    tabItems.forEach(item => {
+      item.addEventListener('click', () => {
+        tabItems.forEach(item => {
+          item.classList.remove('active');
+        });
+        item.classList.add('active');
+      });
+    });
+
+    // 新增發票郵寄地址
+    function showInvoiceAddress() {
+      const invoiceAddressWrapper = document.getElementById('invoice-address-wrapper');
+      const addInvoiceAddressButton = document.getElementById('add-invoice-address-button');
+      invoiceAddressWrapper.style.display = 'flex';
+      addInvoiceAddressButton.style.display = 'none';
+    }
+   
+    // 刪除發票郵寄地址
+    function deleteInvoiceAddress() {
+      showConfirmModal(
+        '是否刪除發票郵寄地址',
+        '刪除後將無法復原',
+        '刪除',
+        function() {
+          const invoiceAddressWrapper = document.getElementById('invoice-address-wrapper');
+          const addInvoiceAddressButton = document.getElementById('add-invoice-address-button');
+          invoiceAddressWrapper.style.display = 'none';
+          addInvoiceAddressButton.style.display = 'flex';
+          hideConfirmModal();
+        }
+      );
+    }
+
+    // 新增負責人通訊地址
+    function showManagerAddress() {
+      const managerAddressWrapper = document.getElementById('manager-address-wrapper');
+      const addManagerAddressButton = document.getElementById('add-manager-address-button');
+      managerAddressWrapper.style.display = 'flex';
+      addManagerAddressButton.style.display = 'none';
+    }
+
+    // 刪除負責人通訊地址
+    function deleteManagerAddress() {
+      showConfirmModal(
+        '是否刪除負責人通訊地址',
+        '刪除後將無法復原',
+        '刪除',
+        function() {  
+          const managerAddressWrapper = document.getElementById('manager-address-wrapper');
+          const addManagerAddressButton = document.getElementById('add-manager-address-button');
+          managerAddressWrapper.style.display = 'none';
+          addManagerAddressButton.style.display = 'flex';
+          hideConfirmModal();
+        }
+      );
+    }
+
+    // 將數字轉換為中文數字
+    function numberToChinese(num) {
+      const chineseNumbers = ['', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
+      if (num <= 10) {
+        return chineseNumbers[num];
+      }
+      // 處理更大的數字 (11-99)
+      const tens = Math.floor(num / 10);
+      const ones = num % 10;
+      if (tens === 1) {
+        return ones === 0 ? '十' : '十' + chineseNumbers[ones];
+      } else {
+        return chineseNumbers[tens] + '十' + (ones === 0 ? '' : chineseNumbers[ones]);
+      }
+    }
+
+    // 新增聯絡人
+    function addContact() {
+      const contactList = document.querySelector('.customer-detail-contact-list');
+      const contactCount = contactList.children.length + 1;
+      const contactCountChinese = numberToChinese(contactCount);
+      const contactItem = document.createElement('div');
+      contactItem.classList.add('customer-detail-contact-item');
+      contactItem.id = `company-contact-item-${contactCount}`;
+      
+      contactItem.innerHTML = `
+        <div class="customer-detail-contact-item-title">
+          聯絡人${contactCountChinese}
+          <button onclick="deleteContact(${contactCount})">
+            <img src="/assets/images/icon_delete.svg" alt="delete">
+          </button>
+        </div>
+        <div class="form-group">
+          <label for="company-contact-title-${contactCount}">聯絡人職稱</label>
+          <input type="text" id="company-contact-title-${contactCount}" class="form-input" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="company-contact-name-${contactCount}">聯絡人</label>
+          <input type="text" id="company-contact-name-${contactCount}" class="form-input" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="company-contact-phone-${contactCount}">聯絡電話</label>
+          <input type="text" id="company-contact-phone-${contactCount}" class="form-input" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="company-contact-mobile-${contactCount}">行動電話</label>
+          <input type="text" id="company-contact-mobile-${contactCount}" class="form-input" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="company-contact-fax-${contactCount}">傳真號碼</label>
+          <input type="text" id="company-contact-fax-${contactCount}" class="form-input" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="company-contact-email-${contactCount}">E-Mail</label>
+          <input type="text" id="company-contact-email-${contactCount}" class="form-input" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="company-contact-line-${contactCount}">LINE ID</label>
+          <input type="text" id="company-contact-line-${contactCount}" class="form-input" placeholder="">
+        </div>
+      `;
+      
+      contactList.appendChild(contactItem);
+    }
+  
+    // 刪除聯絡人
+    function deleteContact(contactCount) {
+
+      showConfirmModal(
+        '是否刪除此聯絡人',
+        '刪除後將無法復原',
+        '刪除',
+        function() {  
+          const contactList = document.querySelector('.customer-detail-contact-list');
+          const contactItem = document.getElementById(`company-contact-item-${contactCount}`);
+          contactList.removeChild(contactItem);
+          hideConfirmModal();
+        }
+      );
+     
+    }
+  </script>
+</html>
+<style scoped>
+
+main{
+  padding: 0 !important;
+  min-height: calc(100vh - 60px);
+}
+/* 商業司資料提示 */
+.customer-detail-check-data {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 57px;
+  padding: 0 16px;
+  background-color: #E7F1F5;
+}
+.customer-detail-check-data-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #429DFF;
+}
+.customer-detail-check-data-text img {
+  width: 24px;
+  height: 24px;
+}
+.customer-detail-check-data-button {
+  color: #004D71;
+  font-size: 16px;
+  font-weight: 400;
+}
+.customer-detail-content-area {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px 16px;
+  background-color: #fff;
+}
+.customer-detail-content-area.gray {
+  background-color: #fafafa;
+}
+
+/* 標題 */
+.detail-group-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.detail-group-top .detail-group-title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #9E7F54;   
+}
+.detail-group-top .detail-group-title img {
+  width: 32px;
+  height: 32px;
+}
+.detail-group-top button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #004D71;
+}
+.detail-group-top button img {
+  width: 24px;
+  height: 24px;
+}
+
+/* 切換跨海企業客戶、商業司資料 */
+.customer-detail-switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.customer-detail-switch-item {    
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #004D71;
+}
+.customer-detail-switch-item img {
+  width: 24px;
+  height: 24px;
+}
+.customer-detail-switch-button {
+  color: #004D71;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: underline;
+}
+/* 按鈕 */
+.button-primary-outline{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+ 
+}
+.button-primary-outline .icon-plus {
+  width: 22px;
+  height: 22px;
+}
+/* 發票郵寄地址 */
+#invoice-address-wrapper, #manager-address-wrapper {
+  display: none;
+}
+.invoice-address-label, .manager-address-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.invoice-address-label img {
+  width: 24px;
+  height: 24px;
+}
+
+/* 備註 */
+.edit-note {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  background-color: #FFFCE8;
+  border: 1px solid #F5D93F;
+}
+.edit-note .note-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.edit-note .note-item .label,.edit-note .note-item .content {
+  font-size: 16px;
+  font-weight: 400;
+  color: #292929;
+}
+.edit-note .note-item .content span {
+  color: #7C7C7C;
+  margin-left: 8px;
+}
+
+/* 聯絡人 */
+.customer-detail-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.customer-detail-contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+  border-top: 1px solid #BDBDBD;
+  padding-top: 16px;
+}
+.customer-detail-contact-item:first-child {
+  border-top: none;
+  margin-top: 0;
+}
+.customer-detail-contact-item-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #292929;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.customer-detail-contact-item-title button {
+  width: 24px;
+  position: relative;
+  top: 3px;
+}
+
+/* 儲存 */
+.customer-detail-save {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 94px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background-color: #fff;
+  box-sizing: border-box;
+  box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+/* AI 摘要 */
+.ai-summary-body {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  
+  background-color: #fff;
+}
+.ai-summary-body p {
+  font-size: 18px;
+  font-weight: 400;
+  color: #292929;
+}
+.ai-summary-body h2 {   
+  font-size: 20px;
+  font-weight: 700;
+  color: #292929;
+}
+.ai-summary-body h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #292929;
+}
+</style>
