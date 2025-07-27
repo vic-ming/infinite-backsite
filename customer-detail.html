@@ -45,7 +45,7 @@
         <!-- 內容 -->
         <div class="customer-detail-content">
           <!-- 公司 -->
-          <div class="customer-detail-content-area gray">
+          <div class="customer-detail-content-area gray" id="company-section">
             <div class="detail-group-top">
               <div class="detail-group-title">
                 <img src="/assets/images/icon_quill.svg" alt="quill">
@@ -172,7 +172,7 @@
             
           </div>
           <!-- 負責人 -->
-          <div class="customer-detail-content-area">
+          <div class="customer-detail-content-area" id="manager-section">
             <div class="detail-group-top">
               <div class="detail-group-title">
                 <img src="/assets/images/icon_quill.svg" alt="quill">
@@ -231,7 +231,7 @@
             </button> 
           </div>
           <!-- 登記資料 -->
-          <div class="customer-detail-content-area gray">
+          <div class="customer-detail-content-area gray" id="registration-section">
             <div class="detail-group-top">
               <div class="detail-group-title">
                 <img src="/assets/images/icon_quill.svg" alt="quill">
@@ -283,7 +283,7 @@
             </div>
           </div>
           <!-- 聯絡人 -->
-          <div class="customer-detail-content-area">
+          <div class="customer-detail-content-area" id="contact-section">
             <div class="detail-group-top">
               <div class="detail-group-title">
                 <img src="/assets/images/icon_quill.svg" alt="quill">
@@ -424,14 +424,62 @@
 
   <script>
     const tabItems = document.querySelectorAll('.common-tab-item');
-    tabItems.forEach(item => {
+    const sections = ['company-section', 'manager-section', 'registration-section', 'contact-section'];
+    
+    // 點擊tab滾動到對應區塊
+    tabItems.forEach((item, index) => {
       item.addEventListener('click', () => {
+        // 移除所有 active 狀態
         tabItems.forEach(item => {
           item.classList.remove('active');
         });
+        
+        // 添加當前項目的 active 狀態
         item.classList.add('active');
+        
+        // 滾動到對應區塊
+        const targetSection = document.getElementById(sections[index]);
+        if (targetSection) {
+          const targetPosition = targetSection.offsetTop - 109;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
       });
     });
+
+    // 滾動時更新tab的active狀態
+    function updateActiveTab() {
+      const scrollPosition = window.scrollY + 200; // 增加一些偏移量
+      
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section && section.offsetTop <= scrollPosition) {
+          // 移除所有 active 狀態
+          tabItems.forEach(item => {
+            item.classList.remove('active');
+          });
+          
+          // 添加當前區塊對應tab的 active 狀態
+          if (tabItems[i]) {
+            tabItems[i].classList.add('active');
+          }
+          break;
+        }
+      }
+    }
+
+    // 監聽滾動事件
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      // 使用防抖來優化性能
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(updateActiveTab, 50);
+    });
+
+    // 初始化時設置正確的active狀態
+    updateActiveTab();
 
     // 新增發票郵寄地址
     function showInvoiceAddress() {
