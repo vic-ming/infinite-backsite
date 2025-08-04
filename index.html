@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="icon" href="/assets/favicon.ico"> -->
+    <title>Infinite</title>
+    <!-- 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- 共用樣式 -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <!-- header -->
+      <div class="header">
+        <button class="header-menu">
+          <img src="/assets/images/icon_menu.svg" alt="menu">
+        </button>
+        <div class="header-logo">
+          <img src="/assets/images/logo.png" alt="logo">
+        </div>
+      </div>
+      <!-- content -->
+      <main class="main">
+        <div class="index-welcome">
+          <div class="common-title">歡迎使用 Infinite 系統</div>
+          <div class="index-subtitle">請選擇您要使用的功能</div>
+        </div>
+        
+        <div class="index-menu">
+          <button class="index-menu-button" onclick="window.location.href='/customer-list.html'">
+            <div class="index-menu-button-icon">
+              <img src="/assets/images/icon_world.svg" alt="客戶管理">
+            </div>
+            <div class="index-menu-button-content">
+              <div class="index-menu-button-title">客戶管理</div>
+              <div class="index-menu-button-desc">查看和管理客戶基本資料</div>
+            </div>
+            <div class="index-menu-button-arrow">
+              <img src="/assets/images/icon_square_arrow.svg" alt="進入">
+            </div>
+          </button>
+          
+          <button class="index-menu-button" onclick="window.location.href='/transaction-search.html'">
+            <div class="index-menu-button-icon">
+              <img src="/assets/images/icon_search.svg" alt="交易查詢">
+            </div>
+            <div class="index-menu-button-content">
+              <div class="index-menu-button-title">交易查詢</div>
+              <div class="index-menu-button-desc">搜尋和查詢交易相關資料</div>
+            </div>
+            <div class="index-menu-button-arrow">
+              <img src="/assets/images/icon_square_arrow.svg" alt="進入">
+            </div>
+          </button>
+
+          <button class="index-menu-button" onclick="window.location.href='/associate-detail.html'">
+            <div class="index-menu-button-icon">
+              <img src="/assets/images/icon_world.svg" alt="歸戶管理">
+            </div>
+            <div class="index-menu-button-content">
+              <div class="index-menu-button-title">歸戶管理</div>
+              <div class="index-menu-button-desc">查看和管理歸戶相關資料</div>
+            </div>
+            <div class="index-menu-button-arrow">
+              <img src="/assets/images/icon_square_arrow.svg" alt="進入">
+            </div>
+          </button>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
+<style scoped>
+/* index page styles */
+.index-welcome {
+  text-align: center;
+  margin: 32px 0 48px;
+}
+
+.index-subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #989898;
+  margin-top: 8px;
+}
+
+.index-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.index-menu-button {
+  background-color: #FFFFFF;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
+  padding: 24px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.index-menu-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.1);
+}
+
+.index-menu-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #887341 45.42%, #E0C583 98.61%);
+}
+
+.index-menu-button-icon {
+  width: 48px;
+  height: 48px;
+  background-color: #F5F5F5;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.index-menu-button-icon img {
+  width: 24px;
+  height: 24px;
+  filter: opacity(0.7);
+}
+
+.index-menu-button-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.index-menu-button-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #004D71;
+}
+
+.index-menu-button-desc {
+  font-size: 14px;
+  font-weight: 400;
+  color: #7C7C7C;
+  line-height: 1.4;
+}
+
+.index-menu-button-arrow {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.index-menu-button-arrow img {
+  width: 100%;
+  height: 100%;
+}
+
+/* 響應式調整 */
+@media (max-width: 360px) {
+  .index-menu-button {
+    padding: 20px 16px;
+  }
+  
+  .index-menu-button-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .index-menu-button-icon img {
+    width: 20px;
+    height: 20px;
+  }
+}
+</style>

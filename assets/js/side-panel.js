@@ -39,7 +39,7 @@ class SidePanelManager {
    * @param {string} panelId - 面板ID
    */
   openPanel(panelId) {
-    console.log(`嘗試打開側邊面板: ${panelId}`);
+    // console.log(`嘗試打開側邊面板: ${panelId}`);
     
     const panelConfig = this.panels.get(panelId);
     if (!panelConfig) {
@@ -47,21 +47,21 @@ class SidePanelManager {
       return;
     }
 
-    console.log(`找到面板配置:`, panelConfig);
+    // console.log(`找到面板配置:`, panelConfig);
 
     // 創建或獲取面板容器
     let panelContainer = document.getElementById(`side-panel-${panelId}`);
     if (!panelContainer) {
-      console.log(`創建新的面板容器: side-panel-${panelId}`);
+      // console.log(`創建新的面板容器: side-panel-${panelId}`);
       panelContainer = this.createPanelContainer(panelId);
     } else {
-      console.log(`使用現有面板容器: side-panel-${panelId}`);
+      // console.log(`使用現有面板容器: side-panel-${panelId}`);
     }
 
     // 設置 iframe src
     const iframe = panelContainer.querySelector('iframe');
     iframe.src = panelConfig.url;
-    console.log(`設置 iframe src: ${panelConfig.url}`);
+    // console.log(`設置 iframe src: ${panelConfig.url}`);
 
     // 強制瀏覽器重排，確保初始狀態渲染完成
     panelContainer.offsetHeight;
@@ -153,6 +153,33 @@ class SidePanelManager {
             panelType: 'associate',
             id: event.data.id,
             name: event.data.name
+          });
+        } else if (event.data.type === 'selectEnterprise') {
+          this.handleSelectItem({
+            panelType: 'enterprise',
+            id: event.data.id,
+            name: event.data.name,
+            manager: event.data.manager
+          });
+        } else if (event.data.type === 'selectIndustry') {
+          this.handleSelectItem({
+            panelType: 'industry',
+            id: event.data.id,
+            name: event.data.name
+          });
+        } else if (event.data.type === 'selectOccupation') {
+          this.handleSelectItem({
+            panelType: 'occupation',
+            id: event.data.id,
+            name: event.data.name
+          });
+        } else if (event.data.type === 'selectPostal') {
+          this.handleSelectItem({
+            panelType: 'postal',
+            code: event.data.code,
+            city: event.data.city,
+            district: event.data.district,
+            fullAddress: event.data.fullAddress
           });
         } else if (event.data.type === 'closePanel') {
           this.closePanel();

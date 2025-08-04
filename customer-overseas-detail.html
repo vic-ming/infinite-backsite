@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="icon" href="/assets/favicon.ico"> -->
+    <title>Infinite</title>
+
+    <!-- 共用樣式 -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- 側邊面板管理器 -->
+    <script src="/assets/js/side-panel.js"></script>
+    <!-- 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+    
+  </head>
+  <body>
+    <div class="container customer-add">
+      <!-- header -->
+      <div class="header">
+        <a class="header-menu" href="/customer-detail.html">
+          <img src="/assets/images/icon_back.svg" alt="menu">
+        </a>
+        <div class="header-logo">
+          <img src="/assets/images/logo.png" alt="logo">
+        </div>
+      </div>
+      <!-- content -->
+      <main class="main">
+        <!-- tab -->
+        <div class="common-tab col-3">
+          <div class="common-tab-item active">跨海企業<div class="line"></div></div>
+          <div class="common-tab-item">負責人<div class="line"></div></div>
+          <div class="common-tab-item">聯絡人<div class="line"></div></div>
+        </div>
+        <!-- 內容 -->
+        <div class="customer-detail-content">
+          <!-- 公司 -->
+          <div class="customer-detail-content-area gray" id="company-section">
+            <div class="detail-group-top">
+              <div class="detail-group-title">
+                <img src="/assets/images/icon_quill.svg" alt="quill">
+                公司
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="company-tax">跨海客戶統編<span>*</span></label>
+              <input type="text" id="company-tax" class="form-input" placeholder="請輸入">
+            </div>
+            <div class="form-group">
+              <label for="company-name">跨海客戶名稱</label>
+              <input type="text" id="company-name" class="form-input" placeholder="請輸入">
+            </div>
+            <div class="form-group">
+              <label for="company-date">成立日期</label>
+              <input type="date" id="company-date" class="form-input" placeholder="請輸入" disabled>
+            </div>
+            <div class="form-group">
+              <label for="company-occupation">行業別</label>
+              <input type="text" id="company-occupation" class="form-input search" placeholder="請輸入" readonly>
+            </div>
+            <div class="form-group">
+              <label for="company-capital">資本額</label>
+              <input type="text" id="company-capital" class="form-input" placeholder="請輸入">
+            </div>
+            <div class="form-group">
+              <label for="company-country">國別</label>
+              <input type="text" id="company-country" class="form-input search" placeholder="請選擇" readonly disabled>
+            </div>
+            <div class="form-group">
+              <label for="company-country">證照登記地址</label>
+              <input type="text" id="company-country" class="form-input search" placeholder="請輸入">
+            </div>
+            <div class="form-group">
+              <label for="company-country">營業通訊地址</label>
+              <input type="text" id="company-country" class="form-input search" placeholder="請輸入">
+            </div>
+            <div class="form-group">
+              <label for="company-employee">經辦人員</label>
+              <input type="text" id="company-employee" class="form-input" placeholder="" disabled>
+            </div>
+            <div class="form-group">
+              <label for="company-department">維護部門<span>*</span></label>
+              <input type="text" id="company-department" class="form-input" placeholder="" disabled>
+            </div>
+            <!-- note -->
+            <div class="edit-note">
+              <div class="note-item">
+                <div class="label">新增人員</div>
+                <div class="content">王小明<span>2025/5/1 16:30</span></div>
+              </div>
+              <div class="note-item">
+                <div class="label">修改人員</div>
+                <div class="content">王小明<span>2025/5/2 16:30</span></div>
+              </div>
+            </div>          
+          </div>
+          <!-- 負責人 -->
+          <div class="customer-detail-content-area" id="manager-section">
+            <div class="detail-group-top">
+              <div class="detail-group-title">
+                <img src="/assets/images/icon_quill.svg" alt="quill">
+                負責人
+              </div>
+              <button>
+                <img src="/assets/images/icon_scan.svg" alt="ai">
+              </button>
+            </div>
+            <div class="form-group">
+              <label for="company-manager">負責人<span>*</span></label>
+              <input type="text" id="company-manager" class="form-input" placeholder="請輸入">
+            </div>
+            <div class="form-group">
+              <label for="company-manager-actual">實際經營者<span>*</span></label>
+              <input type="text" id="company-manager-actual" class="form-input" placeholder="請輸入">
+            </div>
+            <div class="form-group">
+              <label for="company-manager-address">負責人通訊地址</label>
+              <input type="text" id="company-manager-address" class="form-input search" placeholder="請輸入">
+            </div>
+          </div>
+          <!-- 聯絡人 -->
+          <div class="customer-detail-content-area" id="contact-section">
+            <div class="detail-group-top">
+              <div class="detail-group-title">
+                <img src="/assets/images/icon_quill.svg" alt="quill">
+                聯絡人
+              </div>
+            </div>
+            <div class="customer-detail-contact-list">
+              <div class="customer-detail-contact-item">
+                <div class="customer-detail-contact-item-title">聯絡人1</div>
+                <div class="form-group">
+                  <label for="company-contact-title">聯絡人職稱</label>
+                  <input type="text" id="company-contact-title" class="form-input" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="company-contact-name">聯絡人</label>
+                  <input type="text" id="company-contact-name" class="form-input" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="company-contact-phone">聯絡電話</label>
+                  <input type="text" id="company-contact-phone" class="form-input" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="company-contact-mobile">行動電話</label>
+                  <input type="text" id="company-contact-mobile" class="form-input" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="company-contact-fax">傳真號碼</label>
+                  <input type="text" id="company-contact-fax" class="form-input" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="company-contact-email">E-Mail</label>
+                  <input type="text" id="company-contact-email" class="form-input" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="company-contact-line">LINE ID</label>
+                  <input type="text" id="company-contact-line" class="form-input" placeholder="">
+                </div>
+              </div>
+            </div>
+          
+
+            <!-- 新增聯絡人 -->
+            <button class="button-primary-outline" id="add-contact-button" onclick="addContact()">
+              <img src="/assets/images/icon_plus.svg" alt="plus" class="icon-plus">
+              新增聯絡人
+            </button> 
+
+            <div class="form-group">
+              <label for="note">備註</label>
+              <textarea type="text" id="note" class="form-input" placeholder="請輸入"></textarea>
+            </div>
+            
+          </div>
+
+          
+        </div>
+
+        <!-- 儲存 -->
+        <div class="customer-detail-save">
+          <button class="button-primary">儲存</button>
+        </div>
+      </main>
+    </div>
+
+  </body>
+  
+
+  <script>
+    const tabItems = document.querySelectorAll('.common-tab-item');
+    const sections = ['company-section', 'manager-section', 'contact-section'];
+    
+    // 點擊tab滾動到對應區塊
+    tabItems.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        // 移除所有 active 狀態
+        tabItems.forEach(item => {
+          item.classList.remove('active');
+        });
+        
+        // 添加當前項目的 active 狀態
+        item.classList.add('active');
+        
+        // 滾動到對應區塊
+        const targetSection = document.getElementById(sections[index]);
+        if (targetSection) {
+          const targetPosition = targetSection.offsetTop - 109;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // 滾動時更新tab的active狀態
+    function updateActiveTab() {
+      const scrollPosition = window.scrollY + 200; // 增加一些偏移量
+      
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section && section.offsetTop <= scrollPosition) {
+          // 移除所有 active 狀態
+          tabItems.forEach(item => {
+            item.classList.remove('active');
+          });
+          
+          // 添加當前區塊對應tab的 active 狀態
+          if (tabItems[i]) {
+            tabItems[i].classList.add('active');
+          }
+          break;
+        }
+      }
+    }
+
+    // 監聽滾動事件
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      // 使用防抖來優化性能
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(updateActiveTab, 50);
+    });
+
+    // 初始化時設置正確的active狀態
+    updateActiveTab();
+    
+    // 新增聯絡人
+    function addContact() {
+      const contactList = document.querySelector('.customer-detail-contact-list');
+      const contactCount = contactList.children.length + 1;
+      const contactItem = document.createElement('div');
+      contactItem.classList.add('customer-detail-contact-item');
+      contactItem.id = `company-contact-item-${contactCount}`;
+      
+      contactItem.innerHTML = `
+        <div class="customer-detail-contact-item-title">
+          聯絡人${contactCount}
+          <button onclick="deleteContact(${contactCount})">
+            <img src="/assets/images/icon_delete.svg" alt="delete">
+          </button>
+        </div>
+        <div class="form-group">
+          <label for="company-contact-title-${contactCount}">聯絡人職稱</label>
+          <input type="text" id="company-contact-title-${contactCount}" class="form-input" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="company-contact-name-${contactCount}">聯絡人</label>
+          <input type="text" id="company-contact-name-${contactCount}" class="form-input" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="company-contact-phone-${contactCount}">聯絡電話</label>
+          <input type="text" id="company-contact-phone-${contactCount}" class="form-input" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="company-contact-mobile-${contactCount}">行動電話</label>
+          <input type="text" id="company-contact-mobile-${contactCount}" class="form-input" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="company-contact-fax-${contactCount}">傳真號碼</label>
+          <input type="text" id="company-contact-fax-${contactCount}" class="form-input" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="company-contact-email-${contactCount}">E-Mail</label>
+          <input type="text" id="company-contact-email-${contactCount}" class="form-input" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="company-contact-line-${contactCount}">LINE ID</label>
+          <input type="text" id="company-contact-line-${contactCount}" class="form-input" placeholder="">
+        </div>
+      `;
+      
+      contactList.appendChild(contactItem);
+    }
+  
+    // 刪除聯絡人
+    function deleteContact(contactCount) {
+
+      showConfirmModal(
+        '是否刪除此聯絡人',
+        '刪除後將無法復原',
+        '刪除',
+        function() {  
+          const contactList = document.querySelector('.customer-detail-contact-list');
+          const contactItem = document.getElementById(`company-contact-item-${contactCount}`);
+          contactList.removeChild(contactItem);
+          hideConfirmModal();
+        }
+      );
+     
+    }
+
+    // 等待 DOM 載入完成後初始化
+    document.addEventListener('DOMContentLoaded', function() {
+
+
+      //  ========== 行業資料挑選 ============
+      // 註冊行業選擇面板
+      registerSidePanel(
+        'occupation', 
+        '/select-view/select-occupation.html',
+        function(data) {
+          // 儲存選擇的行業資料
+          selectedOccupationData = {
+            id: data.id || '',
+            name: data.name || '',
+            selectedAt: new Date().toISOString() // 記錄選擇時間
+          };
+
+          // 填入表單欄位
+          document.getElementById('company-occupation').value = data.name || '';
+
+          // 觸發自定義事件，讓其他地方可以監聽
+          const event = new CustomEvent('occupationSelected', {
+            detail: selectedOccupationData
+          });
+          document.dispatchEvent(event);
+        },
+      );
+
+      // 為行業編號輸入框添加點擊事件
+      const occupationIdInput = document.getElementById('company-occupation');
+      if (occupationIdInput) {
+        occupationIdInput.addEventListener('click', function() {
+          openSidePanel('occupation');
+        });
+      }
+
+      // 監聽行業選擇事件（範例用法）
+      document.addEventListener('occupationSelected', function(event) {
+        const occupationData = event.detail;
+        console.log('行業選擇事件觸發:', occupationData);
+      });
+    });
+  </script>
+</html>
+<style scoped>
+
+main{
+  padding: 0 !important;
+  min-height: calc(100vh - 60px);
+}
+/* 商業司資料提示 */
+.customer-detail-check-data {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 57px;
+  padding: 0 16px;
+  background-color: #E7F1F5;
+}
+.customer-detail-check-data-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #429DFF;
+}
+.customer-detail-check-data-text img {
+  width: 24px;
+  height: 24px;
+}
+.customer-detail-check-data-button {
+  color: #004D71;
+  font-size: 16px;
+  font-weight: 400;
+}
+.customer-detail-content-area {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px 16px;
+  background-color: #fff;
+}
+.customer-detail-content-area.gray {
+  background-color: #fafafa;
+}
+
+/* 標題 */
+.detail-group-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.detail-group-top .detail-group-title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #9E7F54;   
+}
+.detail-group-top .detail-group-title img {
+  width: 32px;
+  height: 32px;
+}
+.detail-group-top button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #004D71;
+}
+.detail-group-top button img {
+  width: 24px;
+  height: 24px;
+}
+
+/* 切換跨海企業客戶、商業司資料 */
+.customer-detail-switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.customer-detail-switch-item {    
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #004D71;
+}
+.customer-detail-switch-item img {
+  width: 24px;
+  height: 24px;
+}
+.customer-detail-switch-button {
+  color: #004D71;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: underline;
+}
+/* 按鈕 */
+.button-primary-outline{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+ 
+}
+.button-primary-outline .icon-plus {
+  width: 22px;
+  height: 22px;
+}
+/* 發票郵寄地址 */
+#invoice-address-wrapper, #manager-address-wrapper {
+  display: none;
+}
+.invoice-address-label, .manager-address-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.invoice-address-label img {
+  width: 24px;
+  height: 24px;
+}
+
+/* 備註 */
+.edit-note {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  background-color: #FFFCE8;
+  border: 1px solid #F5D93F;
+}
+.edit-note .note-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.edit-note .note-item .label,.edit-note .note-item .content {
+  font-size: 16px;
+  font-weight: 400;
+  color: #292929;
+}
+.edit-note .note-item .content span {
+  color: #7C7C7C;
+  margin-left: 8px;
+}
+
+/* 聯絡人 */
+.customer-detail-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.customer-detail-contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+  border-top: 1px solid #BDBDBD;
+  padding-top: 16px;
+}
+.customer-detail-contact-item:first-child {
+  border-top: none;
+  margin-top: 0;
+}
+.customer-detail-contact-item-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #292929;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.customer-detail-contact-item-title button {
+  width: 24px;
+  position: relative;
+  top: 3px;
+}
+
+/* 儲存 */
+.customer-detail-save {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 94px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background-color: #fff;
+  box-sizing: border-box;
+  box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+/* AI 摘要 */
+.ai-summary-body {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  
+  background-color: #fff;
+}
+.ai-summary-body p {
+  font-size: 18px;
+  font-weight: 400;
+  color: #292929;
+}
+.ai-summary-body h2 {   
+  font-size: 20px;
+  font-weight: 700;
+  color: #292929;
+}
+.ai-summary-body h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #292929;
+}
+
+
+</style>
+

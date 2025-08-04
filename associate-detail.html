@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="icon" href="/assets/favicon.ico"> -->
+    <title>Infinite</title>
+
+    <!-- 共用樣式 -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- 側邊面板管理器 -->
+    <script src="/assets/js/side-panel.js"></script>
+    <!-- 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+    
+  </head>
+  <body>
+    <div class="container customer-add">
+      <!-- header -->
+      <div class="header">
+        <a class="header-menu" href="/">
+          <img src="/assets/images/icon_back.svg" alt="menu">
+        </a>
+        <div class="header-logo">
+          <img src="/assets/images/logo.png" alt="logo">
+        </div>
+      </div>
+      <!-- content -->
+      <main class="main">
+        <!-- tab -->
+        <div class="common-tab">
+          <div class="common-tab-item active">基本資料<div class="line"></div></div>
+          <div class="common-tab-item">車行概況<div class="line"></div></div>
+          <div class="common-tab-item">關係企業<div class="line"></div></div>
+          <div class="common-tab-item">關係人<div class="line"></div></div>
+        </div>
+        <!-- 內容 -->
+        <div class="customer-detail-content">
+          <!-- 基本資料 -->
+          <div class="customer-detail-content-area gray" id="basic-section">
+            <div class="detail-group-top">
+              <div class="detail-group-title">
+                <img src="/assets/images/icon_quill.svg" alt="quill">
+                基本資料
+              </div>
+              <button class="customer-detail-switch-button" onclick="popupManager.show('businessDetail')">商業司資料</button>
+            </div>
+            <div class="form-group">
+              <label for="associate-code">歸戶編號<span>*</span></label>
+              <input type="text" id="associate-code" class="form-input" placeholder="請輸入">
+            </div>
+            <div class="form-group">
+              <label for="associate-name">歸戶名稱<span>*</span></label>
+              <input type="text" id="associate-name" class="form-input" placeholder="請輸入">
+            </div>
+            <div class="form-group">
+              <label for="associate-date">成立日期<span>*</span></label>
+              <input type="date" id="associate-date" class="form-input" placeholder="請輸入">
+            </div>
+            <div class="form-group">
+              <label for="associate-occupation">行業別<span>*</span></label>
+              <input type="text" id="associate-occupation" class="form-input search" placeholder="請輸入" readonly>
+            </div>
+            <div class="form-group">
+              <label for="associate-capital">資本額</label>
+              <div class="amount-wrapper">
+                <input type="text" id="associate-capital" class="form-input amount" placeholder="請輸入">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="associate-scale">營業規模</label>
+              <div class="amount-wrapper">
+                <input type="text" id="associate-scale" class="form-input amount" placeholder="請輸入">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="associate-address">登記地址</label>
+              <div class="address-wrapper">
+                <div class="address-wrapper-item">
+                  <input type="text" id="associate-address-code" class="form-input search" placeholder="請選擇" readonly>
+                  <input type="text" id="associate-address-city" class="form-input" placeholder="" disabled>
+                </div>
+                <input type="text" id="company-address-detail" class="form-input" placeholder="請輸入">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="company-employee">經辦人員</label>
+              <input type="text" id="company-employee" class="form-input" placeholder="" disabled>
+            </div>
+            <div class="form-group">
+              <label for="company-department">維護部門<span>*</span></label>
+              <input type="text" id="company-department" class="form-input" placeholder="" disabled>
+            </div>
+            <!-- note -->
+            <div class="edit-note">
+              <div class="note-item">
+                <div class="label">新增人員</div>
+                <div class="content">王小明<span>2025/5/1 16:30</span></div>
+              </div>
+              <div class="note-item">
+                <div class="label">修改人員</div>
+                <div class="content">王小明<span>2025/5/2 16:30</span></div>
+              </div>
+            </div>
+
+            
+          </div>
+          <div class="customer-detail-content-area">
+            <div class="detail-group-top">
+              <div class="detail-group-title"> </div>
+              <button>
+                <img src="/assets/images/icon_scan.svg" alt="ai">
+              </button>
+            </div>
+            <div class="form-group">
+              <label for="company-manager">負責人<span>*</span></label>
+              <input type="text" id="company-manager" class="form-input" placeholder="請輸入">
+            </div>
+            <div class="form-group">
+              <label for="company-manager-id">負責人身分證字號<span>*</span></label>
+              <div class="input-flex">
+                <select id="company-manager-id-prefix" class="form-input prefix">
+                  <option value="">請選擇</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+                <input type="text" id="company-manager-id" class="form-input flex-1" placeholder="請輸入">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="company-address">通訊地址</label>
+              <div class="address-wrapper">
+                <div class="address-wrapper-item">
+                  <input type="text" id="registration-address-code" class="form-input search" placeholder="請選擇" readonly>
+                  <input type="text" id="registration-address-city" class="form-input" placeholder="" disabled>
+                </div>
+                <input type="text" id="registration-address-detail" class="form-input" placeholder="請輸入">
+              </div>
+            </div>
+
+          </div>
+          <div class="customer-detail-content-area">
+            <div class="customer-detail-contact-list">
+              <div class="customer-detail-contact-item">
+                <div class="customer-detail-contact-item-title">聯絡人1</div>
+                <div class="form-group">
+                  <label for="company-contact-phone">聯絡電話</label>
+                  <input type="text" id="company-contact-phone" class="form-input" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="company-contact-mobile">行動電話</label>
+                  <input type="text" id="company-contact-mobile" class="form-input" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="company-contact-fax">傳真號碼</label>
+                  <input type="text" id="company-contact-fax" class="form-input" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="company-contact-email">E-Mail</label>
+                  <input type="text" id="company-contact-email" class="form-input" placeholder="">
+                </div>
+                <div class="form-group">
+                  <label for="company-contact-line">LINE ID</label>
+                  <input type="text" id="company-contact-line" class="form-input" placeholder="">
+                </div>
+              </div>
+            </div>
+            <!-- 新增聯絡人 -->
+            <button class="button-primary-outline" id="add-contact-button" onclick="addContact()">
+              <img src="/assets/images/icon_plus.svg" alt="plus" class="icon-plus">
+              新增聯絡人
+            </button> 
+            
+          </div>
+
+          <!-- 車行概況 -->
+          <div class="customer-detail-content-area gray" id="car-section">
+            <div class="detail-group-top">
+              <div class="detail-group-title">
+                <img src="/assets/images/icon_quill.svg" alt="quill">
+                車行概況
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="associate-business">主要營業項目<span>*</span></label>
+              <input type="text" id="associate-business" class="form-input" placeholder="請輸入">
+            </div>
+            <div class="form-group">
+              <label for="associate-type">車行行性</label>
+              <select id="associate-type" class="form-input">
+                <option value="">請選擇</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="associate-property">車行屬性</label>
+              <select id="associate-property" class="form-input">
+                <option value="">請選擇</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="associate-income">主要營收<span>*</span></label>
+              <select id="associate-income" class="form-input">
+                <option value="">請選擇</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="associate-business-property">經營屬性<span>*</span></label>
+              <select id="associate-business-property" class="form-input">
+                <option value="">請選擇</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="associate-location">公司場所<span>*</span></label>
+              <select id="associate-location" class="form-input">
+                <option value="">請選擇</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="associate-factory">車場/工廠場地<span>*</span></label>
+              <select id="associate-factory" class="form-input">
+                <option value="">請選擇</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="associate-year-experience">本業資歷</label>
+              <div class="year-wrapper">
+                <input type="text" id="associate-year-experience" class="form-input year" placeholder="請輸入">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="associate-business-year">經營公司</label>
+              <div class="year-wrapper">
+                <input type="text" id="associate-business-year" class="form-input year" placeholder="請輸入">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="associate-equipment">自有機具</label>
+              <div class="unit-wrapper">
+                <input type="text" id="associate-equipment" class="form-input unit" placeholder="請輸入">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="associate-vehicle">靠行車輛</label>
+              <div class="unit-wrapper">
+                <input type="text" id="associate-vehicle" class="form-input unit" placeholder="請輸入" disabled>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="associate-employee">雇用員工</label>
+              <div class="person-wrapper">
+                <input type="text" id="associate-employee" class="form-input person" placeholder="請輸入">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="associate-comment">總評<span>*</span></label>
+              <input type="text" id="associate-comment" class="form-input" placeholder="請輸入">
+            </div>
+          
+            
+          </div>
+
+          <!-- 關係企業 -->
+          <div class="customer-detail-content-area" id="enterprise-section">
+            <div class="detail-group-top">
+              <div class="detail-group-title">
+                <img src="/assets/images/icon_quill.svg" alt="quill">
+                關係企業
+              </div>
+            </div>
+            <div class="customer-detail-contact-list" id="enterprise-list">
+              <div class="customer-detail-contact-item" id="enterprise-item-1">
+                <div class="customer-detail-contact-item-title">
+                  企業 1
+                </div>
+                <div class="form-group">
+                  <label for="enterprise-tax-1">統一編號</label>
+                  <input type="text" id="enterprise-tax-1" class="form-input search" placeholder="請輸入" readonly>
+                </div>
+                <div class="form-group">
+                  <label for="enterprise-name-1">公司名稱</label>
+                  <input type="text" id="enterprise-name-1" class="form-input" placeholder="" disabled>
+                </div>
+                <div class="form-group">
+                  <label for="enterprise-manager-1">負責人</label>
+                  <input type="text" id="enterprise-manager-1" class="form-input" placeholder="" disabled>
+                </div>
+              </div>
+            </div>
+          
+            <!-- 新增企業 -->
+            <button class="button-primary-outline" id="add-enterprise-button" onclick="addEnterprise()">
+              <img src="/assets/images/icon_plus.svg" alt="plus" class="icon-plus">
+              新增企業
+            </button> 
+            
+          </div>
+
+          <!-- 關係人 -->
+          <div class="customer-detail-content-area gray" id="relation-section">
+            <div class="detail-group-top">
+              <div class="detail-group-title">
+                <img src="/assets/images/icon_quill.svg" alt="quill">
+                關係人
+              </div>
+            </div>
+            <div class="customer-detail-contact-list" id="relation-list">
+               <div class="customer-detail-contact-item" id="relation-item-1">
+                 <div class="customer-detail-contact-item-title">
+                   關係人 1
+                 </div>
+                 <div class="form-group">
+                   <label for="relation-id-1">身分證字號</label>
+                   <input type="text" id="relation-id-1" class="form-input" placeholder="請輸入">
+                 </div>
+                 <div class="form-group">
+                   <label for="relation-name-1">姓名</label>
+                   <input type="text" id="relation-name-1" class="form-input" placeholder="請輸入">
+                 </div>
+                 <div class="form-group">
+                   <label for="relation-birthday-1">出生日期</label>
+                   <input type="date" id="relation-birthday-1" class="form-input" placeholder="請輸入">
+                 </div>
+                 <div class="form-group">
+                   <label for="relation-relationship-1">與實際行主關係</label>
+                   <select id="relation-relationship-1" class="form-input">
+                     <option value="0">實際行主或負責人</option>
+                     <option value="1">1</option>
+                     <option value="2">2</option>
+                     <option value="3">3</option>
+                   </select>
+                 </div>
+                 <div class="form-group">
+                   <label for="relation-note-1">說明</label>
+                   <input type="text" id="relation-note-1" class="form-input" placeholder="請輸入">
+                 </div>
+               </div>
+             </div>
+          
+            <!-- 新增關係人 -->
+            <button class="button-primary-outline" id="add-relation-button" onclick="addRelation()">
+              <img src="/assets/images/icon_plus.svg" alt="plus" class="icon-plus">
+              新增關係人
+            </button> 
+            
+          </div>
+
+          <!-- 票信資料 -->
+          <div class="customer-detail-content-area">
+            <div class="detail-group-top">
+              <div class="detail-group-title">
+                <img src="/assets/images/icon_quill.svg" alt="quill">
+                票信資料
+              </div>
+            </div>
+            <div class="customer-detail-contact-list" id="credit-list">
+               <div class="customer-detail-contact-item" id="credit-item-1">
+                 <div class="customer-detail-contact-item-title">
+                   票信資料 1
+                 </div>
+                 <div class="form-group">
+                   <label for="credit-id-1">統編字號</label>
+                   <input type="text" id="credit-id-1" class="form-input" placeholder="請輸入">
+                 </div>
+                 <div class="form-group">
+                   <label for="credit-name-1">戶名</label>
+                   <input type="text" id="credit-name-1" class="form-input" placeholder="請輸入">
+                 </div>
+                 <div class="form-group">
+                   <label for="credit-bank-1">銀行分行</label>
+                   <input type="text" id="credit-bank-1" class="form-input search" placeholder="請輸入" readonly>
+                 </div>
+                 <div class="form-group">
+                   <label for="credit-account-1">帳號</label>
+                   <input type="text" id="credit-account-1" class="form-input" placeholder="請輸入">
+                 </div>
+                 <div class="form-group">
+                   <label for="credit-date-1">開戶年月</label>
+                   <input type="date" id="credit-date-1" class="form-input" placeholder="請輸入">
+                 </div>
+                 <div class="form-group">
+                   <label for="credit-phone-1">照會電話</label>
+                   <input type="text" id="credit-phone-1" class="form-input" placeholder="請輸入">
+                 </div>
+               </div>
+             </div>
+          
+            <!-- 新增票信資料 -->
+            <button class="button-primary-outline" id="add-credit-button" onclick="addCredit()">
+              <img src="/assets/images/icon_plus.svg" alt="plus" class="icon-plus">
+              新增票信資料
+            </button> 
+            
+          </div>
+
+          
+        </div>
+
+        <!-- 儲存 -->
+        <div class="customer-detail-save">
+          <button class="button-primary">儲存</button>
+        </div>
+      </main>
+    </div>
+
+    <!-- 商業司資料 popup -->
+    <div class="popup-overlay" id="businessDetailOverlay">
+      <div class="popup-content">
+        <div class="popup-brown-area">
+          <div class="popup-header">
+            <div class="common-title">商業司資料</div>
+            <button class="popup-close-btn" onclick="popupManager.hide('businessDetail')">
+              <img src="/assets/images/icon_close.svg" alt="close">
+            </button>
+          </div>
+          <div class="popup-brown-area-content">
+            <div class="popup-brown-area-content-item">
+              <div class="common-text">12345678</div>
+              <div class="common-sub-title">日盛台駿</div>
+            </div>
+          </div>
+        </div>
+        <div class="popup-body no-x-padding">
+          <div class="detail-body-content">
+            <div class="detail-group">
+              <div class="detail-group-content">
+                <div class="common-info-item">
+                  <div class="label">負責人</div>
+                  <div class="content">王小明</div>
+                </div>
+                <div class="common-info-item">
+                  <div class="label">公司地址</div>
+                  <div class="content">台北市松山區南京東路一段 13 號</div>
+                </div>
+                <div class="common-info-item">
+                  <div class="label">成立日期</div>
+                  <div class="content">2000/01/01</div>
+                </div>
+                <div class="common-info-item">
+                  <div class="label">資本額</div>
+                  <div class="content">2000 萬元</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- 確認彈窗 -->
+    <div id="confirm-modal" class="confirm-modal">
+      <div class="confirm-modal-content">
+        <div class="confirm-modal-title" id="confirm-modal-title"></div>
+        <div class="confirm-modal-message" id="confirm-modal-message"></div>
+        <div class="confirm-modal-buttons">
+          <button class="confirm-modal-cancel" onclick="hideConfirmModal()">取消</button>
+          <button class="confirm-modal-confirm" id="confirm-modal-confirm"></button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/assets/js/popup.js"></script>
+    <script src="/assets/js/dialog.js"></script>
+  </body>
+  
+
+  <script>
+    const tabItems = document.querySelectorAll('.common-tab-item');
+    const sections = ['basic-section', 'car-section', 'enterprise-section', 'relation-section'];
+    
+    // 點擊tab滾動到對應區塊
+    tabItems.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        // 移除所有 active 狀態
+        tabItems.forEach(item => {
+          item.classList.remove('active');
+        });
+        
+        // 添加當前項目的 active 狀態
+        item.classList.add('active');
+        
+        // 滾動到對應區塊
+        const targetSection = document.getElementById(sections[index]);
+        if (targetSection) {
+          const targetPosition = targetSection.offsetTop - 109;
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // 滾動時更新tab的active狀態
+    function updateActiveTab() {
+      const scrollPosition = window.scrollY + 200; // 增加一些偏移量
+      
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section && section.offsetTop <= scrollPosition) {
+          // 移除所有 active 狀態
+          tabItems.forEach(item => {
+            item.classList.remove('active');
+          });
+          
+          // 添加當前區塊對應tab的 active 狀態
+          if (tabItems[i]) {
+            tabItems[i].classList.add('active');
+          }
+          break;
+        }
+      }
+    }
+
+    // 監聽滾動事件
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      // 使用防抖來優化性能
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(updateActiveTab, 50);
+    });
+
+    // 初始化時設置正確的active狀態
+    updateActiveTab();
+
+    // 新增聯絡人
+    function addContact() {
+      const contactList = document.querySelector('.customer-detail-contact-list');
+      const contactCount = contactList.children.length + 1;
+      const contactItem = document.createElement('div');
+      contactItem.classList.add('customer-detail-contact-item');
+      contactItem.id = `company-contact-item-${contactCount}`;
+      
+      contactItem.innerHTML = `
+        <div class="customer-detail-contact-item-title">
+          聯絡人${contactCount}
+          <button onclick="deleteContact(${contactCount})">
+            <img src="/assets/images/icon_delete.svg" alt="delete">
+          </button>
+        </div>
+        <div class="form-group">
+          <label for="company-contact-phone-${contactCount}">聯絡電話</label>
+          <input type="text" id="company-contact-phone-${contactCount}" class="form-input" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="company-contact-mobile-${contactCount}">行動電話</label>
+          <input type="text" id="company-contact-mobile-${contactCount}" class="form-input" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="company-contact-fax-${contactCount}">傳真號碼</label>
+          <input type="text" id="company-contact-fax-${contactCount}" class="form-input" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="company-contact-email-${contactCount}">E-Mail</label>
+          <input type="text" id="company-contact-email-${contactCount}" class="form-input" placeholder="">
+        </div>
+        <div class="form-group">
+          <label for="company-contact-line-${contactCount}">LINE ID</label>
+          <input type="text" id="company-contact-line-${contactCount}" class="form-input" placeholder="">
+        </div>
+      `;
+      
+      contactList.appendChild(contactItem);
+    }
+  
+    // 刪除聯絡人
+    function deleteContact(contactCount) {
+
+      showConfirmModal(
+        '是否刪除此聯絡人',
+        '刪除後將無法復原',
+        '刪除',
+        function() {  
+          const contactList = document.querySelector('.customer-detail-contact-list');
+          const contactItem = document.getElementById(`company-contact-item-${contactCount}`);
+          contactList.removeChild(contactItem);
+          hideConfirmModal();
+        }
+      );
+     
+    }
+
+    // 新增企業
+    function addEnterprise() {
+      const enterpriseList = document.getElementById('enterprise-list');
+      const enterpriseCount = enterpriseList.children.length + 1;
+      const enterpriseItem = document.createElement('div');
+      enterpriseItem.classList.add('customer-detail-contact-item');
+      enterpriseItem.id = `enterprise-item-${enterpriseCount}`;
+      
+      enterpriseItem.innerHTML = `
+        <div class="customer-detail-contact-item-title">
+          企業${enterpriseCount}
+          <button onclick="deleteEnterprise(${enterpriseCount})">
+            <img src="/assets/images/icon_delete.svg" alt="delete">
+          </button>
+        </div>
+        <div class="form-group">
+          <label for="enterprise-tax-${enterpriseCount}">統一編號</label>
+          <input type="text" id="enterprise-tax-${enterpriseCount}" class="form-input search" placeholder="請輸入" readonly>
+        </div>
+        <div class="form-group">
+          <label for="enterprise-name-${enterpriseCount}">公司名稱</label>
+          <input type="text" id="enterprise-name-${enterpriseCount}" class="form-input" placeholder="" disabled>
+        </div>
+        <div class="form-group">
+          <label for="enterprise-manager-${enterpriseCount}">負責人</label>
+          <input type="text" id="enterprise-manager-${enterpriseCount}" class="form-input" placeholder="" disabled>
+        </div>
+      `;
+      
+      enterpriseList.appendChild(enterpriseItem);
+      
+      // 重新綁定企業點擊事件
+      addEnterpriseClickEvents();
+    }
+  
+    // 刪除企業
+    function deleteEnterprise(enterpriseCount) {
+
+      showConfirmModal(
+        '是否刪除此企業',
+        '刪除後將無法復原',
+        '刪除',
+        function() {  
+          const enterpriseList = document.getElementById('enterprise-list');
+          const enterpriseItem = document.getElementById(`enterprise-item-${enterpriseCount}`);
+          enterpriseList.removeChild(enterpriseItem);
+          hideConfirmModal();
+        }
+      );
+     
+    }
+
+    // 新增關係人
+    function addRelation() {
+      const relationList = document.getElementById('relation-list');
+      const relationCount = relationList.children.length + 1;
+      const relationItem = document.createElement('div');
+      relationItem.classList.add('customer-detail-contact-item');
+      relationItem.id = `relation-item-${relationCount}`;
+      
+      relationItem.innerHTML = `
+        <div class="customer-detail-contact-item-title">
+          關係人${relationCount}
+          <button onclick="deleteRelation(${relationCount})">
+            <img src="/assets/images/icon_delete.svg" alt="delete">
+          </button>
+        </div>
+        <div class="form-group">
+          <label for="relation-id-${relationCount}">身分證字號</label>
+          <input type="text" id="relation-id-${relationCount}" class="form-input" placeholder="請輸入">
+        </div>
+        <div class="form-group">
+          <label for="relation-name-${relationCount}">姓名</label>
+          <input type="text" id="relation-name-${relationCount}" class="form-input" placeholder="請輸入">
+        </div>
+        <div class="form-group">
+          <label for="relation-birthday-${relationCount}">出生日期</label>
+          <input type="date" id="relation-birthday-${relationCount}" class="form-input" placeholder="請輸入">
+        </div>
+        <div class="form-group">
+          <label for="relation-relationship-${relationCount}">與實際行主關係</label>
+          <select id="relation-relationship-${relationCount}" class="form-input">
+            <option value="0">實際行主或負責人</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="relation-note-${relationCount}">說明</label>
+          <input type="text" id="relation-note-${relationCount}" class="form-input" placeholder="請輸入">
+        </div>
+      `;
+      
+      relationList.appendChild(relationItem);
+    }
+  
+    // 刪除關係人
+    function deleteRelation(relationCount) {
+
+      showConfirmModal(
+        '是否刪除此關係人',
+        '刪除後將無法復原',
+        '刪除',
+        function() {  
+          const relationList = document.getElementById('relation-list');
+          const relationItem = document.getElementById(`relation-item-${relationCount}`);
+          relationList.removeChild(relationItem);
+          hideConfirmModal();
+        }
+      );
+     
+    }
+
+    // 新增票信資料
+    function addCredit() {
+      const creditList = document.getElementById('credit-list');
+      const creditCount = creditList.children.length + 1;
+      const creditItem = document.createElement('div');
+      creditItem.classList.add('customer-detail-contact-item');
+      creditItem.id = `credit-item-${creditCount}`;
+      
+      creditItem.innerHTML = `
+        <div class="customer-detail-contact-item-title">
+          票信資料${creditCount}
+          <button onclick="deleteCredit(${creditCount})">
+            <img src="/assets/images/icon_delete.svg" alt="delete">
+          </button>
+        </div>
+        <div class="form-group">
+          <label for="credit-id-${creditCount}">統編字號</label>
+          <input type="text" id="credit-id-${creditCount}" class="form-input" placeholder="請輸入">
+        </div>
+        <div class="form-group">
+          <label for="credit-name-${creditCount}">戶名</label>
+          <input type="text" id="credit-name-${creditCount}" class="form-input" placeholder="請輸入">
+        </div>
+        <div class="form-group">
+          <label for="credit-bank-${creditCount}">銀行分行</label>
+          <input type="text" id="credit-bank-${creditCount}" class="form-input search" placeholder="請輸入" readonly>
+        </div>
+        <div class="form-group">
+          <label for="credit-account-${creditCount}">帳號</label>
+          <input type="text" id="credit-account-${creditCount}" class="form-input" placeholder="請輸入">
+        </div>
+        <div class="form-group">
+          <label for="credit-date-${creditCount}">開戶年月</label>
+          <input type="date" id="credit-date-${creditCount}" class="form-input" placeholder="請輸入">
+        </div>
+        <div class="form-group">
+          <label for="credit-phone-${creditCount}">照會電話</label>
+          <input type="text" id="credit-phone-${creditCount}" class="form-input" placeholder="請輸入">
+        </div>
+      `;
+      
+      creditList.appendChild(creditItem);
+    }
+  
+    // 刪除票信資料
+    function deleteCredit(creditCount) {
+
+      showConfirmModal(
+        '是否刪除此票信資料',
+        '刪除後將無法復原',
+        '刪除',
+        function() {  
+          const creditList = document.getElementById('credit-list');
+          const creditItem = document.getElementById(`credit-item-${creditCount}`);
+          creditList.removeChild(creditItem);
+          hideConfirmModal();
+        }
+      );
+     
+    }
+
+    // 等待 DOM 載入完成後初始化
+    document.addEventListener('DOMContentLoaded', function() {
+      //  ========== 行業資料挑選 ============
+      // 註冊行業選擇面板
+      registerSidePanel(
+        'occupation', 
+        '/select-view/select-occupation.html',
+        function(data) {
+          // 儲存選擇的行業資料
+          selectedOccupationData = {
+            id: data.id || '',
+            name: data.name || '',
+            selectedAt: new Date().toISOString() // 記錄選擇時間
+          };
+
+          // 填入表單欄位
+          document.getElementById('associate-occupation').value = data.name || '';
+
+          // 觸發自定義事件，讓其他地方可以監聽
+          const event = new CustomEvent('occupationSelected', {
+            detail: selectedOccupationData
+          });
+          document.dispatchEvent(event);
+        },
+      );
+
+      // 為行業編號輸入框添加點擊事件
+      const occupationIdInput = document.getElementById('associate-occupation');
+      if (occupationIdInput) {
+        occupationIdInput.addEventListener('click', function() {
+          openSidePanel('occupation');
+        });
+      }
+
+      // 監聽行業選擇事件（範例用法）
+      document.addEventListener('occupationSelected', function(event) {
+        const occupationData = event.detail;
+        console.log('行業選擇事件觸發:', occupationData);
+      });
+         
+
+      //  ========== 常用片語資料挑選 ============
+      // 註冊常用片語選擇面板
+      registerSidePanel(
+        'comment', 
+        '/select-view/select-comment.html',
+        function(data) {
+          // 儲存選擇的常用片語資料
+          selectedCommentData = {
+            id: data.id || '',
+            name: data.name || '',
+            selectedAt: new Date().toISOString()
+          };
+
+          // 填入表單欄位
+          document.getElementById('associate-comment').value = data.name || '';
+
+          // 觸發自定義事件，讓其他地方可以監聽
+          const event = new CustomEvent('commentSelected', {
+            detail: selectedCommentData
+          });
+          document.dispatchEvent(event);
+        },
+      );
+
+      // 為常用片語編號輸入框添加點擊事件
+      const commentIdInput = document.getElementById('associate-comment');
+      if (commentIdInput) {
+        commentIdInput.addEventListener('click', function() {
+          openSidePanel('comment');
+        });
+      }
+
+      // 監聽常用片語選擇事件
+      document.addEventListener('commentSelected', function(event) {
+        const commentData = event.detail;
+        console.log('常用片語選擇事件觸發:', commentData);
+      });
+
+      //  ========== 企業資料挑選 ============
+      // 全域變數：記錄當前選擇的企業輸入框
+      let currentEnterpriseField = null;
+      let selectedEnterpriseData = null;
+
+      // 註冊企業選擇面板
+      registerSidePanel(
+        'enterprise', 
+        '/select-view/select-enterprise.html',
+        function(data) {
+          if (!currentEnterpriseField) {
+            console.error('未知的企業欄位');
+            return;
+          }
+
+          // 儲存選擇的企業資料
+          selectedEnterpriseData = {
+            id: data.id || '',
+            name: data.name || '',
+            manager: data.manager || '',
+            field: currentEnterpriseField,
+            selectedAt: new Date().toISOString()
+          };
+
+          // 根據當前欄位填入對應的表單欄位
+          const fieldNumber = currentEnterpriseField.replace('enterprise-tax-', '');
+          const taxField = document.getElementById(`enterprise-tax-${fieldNumber}`);
+          const nameField = document.getElementById(`enterprise-name-${fieldNumber}`);
+          const managerField = document.getElementById(`enterprise-manager-${fieldNumber}`);
+
+          if (taxField) taxField.value = data.id || '';
+          if (nameField) nameField.value = data.name || '';
+          if (managerField) managerField.value = data.manager || '';
+
+          // 觸發自定義事件，讓其他地方可以監聽
+          const event = new CustomEvent('enterpriseSelected', {
+            detail: selectedEnterpriseData
+          });
+          document.dispatchEvent(event);
+
+          console.log('企業資料已選擇:', selectedEnterpriseData);
+        },
+      );
+
+      // 為所有企業統一編號輸入框添加點擊事件
+      function addEnterpriseClickEvents() {
+        // 找出所有企業統一編號輸入框
+        const enterpriseInputs = document.querySelectorAll('input[id^="enterprise-tax-"]');
+        enterpriseInputs.forEach(input => {
+          input.addEventListener('click', function() {
+            currentEnterpriseField = this.id;
+            console.log(`打開企業選擇面板 - 欄位: ${currentEnterpriseField}`);
+            openSidePanel('enterprise');
+          });
+        });
+      }
+
+      // 初始化企業點擊事件
+      addEnterpriseClickEvents();
+
+      // 監聽企業選擇事件（範例用法）
+      document.addEventListener('enterpriseSelected', function(event) {
+        const enterpriseData = event.detail;
+        console.log('企業選擇事件觸發:', enterpriseData);
+      });
+         
+      
+      //  ========== 郵遞區號資料挑選 ============
+      // 全域變數：記錄當前選擇的地址類型
+      let currentAddressType = null;
+      let selectedPostalData = null;
+
+      // 地址類型映射
+      const addressTypeMapping = {
+        'associate-address-code': {
+          codeField: 'associate-address-code',
+          cityField: 'associate-address-city',
+          label: '登記地址'
+        },
+      };
+
+      // 註冊郵遞區號選擇面板
+      registerSidePanel(
+        'postal', 
+        '/select-view/select-postal.html',
+        function(data) {
+          if (!currentAddressType || !addressTypeMapping[currentAddressType]) {
+            console.error('未知的地址類型:', currentAddressType);
+            return;
+          }
+
+          const mapping = addressTypeMapping[currentAddressType];
+          
+          // 儲存選擇的郵遞區號資料
+          selectedPostalData = {
+            code: data.code || '',
+            city: data.city || '',
+            district: data.district || '',
+            fullAddress: data.fullAddress || '',
+            addressType: currentAddressType,
+            selectedAt: new Date().toISOString()
+          };
+
+          // 填入對應的表單欄位
+          const codeField = document.getElementById(mapping.codeField);
+          const cityField = document.getElementById(mapping.cityField);
+          
+          if (codeField) {
+            codeField.value = data.code || '';
+          }
+          if (cityField) {
+            cityField.value = data.fullAddress || '';
+          }
+
+          // 觸發自定義事件
+          const event = new CustomEvent('postalSelected', {
+            detail: selectedPostalData
+          });
+          document.dispatchEvent(event);
+
+          console.log(`${mapping.label}郵遞區號已選擇:`, selectedPostalData);
+        }
+      );
+
+      // 為所有地址郵遞區號欄位添加點擊事件
+      Object.keys(addressTypeMapping).forEach(addressType => {
+        const field = document.getElementById(addressType);
+        if (field) {
+          field.addEventListener('click', function() {
+            currentAddressType = addressType;
+            console.log(`打開郵遞區號選擇面板 - 地址類型: ${addressTypeMapping[addressType].label}`);
+            openSidePanel('postal');
+          });
+        }
+      });
+
+      // 監聽郵遞區號選擇事件
+      document.addEventListener('postalSelected', function(event) {
+        const postalData = event.detail;
+        console.log('郵遞區號選擇事件觸發:', postalData);
+      });
+    
+    });
+  </script>
+</html>
+<style scoped>
+
+main{
+  padding: 0 !important;
+  min-height: calc(100vh - 60px);
+}
+/* 商業司資料提示 */
+.customer-detail-check-data {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 57px;
+  padding: 0 16px;
+  background-color: #E7F1F5;
+}
+.customer-detail-check-data-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #429DFF;
+}
+.customer-detail-check-data-text img {
+  width: 24px;
+  height: 24px;
+}
+.customer-detail-check-data-button {
+  color: #004D71;
+  font-size: 16px;
+  font-weight: 400;
+}
+.customer-detail-content-area {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px 16px;
+  background-color: #fff;
+}
+.customer-detail-content-area.gray {
+  background-color: #fafafa;
+}
+
+/* 標題 */
+.detail-group-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.detail-group-top .detail-group-title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #9E7F54;   
+}
+.detail-group-top .detail-group-title img {
+  width: 32px;
+  height: 32px;
+}
+
+.customer-detail-switch-button {
+  color: #004D71;
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: underline;
+}
+/* 按鈕 */
+.button-primary-outline{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+ 
+}
+.button-primary-outline .icon-plus {
+  width: 22px;
+  height: 22px;
+}
+/* 發票郵寄地址 */
+#invoice-address-wrapper, #manager-address-wrapper {
+  display: none;
+}
+.invoice-address-label, .manager-address-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.invoice-address-label img {
+  width: 24px;
+  height: 24px;
+}
+
+/* 備註 */
+.edit-note {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 12px;
+  background-color: #FFFCE8;
+  border: 1px solid #F5D93F;
+}
+.edit-note .note-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.edit-note .note-item .label,.edit-note .note-item .content {
+  font-size: 16px;
+  font-weight: 400;
+  color: #292929;
+}
+.edit-note .note-item .content span {
+  color: #7C7C7C;
+  margin-left: 8px;
+}
+
+/* 聯絡人 */
+.customer-detail-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.customer-detail-contact-item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 16px;
+  border-top: 1px solid #BDBDBD;
+  padding-top: 16px;
+}
+.customer-detail-contact-item:first-child {
+  border-top: none;
+  margin-top: 0;
+}
+.customer-detail-contact-item-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #292929;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.customer-detail-contact-item-title button {
+  width: 24px;
+  position: relative;
+  top: 3px;
+}
+
+/* 儲存 */
+.customer-detail-save {
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 94px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background-color: #fff;
+  box-sizing: border-box;
+  box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+/* AI 摘要 */
+.ai-summary-body {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  
+  background-color: #fff;
+}
+.ai-summary-body p {
+  font-size: 18px;
+  font-weight: 400;
+  color: #292929;
+}
+.ai-summary-body h2 {   
+  font-size: 20px;
+  font-weight: 700;
+  color: #292929;
+}
+.ai-summary-body h3 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #292929;
+}
+
+
+</style>
+

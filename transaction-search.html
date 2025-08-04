@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="icon" href="/assets/favicon.ico"> -->
+    <title>Infinite</title>
+    <!-- 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- 共用樣式 -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <!-- header -->
+      <div class="header">
+        <a class="header-menu" href="/">
+          <img src="/assets/images/icon_menu.svg" alt="menu">
+        </a>
+        <div class="header-logo">
+          <img src="/assets/images/logo.png" alt="logo">
+        </div>
+      </div>
+      <!-- content -->
+      <main class="main">
+        <div class="common-title">客戶交易狀況</div>
+        <div class="transaction-search-form">
+          <div class="form-group w-100">
+            <label for="date">基準日</label>
+            <input type="date" id="date" class="form-input">
+          </div>
+          <div class="form-group w-100">
+            <label for="name">客戶</label>
+            <input type="text" id="name" class="form-input" placeholder="請輸入" >
+          </div>
+          <button class="button-primary w-100 search-btn" onclick="window.location.href='/transaction-result.html'">查詢</button>
+        </div>
+        
+      </main>
+
+    </div>
+    <script>
+    
+    </script>
+  </body>
+</html>
+<style scoped>
+main{
+  padding: 32px 16px !important;
+}
+.transaction-search-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  margin-top: 28px;
+}
+.w-100 {
+  width: 100%;
+}
+.search-btn {
+  margin-top: 35vh;
+}
+
+</style>

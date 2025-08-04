@@ -27,9 +27,9 @@
       </div>
       <!-- content -->
       <main class="main">
-        <div class="common-title">歸戶資料挑選</div>
-        <div class="select-associate-form">
-          <div class="select-associate-form-item">
+        <div class="common-title">常用片語</div>
+        <div class="select-industry-form">
+          <div class="select-industry-form-item">
             <div class="w-100">
               <input type="text" id="keyword" class="form-input" placeholder="請輸入關鍵字搜尋" onkeyup="searchSubmit()">
               <div id="error-message" class="error-message"></div>
@@ -37,13 +37,13 @@
           </div>
         </div>
         <!-- no data -->
-        <div class="no-data" id="no-data" style="display: none;">查無此歸戶代號資料</div>
+        <div class="no-data" id="no-data" style="display: none;">查無此職業別資料</div>
         <!-- table -->
-        <table class="select-associate-table" id="table" style="display: none;">
+        <table class="select-industry-table" id="table" style="display: none;">
           <thead>
             <tr>
-              <th>歸戶代碼</th>
-              <th>歸戶名稱</th>
+              <th>常用片語代碼</th>
+              <th>常用片語名稱</th>
             </tr>
           </thead>
           <tbody id="table-body">
@@ -58,24 +58,12 @@
       let filteredData = [];
       const data = [
         {
-          id: '00026901',
-          name: '利恩交通股份有限公司1'
+          id: '01',
+          name: '擔保貸款現況'
         },
         {
-          id: '00026902',
-          name: '利恩交通股份有限公司2'
-        },
-        {
-          id: '00026903',
-          name: '利恩交通股份有限公司3'
-        },
-        {
-          id: '00026904',
-          name: '利恩交通股份有限公司4'
-        },
-        {
-          id: '00026905',
-          name: '利恩交通股份有限公司5'
+          id: '02',
+          name: '近三個月新增貸款_有擔(合計)'
         },
       ]
       function searchSubmit() {
@@ -102,17 +90,17 @@
           tableBody.innerHTML = '';
           filteredData.forEach(item => {
             const tr = document.createElement('tr');
-            tr.innerHTML = `<td onclick="selectAssociate('${item.id}', '${item.name}')">${item.id}</td><td onclick="selectAssociate('${item.id}', '${item.name}')">${item.name}</td>`;
+            tr.innerHTML = `<td onclick="selectIndustry('${item.id}', '${item.name}')">${item.id}</td><td onclick="selectIndustry('${item.id}', '${item.name}')">${item.name}</td>`;
             tr.style.cursor = 'pointer';
             tableBody.appendChild(tr);
           });
         }
       }
 
-      // 選擇歸戶，發送訊息給父頁面
-      function selectAssociate(id, name) {
+      // 選擇職業，發送訊息給父頁面
+      function selectIndustry(id, name) {
         window.parent.postMessage({
-          type: 'selectAssociate',
+          type: 'selectIndustry',
           id: id,
           name: name
         }, '*');
@@ -131,7 +119,7 @@
 main{
   padding: 32px 16px !important;
 }
-.select-associate-form {
+.select-industry-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -139,14 +127,14 @@ main{
   width: 100%;
   margin-top: 16px;
 }
-.select-associate-form-item {
+.select-industry-form-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
   width: 100%;
 }
-.select-associate-form-item .form-input {
+.select-industry-form-item .form-input {
   height: 46px;
   padding: 0 16px;
   border: 1px solid #BDBDBD;
@@ -157,10 +145,10 @@ main{
   width: 100%;
   box-sizing: border-box;
 }
-.select-associate-form-item .form-input.error {
+.select-industry-form-item .form-input.error {
   border-color: #FF0900;
 }
-.select-associate-form-item .error-message {
+.select-industry-form-item .error-message {
   color: #FF0900;
   font-size: 16px;
   font-weight: 400;

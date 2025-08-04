@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="icon" href="/assets/favicon.ico"> -->
+    <title>Infinite</title>
+    <!-- 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- 共用樣式 -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+    <div class="container transaction-result">
+      <!-- header -->
+      <div class="header">
+        <a class="header-menu" href="/transaction-search.html">
+          <img src="/assets/images/icon_back.svg" alt="back">
+        </a>
+        <div class="header-logo">
+          <img src="/assets/images/logo.png" alt="logo">
+        </div>
+      </div>
+      <!-- content -->
+      <main class="main">
+        <!-- top -->
+        <div class="transaction-result-top">
+          <div class="common-title">客戶交易狀況</div>
+          <div class="transaction-result-buttons">
+            <button class="transaction-result-button" onclick="window.location.href='/transaction-search.html'">
+              <img src="/assets/images/icon_search.svg" alt="search">
+            </button>
+          </div>
+        </div>
+        <!-- search time -->
+        <div class="transaction-result-total">
+          <div class="transaction-result-total-text">
+            <span>查詢時間</span>
+            <span>2025/05/31 12:48:32</span>
+          </div>
+        </div>
+        <!-- list -->
+        <div class="transaction-result-list">
+       
+        </div>
+      </main>
+
+
+    </div>
+    <script src="/assets/js/popup.js"></script>
+    <script>
+      
+      function handleRecord() {
+        popupManager.show('customerRecord');
+        event.stopPropagation();
+      }
+    </script>
+  </body>
+</html>
+<style scoped>
+/* transaction result */
+.transaction-result .transaction-result-top {
+  margin: 16px 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.transaction-result .transaction-result-buttons {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.transaction-result .transaction-result-button {
+  width: 40px;
+  height: 40px;
+}
+.transaction-result .transaction-result-total {
+  font-size: 16px;
+  font-weight: 400;
+  color: #292929;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 28px 0 16px;
+}
+.transaction-result .transaction-result-total span:first-child {
+  color: #7C7C7C;
+  margin-right: 12px;
+}
+.transaction-result .transaction-result-clean-button {
+  display: none;
+  align-items: center;
+  gap: 4px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #004D71;
+}
+.transaction-result .transaction-result-clean-button img {
+  width: 24px;
+  height: 24px;
+}
+.transaction-result .transaction-result-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.transaction-result .transaction-result-item {
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  position: relative;
+}
+.transaction-result .transaction-result-item .top-line{
+  width: 100%;
+  height: 9px;
+  background: linear-gradient(90deg, #887341 45.42%, #E0C583 98.61%);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.transaction-result .transaction-result-item .transaction-result-item-content {
+  padding: 31px 16px 24px;
+}
+.transaction-result .transaction-result-item .transaction-result-item-content .transaction-result-item-content-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+.transaction-result .transaction-result-item .transaction-result-item-content .transaction-result-item-content-top .transaction-result-item-content-top-operate {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.transaction-result .transaction-result-item .transaction-result-item-content .transaction-result-item-content-top .transaction-result-item-content-top-operate .transaction-result-item-content-top-operate-button {
+  width: 28px;
+  height: 28px;
+}
+.transaction-result .transaction-result-item .transaction-result-item-content .transaction-result-item-content-bottom {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  margin-top: 16px;
+}
+.transaction-result .transaction-result-item .transaction-result-item-content .transaction-result-item-content-bottom .item-content-bottom-info {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+.transaction-result .transaction-result-item .transaction-result-item-content .transaction-result-item-content-bottom .item-content-bottom-info .transaction-result-item-content-bottom-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.transaction-result .transaction-result-item .transaction-result-item-content .transaction-result-item-content-bottom .item-content-bottom-info .transaction-result-item-content-bottom-info-item .label {
+  width: 72px;
+}
+.transaction-result .transaction-result-item .transaction-result-item-content .transaction-result-item-content-bottom .item-content-bottom-info .transaction-result-item-content-bottom-info-item .content {
+  flex: 1;
+}
+.transaction-result .transaction-result-item .transaction-result-item-content .transaction-result-item-content-bottom .transaction-result-item-content-bottom-button {
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+}
+.transaction-result .transaction-result-more {
+  margin-top: 33px;
+}
+
+/* record */
+.record_table_group_container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.record_table_group_container .record_table_group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.record_table_group_container .record_table_group .record_table_group_title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #9E7F54;
+}
+.record_table_group_container .record_table_group .record_table_group_title img {
+  width: 24px;
+  height: 24px;
+}
+.record_table_group_container .record_table_group table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.record_table_group_container .record_table_group table th {
+  background-color: #EFEFEF;
+  border-bottom: 1px solid #DCDCDC;
+  text-align: left;
+  padding: 8px 16px;
+  border-left: 1px solid #DCDCDC;
+  font-size: 16px;
+  font-weight: 400;
+  color: #292929;
+}
+.record_table_group_container .record_table_group table td{
+  border-left: 1px solid #DCDCDC;
+  border-bottom: 1px solid #DCDCDC;
+  padding: 8px 16px;
+  font-size: 16px;
+  font-weight: 400;
+  color: #292929;
+}
+.record_table_group_container .record_table_group table th:first-child,
+.record_table_group_container .record_table_group table td:first-child {
+  border-left: none;
+  text-align: left;
+}
+.record_table_group_container .record_table_group table th:nth-child(2),
+.record_table_group_container .record_table_group table th:nth-child(3),
+.record_table_group_container .record_table_group table td:nth-child(2),
+.record_table_group_container .record_table_group table td:nth-child(3) {
+  text-align: center;
+}
+
+
+
+.record_table_group_container .record_table_group table td.no {
+  color: #F0423C;
+}
+</style>

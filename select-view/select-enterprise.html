@@ -27,7 +27,7 @@
       </div>
       <!-- content -->
       <main class="main">
-        <div class="common-title">歸戶資料挑選</div>
+        <div class="common-title">客戶基本資料挑選</div>
         <div class="select-associate-form">
           <div class="select-associate-form-item">
             <div class="w-100">
@@ -42,7 +42,7 @@
         <table class="select-associate-table" id="table" style="display: none;">
           <thead>
             <tr>
-              <th>歸戶代碼</th>
+              <th>統一編號</th>
               <th>歸戶名稱</th>
             </tr>
           </thead>
@@ -59,23 +59,28 @@
       const data = [
         {
           id: '00026901',
-          name: '利恩交通股份有限公司1'
+          name: '利恩交通股份有限公司1',
+          manager: '王小明'
         },
         {
           id: '00026902',
-          name: '利恩交通股份有限公司2'
+          name: '利恩交通股份有限公司2',
+          manager: '李大華'
         },
         {
           id: '00026903',
-          name: '利恩交通股份有限公司3'
+          name: '利恩交通股份有限公司3',
+          manager: '張志成'
         },
         {
           id: '00026904',
-          name: '利恩交通股份有限公司4'
+          name: '利恩交通股份有限公司4',
+          manager: '陳美玲'
         },
         {
           id: '00026905',
-          name: '利恩交通股份有限公司5'
+          name: '利恩交通股份有限公司5',
+          manager: '劉建國'
         },
       ]
       function searchSubmit() {
@@ -102,7 +107,7 @@
           tableBody.innerHTML = '';
           filteredData.forEach(item => {
             const tr = document.createElement('tr');
-            tr.innerHTML = `<td onclick="selectAssociate('${item.id}', '${item.name}')">${item.id}</td><td onclick="selectAssociate('${item.id}', '${item.name}')">${item.name}</td>`;
+            tr.innerHTML = `<td onclick="selectEnterprise('${item.id}', '${item.name}', '${item.manager}')">${item.id}</td><td onclick="selectEnterprise('${item.id}', '${item.name}', '${item.manager}')">${item.name}</td>`;
             tr.style.cursor = 'pointer';
             tableBody.appendChild(tr);
           });
@@ -110,11 +115,12 @@
       }
 
       // 選擇歸戶，發送訊息給父頁面
-      function selectAssociate(id, name) {
+      function selectEnterprise(id, name, manager) {
         window.parent.postMessage({
-          type: 'selectAssociate',
+          type: 'selectEnterprise',
           id: id,
-          name: name
+          name: name,
+          manager: manager
         }, '*');
       }
 

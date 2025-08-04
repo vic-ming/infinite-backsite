@@ -61,7 +61,7 @@
             </div>
             <!-- 切換跨海企業客戶、商業司資料 -->
             <div class="customer-detail-switch">
-              <div class="customer-detail-switch-item">
+              <div class="customer-detail-switch-item" onclick="window.location.href='/customer-overseas-detail.html'">
                 跨海企業客戶
                 <img src="/assets/images/icon_world.svg" alt="world">
               </div>
@@ -92,8 +92,8 @@
               <input type="text" id="company-industry" class="form-input search" placeholder="請輸入" readonly>
             </div>
             <div class="form-group">
-              <label for="company-industry-name">行業別<span>*</span></label>
-              <input type="text" id="company-industry-name" class="form-input search" placeholder="請輸入" readonly>
+              <label for="company-occupation">行業別<span>*</span></label>
+              <input type="text" id="company-occupation" class="form-input search" placeholder="請輸入" readonly>
             </div>
             <div class="form-group">
               <label for="company-capital">實收資本額</label>
@@ -222,10 +222,10 @@
               <label for="company-address">戶籍地址</label>
               <div class="address-wrapper">
                 <div class="address-wrapper-item">
-                  <input type="text" id="company-address-code" class="form-input search" placeholder="請選擇" readonly>
-                  <input type="text" id="company-address-city" class="form-input" placeholder="" disabled>
+                  <input type="text" id="registration-address-code" class="form-input search" placeholder="請選擇" readonly>
+                  <input type="text" id="registration-address-city" class="form-input" placeholder="" disabled>
                 </div>
-                <input type="text" id="company-address-detail" class="form-input" placeholder="請輸入">
+                <input type="text" id="registration-address-detail" class="form-input" placeholder="請輸入">
               </div>
             </div>
             <div class="form-group" id="manager-address-wrapper">
@@ -237,10 +237,10 @@
               </label>
               <div class="address-wrapper">
                 <div class="address-wrapper-item">
-                  <input type="text" id="invoice-address-code" class="form-input search" placeholder="請選擇" readonly>
-                  <input type="text" id="invoice-address-city" class="form-input" placeholder="" disabled>
+                  <input type="text" id="current-address-code" class="form-input search" placeholder="請選擇" readonly>
+                  <input type="text" id="current-address-city" class="form-input" placeholder="" disabled>
                 </div>
-                <input type="text" id="invoice-address-detail" class="form-input" placeholder="請輸入">
+                <input type="text" id="current-address-detail" class="form-input" placeholder="請輸入">
               </div>
             </div>
             <!-- 新增負責人通訊地址 -->
@@ -311,7 +311,7 @@
             </div>
             <div class="customer-detail-contact-list">
               <div class="customer-detail-contact-item">
-                <div class="customer-detail-contact-item-title">聯絡人一</div>
+                <div class="customer-detail-contact-item-title">聯絡人1</div>
                 <div class="form-group">
                   <label for="company-contact-title">聯絡人職稱</label>
                   <input type="text" id="company-contact-title" class="form-input" placeholder="">
@@ -548,34 +548,17 @@
       );
     }
 
-    // 將數字轉換為中文數字
-    function numberToChinese(num) {
-      const chineseNumbers = ['', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十'];
-      if (num <= 10) {
-        return chineseNumbers[num];
-      }
-      // 處理更大的數字 (11-99)
-      const tens = Math.floor(num / 10);
-      const ones = num % 10;
-      if (tens === 1) {
-        return ones === 0 ? '十' : '十' + chineseNumbers[ones];
-      } else {
-        return chineseNumbers[tens] + '十' + (ones === 0 ? '' : chineseNumbers[ones]);
-      }
-    }
-
     // 新增聯絡人
     function addContact() {
       const contactList = document.querySelector('.customer-detail-contact-list');
       const contactCount = contactList.children.length + 1;
-      const contactCountChinese = numberToChinese(contactCount);
       const contactItem = document.createElement('div');
       contactItem.classList.add('customer-detail-contact-item');
       contactItem.id = `company-contact-item-${contactCount}`;
       
       contactItem.innerHTML = `
         <div class="customer-detail-contact-item-title">
-          聯絡人${contactCountChinese}
+          聯絡人${contactCount}
           <button onclick="deleteContact(${contactCount})">
             <img src="/assets/images/icon_delete.svg" alt="delete">
           </button>
@@ -632,6 +615,8 @@
 
     // 等待 DOM 載入完成後初始化
     document.addEventListener('DOMContentLoaded', function() {
+
+      //  ========== 歸戶資料挑選 ============
       // 註冊歸戶選擇面板
       registerSidePanel(
         'associate', 
@@ -669,9 +654,187 @@
       document.addEventListener('associateSelected', function(event) {
         const associateData = event.detail;
         console.log('歸戶選擇事件觸發:', associateData);
+      });
+
+      //  ========== 職業資料挑選 ============
+      // 註冊職業選擇面板
+      registerSidePanel(
+        'industry', 
+        '/select-view/select-industry.html',
+        function(data) {
+          // 儲存選擇的職業資料
+          selectedIndustryData = {
+            id: data.id || '',
+            name: data.name || '',
+            selectedAt: new Date().toISOString() // 記錄選擇時間
+          };
+
+          // 填入表單欄位
+          document.getElementById('company-industry').value = data.name || '';
+
+          // 觸發自定義事件，讓其他地方可以監聽
+          const event = new CustomEvent('industrySelected', {
+            detail: selectedIndustryData
+          });
+          document.dispatchEvent(event);
+
+        },
+      );
+
+      // 為職業編號輸入框添加點擊事件
+      const industryIdInput = document.getElementById('company-industry');
+      if (industryIdInput) {
+        industryIdInput.addEventListener('click', function() {
+          openSidePanel('industry');
+        });
+      }
+
+      // 監聽職業選擇事件（範例用法）
+      document.addEventListener('industrySelected', function(event) {
+        const industryData = event.detail;
+        console.log('職業選擇事件觸發:', industryData);
 
       });
 
+
+      //  ========== 行業資料挑選 ============
+      // 註冊行業選擇面板
+      registerSidePanel(
+        'occupation', 
+        '/select-view/select-occupation.html',
+        function(data) {
+          // 儲存選擇的行業資料
+          selectedOccupationData = {
+            id: data.id || '',
+            name: data.name || '',
+            selectedAt: new Date().toISOString() // 記錄選擇時間
+          };
+
+          // 填入表單欄位
+          document.getElementById('company-occupation').value = data.name || '';
+
+          // 觸發自定義事件，讓其他地方可以監聽
+          const event = new CustomEvent('occupationSelected', {
+            detail: selectedOccupationData
+          });
+          document.dispatchEvent(event);
+        },
+      );
+
+      // 為行業編號輸入框添加點擊事件
+      const occupationIdInput = document.getElementById('company-occupation');
+      if (occupationIdInput) {
+        occupationIdInput.addEventListener('click', function() {
+          openSidePanel('occupation');
+        });
+      }
+
+      // 監聽行業選擇事件（範例用法）
+      document.addEventListener('occupationSelected', function(event) {
+        const occupationData = event.detail;
+        console.log('行業選擇事件觸發:', occupationData);
+      });
+         
+      //  ========== 郵遞區號資料挑選 ============
+      // 全域變數：記錄當前選擇的地址類型
+      let currentAddressType = null;
+      let selectedPostalData = null;
+
+      // 地址類型映射
+      const addressTypeMapping = {
+        'company-address-code': {
+          codeField: 'company-address-code',
+          cityField: 'company-address-city',
+          label: '註冊地址'
+        },
+        'factory-address-code': {
+          codeField: 'factory-address-code',
+          cityField: 'factory-address-city',
+          label: '軍(工)廠所地址'
+        },
+        'invoice-address-code': {
+          codeField: 'invoice-address-code',
+          cityField: 'invoice-address-city',
+          label: '發票郵寄地址'
+        },
+        'registration-address-code': {
+          codeField: 'registration-address-code',
+          cityField: 'registration-address-city',
+          label: '戶籍地址'
+        },
+        'current-address-code': {
+          codeField: 'current-address-code',
+          cityField: 'current-address-city',
+          label: '負責人通訊地址'
+        },
+        'company-business-address-code': {
+          codeField: 'company-business-address-code',
+          cityField: 'company-business-address-city',
+          label: '營業地址'
+        }
+      };
+
+      // 註冊郵遞區號選擇面板
+      registerSidePanel(
+        'postal', 
+        '/select-view/select-postal.html',
+        function(data) {
+          if (!currentAddressType || !addressTypeMapping[currentAddressType]) {
+            console.error('未知的地址類型:', currentAddressType);
+            return;
+          }
+
+          const mapping = addressTypeMapping[currentAddressType];
+          
+          // 儲存選擇的郵遞區號資料
+          selectedPostalData = {
+            code: data.code || '',
+            city: data.city || '',
+            district: data.district || '',
+            fullAddress: data.fullAddress || '',
+            addressType: currentAddressType,
+            selectedAt: new Date().toISOString()
+          };
+
+          // 填入對應的表單欄位
+          const codeField = document.getElementById(mapping.codeField);
+          const cityField = document.getElementById(mapping.cityField);
+          
+          if (codeField) {
+            codeField.value = data.code || '';
+          }
+          if (cityField) {
+            cityField.value = data.fullAddress || '';
+          }
+
+          // 觸發自定義事件
+          const event = new CustomEvent('postalSelected', {
+            detail: selectedPostalData
+          });
+          document.dispatchEvent(event);
+
+          console.log(`${mapping.label}郵遞區號已選擇:`, selectedPostalData);
+        }
+      );
+
+      // 為所有地址郵遞區號欄位添加點擊事件
+      Object.keys(addressTypeMapping).forEach(addressType => {
+        const field = document.getElementById(addressType);
+        if (field) {
+          field.addEventListener('click', function() {
+            currentAddressType = addressType;
+            console.log(`打開郵遞區號選擇面板 - 地址類型: ${addressTypeMapping[addressType].label}`);
+            openSidePanel('postal');
+          });
+        }
+      });
+
+      // 監聽郵遞區號選擇事件
+      document.addEventListener('postalSelected', function(event) {
+        const postalData = event.detail;
+        console.log('郵遞區號選擇事件觸發:', postalData);
+      });
+    
     });
   </script>
 </html>
@@ -762,6 +925,7 @@ main{
   font-size: 16px;
   font-weight: 400;
   color: #004D71;
+  cursor: pointer;
 }
 .customer-detail-switch-item img {
   width: 24px;

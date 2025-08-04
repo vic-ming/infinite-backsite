@@ -27,9 +27,17 @@
       </div>
       <!-- content -->
       <main class="main">
-        <div class="common-title">歸戶資料挑選</div>
-        <div class="select-associate-form">
-          <div class="select-associate-form-item">
+        <div class="common-title">行業別</div>
+        <div class="select-occupation-form">
+          <div class="select-occupation-form-item">
+            <div class="w-100 category-wrapper">
+              <label for="category">行業大類</label>
+              <select class="form-input" id="category" onchange="searchSubmit()">
+                <option value="" disabled selected>請選擇</option>
+                <option value="01">農、林、漁、牧業</option>
+                <option value="02">製造業</option>
+              </select>
+            </div>
             <div class="w-100">
               <input type="text" id="keyword" class="form-input" placeholder="請輸入關鍵字搜尋" onkeyup="searchSubmit()">
               <div id="error-message" class="error-message"></div>
@@ -37,13 +45,14 @@
           </div>
         </div>
         <!-- no data -->
-        <div class="no-data" id="no-data" style="display: none;">查無此歸戶代號資料</div>
+        <div class="no-data" id="no-data" style="display: none;">查無此行業別資料</div>
         <!-- table -->
-        <table class="select-associate-table" id="table" style="display: none;">
+        <table class="select-occupation-table" id="table" style="display: none;">
           <thead>
             <tr>
-              <th>歸戶代碼</th>
-              <th>歸戶名稱</th>
+              <th>行業大類</th>
+              <th>行業代碼</th>
+              <th>行業名稱</th>
             </tr>
           </thead>
           <tbody id="table-body">
@@ -58,29 +67,31 @@
       let filteredData = [];
       const data = [
         {
-          id: '00026901',
-          name: '利恩交通股份有限公司1'
+          id: '010001',
+          categoryId: '01',
+          category: '農、林、漁、牧業',
+          name: '蔬菜栽培業'
         },
         {
-          id: '00026902',
-          name: '利恩交通股份有限公司2'
+          id: '010002',
+          categoryId: '01',
+          category: '農、林、漁、牧業',
+          name: '花卉栽培業'
         },
         {
-          id: '00026903',
-          name: '利恩交通股份有限公司3'
+          id: '010800',
+          categoryId: '02',
+          category: '製造業',
+          name: '水產加工業'
         },
-        {
-          id: '00026904',
-          name: '利恩交通股份有限公司4'
-        },
-        {
-          id: '00026905',
-          name: '利恩交通股份有限公司5'
-        },
+        
+
       ]
       function searchSubmit() {
         const keywordValue = keyword.value.trim();
-        if (keywordValue === '') {
+        const categoryValue = category.value.trim();
+        console.log(categoryValue);
+        if (keywordValue === '' && categoryValue === '') {
           filteredData = [];
           const noData = document.getElementById('no-data');
           const table = document.getElementById('table');
@@ -88,7 +99,7 @@
           table.style.display = 'none';
           return;
         } else {
-          filteredData = data.filter(item => item.id.includes(keywordValue) || item.name.includes(keywordValue));
+          filteredData = data.filter(item => (item.id.includes(keywordValue) || item.name.includes(keywordValue)) && (categoryValue === '' || item.categoryId === categoryValue));
           const noData = document.getElementById('no-data');
           const table = document.getElementById('table');
           if (filteredData.length === 0) {
@@ -102,17 +113,17 @@
           tableBody.innerHTML = '';
           filteredData.forEach(item => {
             const tr = document.createElement('tr');
-            tr.innerHTML = `<td onclick="selectAssociate('${item.id}', '${item.name}')">${item.id}</td><td onclick="selectAssociate('${item.id}', '${item.name}')">${item.name}</td>`;
+            tr.innerHTML = `<td onclick="selectOccupation('${item.id}', '${item.name}')">${item.category}</td><td onclick="selectOccupation('${item.id}', '${item.name}')">${item.id}</td><td onclick="selectOccupation('${item.id}', '${item.name}')">${item.name}</td>`;
             tr.style.cursor = 'pointer';
             tableBody.appendChild(tr);
           });
         }
       }
 
-      // 選擇歸戶，發送訊息給父頁面
-      function selectAssociate(id, name) {
+      // 選擇行業，發送訊息給父頁面
+      function selectOccupation(id, name) {
         window.parent.postMessage({
-          type: 'selectAssociate',
+          type: 'selectOccupation',
           id: id,
           name: name
         }, '*');
@@ -131,7 +142,7 @@
 main{
   padding: 32px 16px !important;
 }
-.select-associate-form {
+.select-occupation-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -139,14 +150,14 @@ main{
   width: 100%;
   margin-top: 16px;
 }
-.select-associate-form-item {
+.select-occupation-form-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
   width: 100%;
 }
-.select-associate-form-item .form-input {
+.select-occupation-form-item .form-input {
   height: 46px;
   padding: 0 16px;
   border: 1px solid #BDBDBD;
@@ -157,10 +168,10 @@ main{
   width: 100%;
   box-sizing: border-box;
 }
-.select-associate-form-item .form-input.error {
+.select-occupation-form-item .form-input.error {
   border-color: #FF0900;
 }
-.select-associate-form-item .error-message {
+.select-occupation-form-item .error-message {
   color: #FF0900;
   font-size: 16px;
   font-weight: 400;
@@ -186,5 +197,16 @@ main{
   text-align: center;
   margin-top: 16px;
   padding: 32px 0;
+}
+.category-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.category-wrapper label {
+  font-size: 18px;
+  font-weight: 400;
+  color: #292929;
+  min-width: fit-content;
 }
 </style>

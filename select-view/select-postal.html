@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="icon" href="/assets/favicon.ico"> -->
+    <title>Infinite</title>
+    <!-- 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- 共用樣式 -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <!-- header -->
+      <div class="header">
+        <button class="header-menu" onclick="closePanel()">
+          <img src="/assets/images/icon_back.svg" alt="back">
+        </button>
+        <div class="header-logo">
+          <img src="/assets/images/logo.png" alt="logo">
+        </div>
+      </div>
+      <!-- content -->
+      <main class="main">
+        <div class="common-title">郵遞區號選擇</div>
+        <div class="select-postal-form">
+          <div class="select-postal-form-item">
+            <div class="w-100">
+              <input type="text" id="keyword" class="form-input" placeholder="請輸入縣市、區域或郵遞區號搜尋" onkeyup="searchSubmit()">
+              <div id="error-message" class="error-message"></div>
+            </div>
+          </div>
+        </div>
+        <!-- no data -->
+        <div class="no-data" id="no-data" style="display: none;">查無此郵遞區號資料</div>
+        <!-- table -->
+        <table class="select-postal-table" id="table" style="display: none;">
+          <thead>
+            <tr>
+              <th>郵遞區號</th>
+              <th>縣市名稱</th>
+              <th>鄉鎮市區</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+          </tbody>
+        </table>
+        
+      </main>
+
+    </div>
+    <script>
+      const keyword = document.getElementById('keyword');
+      let filteredData = [];
+      const data = [
+        {
+          code: '100',
+          city: '台北市',
+          district: '中正區'
+        },
+        {
+          code: '103',
+          city: '台北市',
+          district: '大同區'
+        },
+        {
+          code: '104',
+          city: '台北市',
+          district: '中山區'
+        },
+        {
+          code: '105',
+          city: '台北市',
+          district: '松山區'
+        },
+        {
+          code: '106',
+          city: '台北市',
+          district: '大安區'
+        },
+        {
+          code: '108',
+          city: '台北市',
+          district: '萬華區'
+        },
+        {
+          code: '110',
+          city: '台北市',
+          district: '信義區'
+        },
+        {
+          code: '111',
+          city: '台北市',
+          district: '士林區'
+        },
+        {
+          code: '112',
+          city: '台北市',
+          district: '北投區'
+        },
+        {
+          code: '114',
+          city: '台北市',
+          district: '內湖區'
+        },
+        {
+          code: '115',
+          city: '台北市',
+          district: '南港區'
+        },
+        {
+          code: '116',
+          city: '台北市',
+          district: '文山區'
+        },
+        {
+          code: '200',
+          city: '基隆市',
+          district: '仁愛區'
+        },
+        {
+          code: '201',
+          city: '基隆市',
+          district: '信義區'
+        },
+        {
+          code: '202',
+          city: '基隆市',
+          district: '中正區'
+        },
+        {
+          code: '203',
+          city: '基隆市',
+          district: '中山區'
+        },
+        {
+          code: '204',
+          city: '基隆市',
+          district: '安樂區'
+        },
+        {
+          code: '205',
+          city: '基隆市',
+          district: '暖暖區'
+        },
+        {
+          code: '206',
+          city: '基隆市',
+          district: '七堵區'
+        },
+        {
+          code: '220',
+          city: '新北市',
+          district: '板橋區'
+        },
+        {
+          code: '221',
+          city: '新北市',
+          district: '汐止區'
+        },
+        {
+          code: '222',
+          city: '新北市',
+          district: '深坑區'
+        },
+        {
+          code: '223',
+          city: '新北市',
+          district: '石碇區'
+        },
+        {
+          code: '224',
+          city: '新北市',
+          district: '瑞芳區'
+        },
+        {
+          code: '226',
+          city: '新北市',
+          district: '平溪區'
+        },
+        {
+          code: '227',
+          city: '新北市',
+          district: '雙溪區'
+        },
+        {
+          code: '228',
+          city: '新北市',
+          district: '貢寮區'
+        },
+        {
+          code: '231',
+          city: '新北市',
+          district: '新店區'
+        },
+        {
+          code: '232',
+          city: '新北市',
+          district: '坪林區'
+        },
+        {
+          code: '233',
+          city: '新北市',
+          district: '烏來區'
+        },
+        {
+          code: '234',
+          city: '新北市',
+          district: '永和區'
+        },
+        {
+          code: '235',
+          city: '新北市',
+          district: '中和區'
+        },
+        {
+          code: '236',
+          city: '新北市',
+          district: '土城區'
+        },
+        {
+          code: '237',
+          city: '新北市',
+          district: '三峽區'
+        },
+        {
+          code: '238',
+          city: '新北市',
+          district: '樹林區'
+        },
+        {
+          code: '239',
+          city: '新北市',
+          district: '鶯歌區'
+        },
+        {
+          code: '241',
+          city: '新北市',
+          district: '三重區'
+        },
+        {
+          code: '242',
+          city: '新北市',
+          district: '新莊區'
+        },
+        {
+          code: '243',
+          city: '新北市',
+          district: '泰山區'
+        },
+        {
+          code: '244',
+          city: '新北市',
+          district: '林口區'
+        },
+        {
+          code: '247',
+          city: '新北市',
+          district: '蘆洲區'
+        },
+        {
+          code: '248',
+          city: '新北市',
+          district: '五股區'
+        },
+        {
+          code: '249',
+          city: '新北市',
+          district: '八里區'
+        },
+        {
+          code: '251',
+          city: '新北市',
+          district: '淡水區'
+        },
+        {
+          code: '252',
+          city: '新北市',
+          district: '三芝區'
+        },
+        {
+          code: '253',
+          city: '新北市',
+          district: '石門區'
+        },
+        {
+          code: '260',
+          city: '宜蘭縣',
+          district: '宜蘭市'
+        },
+        {
+          code: '261',
+          city: '宜蘭縣',
+          district: '頭城鎮'
+        },
+        {
+          code: '262',
+          city: '宜蘭縣',
+          district: '礁溪鄉'
+        },
+        {
+          code: '263',
+          city: '宜蘭縣',
+          district: '壯圍鄉'
+        },
+        {
+          code: '264',
+          city: '宜蘭縣',
+          district: '員山鄉'
+        },
+        {
+          code: '265',
+          city: '宜蘭縣',
+          district: '羅東鎮'
+        },
+        {
+          code: '266',
+          city: '宜蘭縣',
+          district: '三星鄉'
+        },
+        {
+          code: '267',
+          city: '宜蘭縣',
+          district: '大同鄉'
+        },
+        {
+          code: '268',
+          city: '宜蘭縣',
+          district: '五結鄉'
+        },
+        {
+          code: '269',
+          city: '宜蘭縣',
+          district: '冬山鄉'
+        },
+        {
+          code: '270',
+          city: '宜蘭縣',
+          district: '蘇澳鎮'
+        },
+        {
+          code: '272',
+          city: '宜蘭縣',
+          district: '南澳鄉'
+        },
+        {
+          code: '300',
+          city: '新竹市',
+          district: '東區'
+        },
+        {
+          code: '300',
+          city: '新竹市',
+          district: '北區'
+        },
+        {
+          code: '300',
+          city: '新竹市',
+          district: '香山區'
+        }
+      ]
+      function searchSubmit() {
+        const keywordValue = keyword.value.trim();
+        if (keywordValue === '') {
+          filteredData = [];
+          const noData = document.getElementById('no-data');
+          const table = document.getElementById('table');
+          noData.style.display = 'none';
+          table.style.display = 'none';
+          return;
+        } else {
+          filteredData = data.filter(item => 
+            item.code.includes(keywordValue) || 
+            item.city.includes(keywordValue) || 
+            item.district.includes(keywordValue)
+          );
+          const noData = document.getElementById('no-data');
+          const table = document.getElementById('table');
+          if (filteredData.length === 0) {
+            noData.style.display = 'block';
+            table.style.display = 'none';
+          } else {
+            noData.style.display = 'none';
+            table.style.display = 'table';
+          }
+          const tableBody = document.getElementById('table-body');
+          tableBody.innerHTML = '';
+          filteredData.forEach(item => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td onclick="selectPostal('${item.code}', '${item.city}', '${item.district}')">${item.code}</td>
+              <td onclick="selectPostal('${item.code}', '${item.city}', '${item.district}')">${item.city}</td>
+              <td onclick="selectPostal('${item.code}', '${item.city}', '${item.district}')">${item.district}</td>
+            `;
+            tr.style.cursor = 'pointer';
+            tableBody.appendChild(tr);
+          });
+        }
+      }
+
+      // 選擇郵遞區號，發送訊息給父頁面
+      function selectPostal(code, city, district) {
+        window.parent.postMessage({
+          type: 'selectPostal',
+          code: code,
+          city: city,
+          district: district,
+          fullAddress: `${city}${district}`
+        }, '*');
+      }
+
+      // 關閉面板，發送訊息給父頁面
+      function closePanel() {
+        window.parent.postMessage({
+          type: 'closePanel'
+        }, '*');
+      }
+    </script>
+  </body>
+</html>
+<style scoped>
+main{
+  padding: 32px 16px !important;
+}
+.select-postal-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+  margin-top: 16px;
+}
+.select-postal-form-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+.select-postal-form-item .form-input {
+  height: 46px;
+  padding: 0 16px;
+  border: 1px solid #BDBDBD;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #292929;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+.select-postal-form-item .form-input.error {
+  border-color: #FF0900;
+}
+.select-postal-form-item .error-message {
+  color: #FF0900;
+  font-size: 16px;
+  font-weight: 400;
+  display: none;
+  margin-top: 8px;
+}
+
+.form-input:focus {
+  box-shadow: 0px 0px 0px 1px #9E7F54;
+  border-color: #9E7F54;
+}
+
+.form-input::placeholder {
+  color: #BDBDBD;
+}
+.w-100 {
+  width: 100%;
+}
+.no-data {
+  font-size: 16px;
+  font-weight: 400;
+  color: #7C7C7C;
+  text-align: center;
+  margin-top: 16px;
+  padding: 32px 0;
+}
+</style>
