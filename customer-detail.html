@@ -9,6 +9,8 @@
 
     <!-- 共用樣式 -->
     <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- 側邊面板管理器 -->
+    <script src="/assets/js/side-panel.js"></script>
     <!-- 字體 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -627,6 +629,50 @@
       );
      
     }
+
+    // 等待 DOM 載入完成後初始化
+    document.addEventListener('DOMContentLoaded', function() {
+      // 註冊歸戶選擇面板
+      registerSidePanel(
+        'associate', 
+        '/select-view/select-associate.html',
+        function(data) {
+          // 儲存選擇的歸戶資料
+          selectedAssociateData = {
+            id: data.id || '',
+            name: data.name || '',
+            selectedAt: new Date().toISOString() // 記錄選擇時間
+          };
+
+          // 填入表單欄位
+          document.getElementById('company-associate-id').value = data.id || '';
+          document.getElementById('company-associate-name').value = data.name || '';
+
+          // 觸發自定義事件，讓其他地方可以監聽
+          const event = new CustomEvent('associateSelected', {
+            detail: selectedAssociateData
+          });
+          document.dispatchEvent(event);
+
+        },
+      );
+
+      // 為歸戶編號輸入框添加點擊事件
+      const associateIdInput = document.getElementById('company-associate-id');
+      if (associateIdInput) {
+        associateIdInput.addEventListener('click', function() {
+          openSidePanel('associate');
+        });
+      }
+
+      // 監聽歸戶選擇事件（範例用法）
+      document.addEventListener('associateSelected', function(event) {
+        const associateData = event.detail;
+        console.log('歸戶選擇事件觸發:', associateData);
+
+      });
+
+    });
   </script>
 </html>
 <style scoped>
@@ -825,6 +871,7 @@ main{
   background-color: #fff;
   box-sizing: border-box;
   box-shadow: 0 -2px 4px 0 rgba(0, 0, 0, 0.1);
+  z-index: 2;
 }
 /* AI 摘要 */
 .ai-summary-body {
@@ -849,4 +896,7 @@ main{
   font-weight: 700;
   color: #292929;
 }
+
+
 </style>
+

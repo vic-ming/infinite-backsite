@@ -15,10 +15,10 @@
     <link rel="stylesheet" href="/assets/css/style.css">
   </head>
   <body>
-    <div class="container customer-list">
+    <div class="container">
       <!-- header -->
       <div class="header">
-        <button class="header-menu">
+        <button class="header-menu" onclick="closePanel()">
           <img src="/assets/images/icon_back.svg" alt="back">
         </button>
         <div class="header-logo">
@@ -27,10 +27,7 @@
       </div>
       <!-- content -->
       <main class="main">
-        <!-- top -->
-        <div class="customer-list-top">
-          <div class="common-title">歸戶資料挑選</div>
-        </div>
+        <div class="common-title">歸戶資料挑選</div>
         <div class="select-associate-form">
           <div class="select-associate-form-item">
             <div class="w-100">
@@ -50,7 +47,6 @@
             </tr>
           </thead>
           <tbody id="table-body">
-            
           </tbody>
         </table>
         
@@ -63,23 +59,23 @@
       const data = [
         {
           id: '00026901',
-          name: '利恩交通股份有限公司'
+          name: '利恩交通股份有限公司1'
         },
         {
           id: '00026902',
-          name: '利恩交通股份有限公司'
+          name: '利恩交通股份有限公司2'
         },
         {
           id: '00026903',
-          name: '利恩交通股份有限公司'
+          name: '利恩交通股份有限公司3'
         },
         {
           id: '00026904',
-          name: '利恩交通股份有限公司'
+          name: '利恩交通股份有限公司4'
         },
         {
           id: '00026905',
-          name: '利恩交通股份有限公司'
+          name: '利恩交通股份有限公司5'
         },
       ]
       function searchSubmit() {
@@ -106,11 +102,27 @@
           tableBody.innerHTML = '';
           filteredData.forEach(item => {
             const tr = document.createElement('tr');
-            tr.innerHTML = `<td>${item.id}</td><td>${item.name}</td>`;
+            tr.innerHTML = `<td onclick="selectAssociate('${item.id}', '${item.name}')">${item.id}</td><td onclick="selectAssociate('${item.id}', '${item.name}')">${item.name}</td>`;
+            tr.style.cursor = 'pointer';
             tableBody.appendChild(tr);
           });
         }
-      
+      }
+
+      // 選擇歸戶，發送訊息給父頁面
+      function selectAssociate(id, name) {
+        window.parent.postMessage({
+          type: 'selectAssociate',
+          id: id,
+          name: name
+        }, '*');
+      }
+
+      // 關閉面板，發送訊息給父頁面
+      function closePanel() {
+        window.parent.postMessage({
+          type: 'closePanel'
+        }, '*');
       }
     </script>
   </body>

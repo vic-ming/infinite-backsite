@@ -663,3 +663,40 @@ table td:last-child {
   border-right: none;
 }
 
+/* 側邊面板樣式 */
+.side-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #fff;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+  /* box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1); */
+  overflow-y: auto;
+}
+
+.side-panel.open {
+  transform: translateX(0);
+}
+
+.side-panel .container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.side-panel .header {
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 10;
+}
+
+.side-panel .main {
+  flex: 1;
+  overflow-y: auto;
+}
+
