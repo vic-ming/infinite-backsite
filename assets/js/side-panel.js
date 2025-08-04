@@ -181,6 +181,11 @@ class SidePanelManager {
             district: event.data.district,
             fullAddress: event.data.fullAddress
           });
+        } else if (event.data.type === 'selectComment') {
+          this.handleSelectItem({
+            panelType: 'comment',
+            comment: event.data.comment
+          });
         } else if (event.data.type === 'closePanel') {
           this.closePanel();
         }

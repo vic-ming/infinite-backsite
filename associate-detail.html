@@ -135,10 +135,10 @@
               <label for="company-address">通訊地址</label>
               <div class="address-wrapper">
                 <div class="address-wrapper-item">
-                  <input type="text" id="registration-address-code" class="form-input search" placeholder="請選擇" readonly>
-                  <input type="text" id="registration-address-city" class="form-input" placeholder="" disabled>
+                  <input type="text" id="contact-address-code" class="form-input search" placeholder="請選擇" readonly>
+                  <input type="text" id="contact-address-city" class="form-input" placeholder="" disabled>
                 </div>
-                <input type="text" id="registration-address-detail" class="form-input" placeholder="請輸入">
+                <input type="text" id="contact-address-detail" class="form-input" placeholder="請輸入">
               </div>
             </div>
 
@@ -275,7 +275,7 @@
             </div>
             <div class="form-group">
               <label for="associate-comment">總評<span>*</span></label>
-              <input type="text" id="associate-comment" class="form-input" placeholder="請輸入">
+              <input type="text" id="associate-comment" class="form-input search" placeholder="請輸入" readonly>
             </div>
           
             
@@ -818,29 +818,34 @@
       });
          
 
-      //  ========== 常用片語資料挑選 ============
-      // 註冊常用片語選擇面板
-      registerSidePanel(
-        'comment', 
-        '/select-view/select-comment.html',
-        function(data) {
-          // 儲存選擇的常用片語資料
-          selectedCommentData = {
-            id: data.id || '',
-            name: data.name || '',
-            selectedAt: new Date().toISOString()
-          };
+             //  ========== 常用片語資料挑選 ============
+       // 全域變數：儲存選擇的常用片語資料
+       let selectedCommentData = null;
 
-          // 填入表單欄位
-          document.getElementById('associate-comment').value = data.name || '';
+       // 註冊常用片語選擇面板
+       registerSidePanel(
+         'comment', 
+         '/select-view/select-comment.html',
+         function(data) {
+           // 儲存選擇的常用片語資料
+           selectedCommentData = {
+             comment: data.comment || '',
+             selectedTexts: data.selectedTexts || [],
+             selectedAt: new Date().toISOString()
+           };
 
-          // 觸發自定義事件，讓其他地方可以監聽
-          const event = new CustomEvent('commentSelected', {
-            detail: selectedCommentData
-          });
-          document.dispatchEvent(event);
-        },
-      );
+           // 填入表單欄位（顯示組合後的字串）
+           document.getElementById('associate-comment').value = data.comment || '';
+
+           // 觸發自定義事件，讓其他地方可以監聽
+           const event = new CustomEvent('commentSelected', {
+             detail: selectedCommentData
+           });
+           document.dispatchEvent(event);
+
+           console.log('常用片語已選擇:', selectedCommentData);
+         },
+       );
 
       // 為常用片語編號輸入框添加點擊事件
       const commentIdInput = document.getElementById('associate-comment');
@@ -935,6 +940,12 @@
           cityField: 'associate-address-city',
           label: '登記地址'
         },
+        'contact-address-code': {
+          codeField: 'contact-address-code',
+          cityField: 'contact-address-city',
+          label: '聯絡地址'
+        },
+        
       };
 
       // 註冊郵遞區號選擇面板
@@ -946,7 +957,7 @@
             console.error('未知的地址類型:', currentAddressType);
             return;
           }
-
+          
           const mapping = addressTypeMapping[currentAddressType];
           
           // 儲存選擇的郵遞區號資料

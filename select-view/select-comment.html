@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="/assets/css/style.css">
   </head>
   <body>
-    <div class="container">
+    <div class="container" style="position: relative;">
       <!-- header -->
       <div class="header">
         <button class="header-menu" onclick="closePanel()">
@@ -28,8 +28,8 @@
       <!-- content -->
       <main class="main">
         <div class="common-title">常用片語</div>
-        <div class="select-industry-form">
-          <div class="select-industry-form-item">
+        <div class="select-comment-form">
+          <div class="select-comment-form-item">
             <div class="w-100">
               <input type="text" id="keyword" class="form-input" placeholder="請輸入關鍵字搜尋" onkeyup="searchSubmit()">
               <div id="error-message" class="error-message"></div>
@@ -37,19 +37,23 @@
           </div>
         </div>
         <!-- no data -->
-        <div class="no-data" id="no-data" style="display: none;">查無此職業別資料</div>
+        <div class="no-data" id="no-data" style="display: none;">查無此片語資料</div>
         <!-- table -->
-        <table class="select-industry-table" id="table" style="display: none;">
+        <table class="select-comment-table" id="table" style="display: none;">
           <thead>
             <tr>
-              <th>常用片語代碼</th>
-              <th>常用片語名稱</th>
+              <th></th>
+              <th>片語</th>
             </tr>
           </thead>
           <tbody id="table-body">
           </tbody>
         </table>
         
+        <div class="confirm-btn-wrapper">
+          <button class="button-primary w-100" onclick="selectComment()">確定</button>
+        </div>
+
       </main>
 
     </div>
@@ -58,51 +62,115 @@
       let filteredData = [];
       const data = [
         {
-          id: '01',
-          name: '擔保貸款現況'
+          id: 1,
+          active: false,
+          text: '擔保貸款現況'
         },
         {
-          id: '02',
-          name: '近三個月新增貸款_有擔(合計)'
+          id: 2,
+          active: false,
+          text: '近三個月新增貸款_有擔(合計)'
+        },
+        {
+          id: 3,
+          active: false,
+          text: '營業狀況良好'
+        },
+        {
+          id: 4,
+          active: false,
+          text: '財務狀況穩定'
+        },
+        {
+          id: 5,
+          active: false,
+          text: '信用記錄優良'
         },
       ]
+
+      // 初始化顯示所有資料
+      function initializeTable() {
+        filteredData = [...data];
+        const noData = document.getElementById('no-data');
+        const table = document.getElementById('table');
+        noData.style.display = 'none';
+        table.style.display = 'table';
+        renderTable();
+      }
+
+      // 渲染表格
+      function renderTable() {
+        const tableBody = document.getElementById('table-body');
+        tableBody.innerHTML = '';
+        filteredData.forEach(item => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+          <td>
+            <input type="checkbox" id="checkbox-${item.id}" class="checkbox" ${item.active ? 'checked' : ''} onchange="toggleCheckbox(${item.id})">
+          </td>
+          <td onclick="toggleCheckboxById(${item.id})">${item.text}</td>`;
+          tr.style.cursor = 'pointer';
+          tableBody.appendChild(tr);
+        });
+      }
       function searchSubmit() {
         const keywordValue = keyword.value.trim();
         if (keywordValue === '') {
-          filteredData = [];
-          const noData = document.getElementById('no-data');
-          const table = document.getElementById('table');
-          noData.style.display = 'none';
-          table.style.display = 'none';
-          return;
+          // 如果搜尋框為空，顯示所有資料
+          filteredData = [...data];
         } else {
-          filteredData = data.filter(item => item.id.includes(keywordValue) || item.name.includes(keywordValue));
-          const noData = document.getElementById('no-data');
-          const table = document.getElementById('table');
-          if (filteredData.length === 0) {
-            noData.style.display = 'block';
-            table.style.display = 'none';
-          } else {
-            noData.style.display = 'none';
-            table.style.display = 'table';
-          }
-          const tableBody = document.getElementById('table-body');
-          tableBody.innerHTML = '';
-          filteredData.forEach(item => {
-            const tr = document.createElement('tr');
-            tr.innerHTML = `<td onclick="selectIndustry('${item.id}', '${item.name}')">${item.id}</td><td onclick="selectIndustry('${item.id}', '${item.name}')">${item.name}</td>`;
-            tr.style.cursor = 'pointer';
-            tableBody.appendChild(tr);
-          });
+          // 根據關鍵字過濾資料
+          filteredData = data.filter(item => item.text.includes(keywordValue));
+        }
+
+        const noData = document.getElementById('no-data');
+        const table = document.getElementById('table');
+        
+        if (filteredData.length === 0) {
+          noData.style.display = 'block';
+          table.style.display = 'none';
+        } else {
+          noData.style.display = 'none';
+          table.style.display = 'table';
+          renderTable();
         }
       }
 
-      // 選擇職業，發送訊息給父頁面
-      function selectIndustry(id, name) {
+      // 切換 checkbox 狀態
+      function toggleCheckbox(id) {
+        const item = data.find(item => item.id === id);
+        if (item) {
+          item.active = !item.active;
+        }
+      }
+
+      // 點擊文字切換 checkbox
+      function toggleCheckboxById(id) {
+        const checkbox = document.getElementById(`checkbox-${id}`);
+        if (checkbox) {
+          checkbox.checked = !checkbox.checked;
+          toggleCheckbox(id);
+        }
+      }
+
+      // 選擇片語，發送訊息給父頁面
+      function selectComment() {
+        const selectedTexts = [];
+        
+        // 從 data 中收集所有 active 為 true 的項目
+        data.forEach(item => {
+          if (item.active) {
+            selectedTexts.push(item.text);
+          }
+        });
+
+        // 將文字陣列組合成字串
+        const commentString = selectedTexts.join('、');
+
         window.parent.postMessage({
-          type: 'selectIndustry',
-          id: id,
-          name: name
+          type: 'selectComment',
+          comment: commentString,
+          selectedTexts: selectedTexts
         }, '*');
       }
 
@@ -112,6 +180,11 @@
           type: 'closePanel'
         }, '*');
       }
+
+      // 頁面載入完成後初始化
+      document.addEventListener('DOMContentLoaded', function() {
+        initializeTable();
+      });
     </script>
   </body>
 </html>
@@ -119,7 +192,7 @@
 main{
   padding: 32px 16px !important;
 }
-.select-industry-form {
+.select-comment-form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -127,14 +200,14 @@ main{
   width: 100%;
   margin-top: 16px;
 }
-.select-industry-form-item {
+.select-comment-form-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
   width: 100%;
 }
-.select-industry-form-item .form-input {
+.select-comment-form-item .form-input {
   height: 46px;
   padding: 0 16px;
   border: 1px solid #BDBDBD;
@@ -145,10 +218,10 @@ main{
   width: 100%;
   box-sizing: border-box;
 }
-.select-industry-form-item .form-input.error {
+.select-comment-form-item .form-input.error {
   border-color: #FF0900;
 }
-.select-industry-form-item .error-message {
+.select-comment-form-item .error-message {
   color: #FF0900;
   font-size: 16px;
   font-weight: 400;
@@ -174,5 +247,25 @@ main{
   text-align: center;
   margin-top: 16px;
   padding: 32px 0;
+}
+td:first-child {
+  width: 40px;
+}
+.select-comment-table .checkbox {
+  width: 18px;
+  height: 18px;
+}
+.select-comment-table .checkbox:checked {
+  background-color: #004D71;
+}
+.confirm-btn-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px;
+  background-color: #fff;
+  border-top: 1px solid #E0E0E0;
+  box-sizing: border-box;
 }
 </style>

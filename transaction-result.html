@@ -26,45 +26,427 @@
         </div>
       </div>
       <!-- content -->
-      <main class="main">
-        <!-- top -->
-        <div class="transaction-result-top">
-          <div class="common-title">客戶交易狀況</div>
-          <div class="transaction-result-buttons">
-            <button class="transaction-result-button" onclick="window.location.href='/transaction-search.html'">
-              <img src="/assets/images/icon_search.svg" alt="search">
-            </button>
+      <main class="main record-container">
+        <!-- 客戶交易狀況 -->
+        <div class="transaction-area">
+          <div class="transaction-result-top">
+            <div class="common-title">客戶交易狀況</div>
+            <div class="transaction-result-buttons">
+              <button class="transaction-result-button" onclick="window.location.href='/transaction-search.html'">
+                <img src="/assets/images/icon_search.svg" alt="search">
+              </button>
+            </div>
+          </div>
+          <div class="transaction-result-total">
+            <div class="transaction-result-total-text">
+              <span>查詢時間</span>
+              <span>2025/05/31 12:48:32</span>
+            </div>
+          </div>
+          <div class="result-card">
+            <div class="card-top flex">
+              <div class="common-text">AA02 - A 部門二科 (中彰投)</div>
+              <div class="type-tag">正常件</div>
+            </div>
+            <div class="line"></div>
+            <div class="card-content">
+              <div class="card-content-item">
+                <div class="card-content-item-title common-text-gray">總核准餘額</div>
+                <div class="card-content-item-text common-text">$999,999</div>
+              </div>
+              <div class="card-content-item">
+                <div class="card-content-item-title common-text-gray">總本金餘額</div>
+                <div class="card-content-item-text common-text">$999,999</div>
+              </div>
+              <div class="card-content-item">
+                <div class="card-content-item-title common-text-gray">總保證本金餘額</div>
+                <div class="card-content-item-text common-text">$999,999</div>
+              </div>
+              <div class="card-content-item">
+                <div class="card-content-item-title common-text-gray">有擔金額</div>
+                <div class="card-content-item-text common-text">$999,999</div>
+              </div>
+            </div>
+            <div class="line"></div>
+            <div class="card-content">
+              <div class="card-content-item">
+                <div class="card-content-item-title common-text-gray">最高往來金額</div>
+                <div class="card-content-item-text common-text">$999,999</div>
+              </div>
+              <div class="card-content-item">
+                <div class="card-content-item-title common-text-gray">最高往來日期</div>
+                <div class="card-content-item-text common-text">2025/04/01</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 歸戶資料 -->
+          <div class="associate-area" id="associateArea">
+            <div class="associate-area-title" onclick="showAssociate()">
+              歸戶資料 
+              <img src="/assets/images/icon_arrow_down.svg" alt="arrow">
+            </div>
+            <div class="associate-area-content">
+              <div class="associate-area-content-top">
+                <div class="top-title">22222222</div>
+                <div class="top-sub-title">台塑公司</div>
+              </div>
+              <div class="associate-area-content-item">
+                <div class="associate-area-content-item-info">
+                  <div class="common-text-gray">客戶統編</div>
+                  <div class="common-text-primary">11111111</div>
+                </div>
+                <div class="associate-area-content-item-info">
+                  <div class="common-text-gray">客戶名稱</div>
+                  <div class="common-text-primary">南亞公司</div>
+                </div>
+              </div>
+              <div class="associate-area-content-item">
+                <div class="associate-area-content-item-info">
+                  <div class="common-text-gray">客戶統編</div>
+                  <div class="common-text">11111111</div>
+                </div>
+                <div class="associate-area-content-item-info">
+                  <div class="common-text-gray">客戶名稱</div>
+                  <div class="common-text">南亞公司</div>
+                </div>
+              </div>
+              <div class="associate-area-content-item">
+                <div class="associate-area-content-item-info">
+                  <div class="common-text-gray">客戶統編</div>
+                  <div class="common-text">11111111</div>
+                </div>
+                <div class="associate-area-content-item-info">
+                  <div class="common-text-gray">客戶名稱</div>
+                  <div class="common-text">南亞公司</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        <!-- search time -->
-        <div class="transaction-result-total">
-          <div class="transaction-result-total-text">
-            <span>查詢時間</span>
-            <span>2025/05/31 12:48:32</span>
+
+        <!-- 案件明細 一般 -->
+        <div class="transaction-area">
+          <div class="transaction-result-top">
+            <div class="common-title">案件明細</div>
           </div>
+          <div class="result-card">
+            <div class="card-top">
+              <div class="common-text-primary">11111111</div>
+              <div class="common-sub-title">南亞公司</div>
+            </div>
+            <div class="line"></div>
+            <div class="card-content-group">
+              <div class="card-content">
+                <div class="card-content-item">
+                  <div class="card-content-item-title common-text-gray">承作公司</div>
+                  <div class="card-content-item-text common-text">日盛台駿</div>
+                </div>
+                <div class="card-content-item">
+                  <div class="card-content-item-title common-text-light">會計編號</div>
+                  <div class="card-content-item-text common-text-light">C01</div>
+                </div>
+                <div class="card-content-item">
+                  <div class="card-content-item-title common-text-light">本金餘額</div>
+                  <div class="card-content-item-text common-text">$999,999</div>
+                </div>
+              </div>
+              <!-- go to detail -->
+              <button class="card-content-button" onclick="popupManager.show('transactionDetail')">
+                <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+              </button>
+            </div>
+            <div class="line"></div>
+            <div class="card-content-group">
+              <div class="card-content">
+                <div class="card-content-item">
+                  <div class="card-content-item-title common-text-gray">承作公司</div>
+                  <div class="card-content-item-text common-text">日盛台駿</div>
+                </div>
+                <div class="card-content-item">
+                  <div class="card-content-item-title common-text-light">會計編號</div>
+                  <div class="card-content-item-text common-text-light">C04</div>
+                </div>
+                <div class="card-content-item">
+                  <div class="card-content-item-title common-text-light">本金餘額</div>
+                  <div class="card-content-item-text common-text">$999,999</div>
+                </div>
+              </div>
+              <!-- go to detail -->
+              <button class="card-content-button" onclick="popupManager.show('transactionDetail')">
+                <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+              </button>
+            </div>
+          </div>
+          <button class="transaction-show-more" onclick="showMore()">顯示其他相關案件明細</button>
         </div>
-        <!-- list -->
-        <div class="transaction-result-list">
-       
+
+        <!-- 案件明細 保證 -->
+        <div class="transaction-area">
+          <div class="transaction-result-top">
+            <div class="common-title">案件明細<span class="transaction-type-1">保證</span></div>
+          </div>
+          <div class="result-card">
+            <div class="card-top">
+              <div class="common-text-primary">11111111</div>
+              <div class="common-sub-title">南亞公司</div>
+            </div>
+            <div class="line"></div>
+            <div class="card-content-group">
+              <div class="card-content">
+                <div class="group-title">55432222 台台實業公司</div>
+                <div class="card-content-item">
+                  <div class="card-content-item-title common-text-gray">承作公司</div>
+                  <div class="card-content-item-text common-text">日盛台駿</div>
+                </div>
+                <div class="card-content-item">
+                  <div class="card-content-item-title common-text-light">會計編號</div>
+                  <div class="card-content-item-text common-text-light">C01</div>
+                </div>
+                <div class="card-content-item">
+                  <div class="card-content-item-title common-text-light">本金餘額</div>
+                  <div class="card-content-item-text common-text">$999,999</div>
+                </div>
+              </div>
+              <!-- go to detail -->
+              <button class="card-content-button" onclick="popupManager.show('transactionDetail')">
+                <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+              </button>
+            </div>
+            <div class="line"></div>
+            <div class="card-content-group">
+              <div class="card-content">
+                <div class="group-title">55432222 台台實業公司</div>
+                <div class="card-content-item">
+                  <div class="card-content-item-title common-text-gray">承作公司</div>
+                  <div class="card-content-item-text common-text">日盛台駿</div>
+                </div>
+                <div class="card-content-item">
+                  <div class="card-content-item-title common-text-light">會計編號</div>
+                  <div class="card-content-item-text common-text-light">C01</div>
+                </div>
+                <div class="card-content-item">
+                  <div class="card-content-item-title common-text-light">本金餘額</div>
+                  <div class="card-content-item-text common-text">$999,999</div>
+                </div>
+              </div>
+              <!-- go to detail -->
+              <button class="card-content-button" onclick="popupManager.show('transactionDetail')">
+                <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+              </button>
+            </div>
+            <div class="line"></div>
+            <div class="card-content-group">
+              <div class="card-content">
+                <div class="group-title">55432222 台台實業公司</div>
+                <div class="card-content-item">
+                  <div class="card-content-item-title common-text-gray">承作公司</div>
+                  <div class="card-content-item-text common-text">日盛台駿</div>
+                </div>
+                <div class="card-content-item">
+                  <div class="card-content-item-title common-text-light">會計編號</div>
+                  <div class="card-content-item-text common-text-light">C04</div>
+                </div>
+                <div class="card-content-item">
+                  <div class="card-content-item-title common-text-light">本金餘額</div>
+                  <div class="card-content-item-text common-text">$999,999</div>
+                </div>
+              </div>
+              <!-- go to detail -->
+              <button class="card-content-button" onclick="popupManager.show('transactionDetail')">
+                <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+              </button>
+            </div>
+          </div>
+          <button class="transaction-show-more" onclick="showMore()">顯示其他相關案件明細</button>
+        </div>
+
+        <!-- 案件明細 徵信 -->
+        <div class="transaction-area">
+          <div class="transaction-result-top">
+            <div class="common-title">案件明細<span class="transaction-type-2">徵信</span></div>
+          </div>
+          <div class="result-card">
+            <div class="card-top">
+              <div class="common-text-primary">11111111</div>
+              <div class="common-sub-title">南亞公司</div>
+            </div>
+            <div class="line"></div>
+            <div class="card-content-group">
+              <div class="card-content">
+                <div class="card-content-item">
+                  <div class="card-content-item-title common-text-gray">承作公司</div>
+                  <div class="card-content-item-text common-text">日盛台駿</div>
+                </div>
+                <div class="card-content-item">
+                  <div class="card-content-item-title common-text-light">會計編號</div>
+                  <div class="card-content-item-text common-text-light">C01</div>
+                </div>
+                <div class="card-content-item">
+                  <div class="card-content-item-title common-text-light">本金餘額</div>
+                  <div class="card-content-item-text common-text">$999,999</div>
+                </div>
+              </div>
+              <!-- go to detail -->
+              <button class="card-content-button" onclick="popupManager.show('transactionDetail')">
+                <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+              </button>
+            </div>
+            <div class="line"></div>
+            <div class="card-content-group">
+              <div class="card-content">
+                <div class="card-content-item">
+                  <div class="card-content-item-title common-text-gray">承作公司</div>
+                  <div class="card-content-item-text common-text">日盛台駿</div>
+                </div>
+                <div class="card-content-item">
+                  <div class="card-content-item-title common-text-light">會計編號</div>
+                  <div class="card-content-item-text common-text-light">C04</div>
+                </div>
+                <div class="card-content-item">
+                  <div class="card-content-item-title common-text-light">本金餘額</div>
+                  <div class="card-content-item-text common-text">$999,999</div>
+                </div>
+              </div>
+              <!-- go to detail -->
+              <button class="card-content-button" onclick="popupManager.show('transactionDetail')">
+                <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+              </button>
+            </div>
+          </div>
+          <button class="transaction-show-more" onclick="showMore()">顯示其他相關案件明細</button>
         </div>
       </main>
+
+      <!-- detail popup -->
+      <div class="popup-overlay" id="transactionDetailOverlay">
+        <div class="popup-content">
+          <div class="popup-brown-area">
+            <div class="popup-header">
+              <div class="common-title">案件明細
+                <span class="transaction-type-1">保證</span>
+                <span class="transaction-type-2">徵信</span>
+              </div>
+              <button class="popup-close-btn" onclick="popupManager.hide('transactionDetail')">
+                <img src="/assets/images/icon_close.svg" alt="close">
+              </button>
+            </div>
+            <div class="popup-brown-area-content">
+              <div class="popup-brown-area-content-item">
+                <div class="common-text">11111111</div>
+                <div class="common-text-primary">南亞公司</div>
+              </div>
+              <div class="popup-brown-area-content-info">
+                <div class="popup-brown-area-content-info-item">
+                  <div class="common-text-gray">客戶統編</div>
+                  <div class="common-text">55432222</div>
+                </div>
+                <div class="popup-brown-area-content-info-item">
+                  <div class="common-text-gray">客戶名稱</div>
+                  <div class="common-text">台台實業有限公司</div>
+                </div>
+                <div class="popup-brown-area-content-info-item">
+                  <div class="common-text-gray">承作公司</div>
+                  <div class="common-text">日盛台駿</div>
+                </div>
+                <div class="popup-brown-area-content-info-item">
+                  <div class="common-text-light bold">會計編號</div>
+                  <div class="common-text">C01</div>
+                </div>
+                <div class="popup-brown-area-content-info-item">
+                  <div class="common-text-light bold">本金餘額</div>
+                  <div class="common-text">$999,999</div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          <div class="popup-body no-x-padding">
+            <div class="detail-body-content">
+              <div class="detail-group">
+                <div class="detail-group-content">
+                  <div class="common-info-item">
+                    <div class="label">保證類別</div>
+                    <div class="content">內容內容內容</div>
+                  </div>
+                  <div class="common-info-item">
+                    <div class="label">契約類別</div>
+                    <div class="content">內容內容內容</div>
+                  </div>
+                  <div class="common-info-item">
+                    <div class="label">業種</div>
+                    <div class="content">內容內容內容</div>
+                  </div>
+                  <div class="common-info-item">
+                    <div class="label">起租日</div>
+                    <div class="content">2025/06/20</div>
+                  </div>
+                  <div class="common-info-item">
+                    <div class="label">到期日</div>
+                    <div class="content">2025/06/20</div>
+                  </div>
+                  <div class="common-info-item">
+                    <div class="label">撥款日</div>
+                    <div class="content">2025/06/20</div>
+                  </div>
+                  <div class="common-info-item">
+                    <div class="label">幣別</div>
+                    <div class="content">TWD</div>
+                  </div>
+                  <div class="common-info-item">
+                    <div class="label">起租金額</div>
+                    <div class="content">$999,999</div>
+                  </div>
+                  <div class="common-info-item">
+                    <div class="label">應收租金餘額</div>
+                    <div class="content">$999,999</div>
+                  </div>
+                  <div class="common-info-item">
+                    <div class="label">逾期金額</div>
+                    <div class="content">$999,999</div>
+                  </div>
+                  <div class="common-info-item">
+                    <div class="label">契約狀態</div>
+                    <div class="content">有效</div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
     </div>
     <script src="/assets/js/popup.js"></script>
     <script>
-      
-      function handleRecord() {
-        popupManager.show('customerRecord');
-        event.stopPropagation();
+
+      function showMore() {
+     
+      }
+      function showAssociate() {
+        document.getElementById('associateArea').classList.toggle('open');
       }
     </script>
   </body>
 </html>
 <style scoped>
+.record-container {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-bottom: 100px !important;
+}
+.transaction-area {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 20px;
+}
 /* transaction result */
 .transaction-result .transaction-result-top {
-  margin: 16px 0 12px;
+  margin: 0 0 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -86,156 +468,179 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 28px 0 16px;
 }
 .transaction-result .transaction-result-total span:first-child {
   color: #7C7C7C;
   margin-right: 12px;
 }
-.transaction-result .transaction-result-clean-button {
-  display: none;
-  align-items: center;
-  gap: 4px;
-  font-size: 16px;
-  font-weight: 400;
-  color: #004D71;
+.transaction-result .result-card {
+  background-color: #fff;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  border-bottom: 1px solid rgba(239, 239, 239, 1);
+  padding: 24px 16px;
 }
-.transaction-result .transaction-result-clean-button img {
-  width: 24px;
-  height: 24px;
-}
-.transaction-result .transaction-result-list {
+.transaction-result .result-card .card-top {
   display: flex;
   flex-direction: column;
+  gap: 4px;
+}
+.transaction-result .result-card .card-top.flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 7px;
+}
+.transaction-result .result-card .type-tag {
+  background-color: #004D71;
+  color: #fff;
+  padding: 0px 8px;
+  line-height: 33px;
+  border-radius: 4px;
+  font-size: 18px;
+  font-weight: 400;
+  min-width: fit-content;
+}
+.transaction-result .result-card .line {
+  height: 1px;
+  background-color: rgba(239, 239, 239, 1);
+  margin: 16px 0;
+}
+.transaction-result .result-card .card-content-group {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+}
+.transaction-result .result-card .card-content-group .group-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #292929;
+}
+.transaction-type-1 {
+  margin-left: 12px;
+  background-color: #FFF89D;
+  color: #F58F02;
+  padding: 0px 8px;
+  border-radius: 4px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 35px;
+}
+.transaction-type-2 {
+  margin-left: 12px;
+  background-color: #E7F1F5;
+  color: #004D71;
+  padding: 0px 8px;
+  border-radius: 4px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 35px;
+}
+.transaction-result .result-card .card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.transaction-result .result-card .card-content .card-content-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   gap: 12px;
 }
-.transaction-result .transaction-result-item {
-  background-color: #FFFFFF;
-  border-radius: 12px;
-  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
+.transaction-result .result-card .card-content .card-content-item .card-content-item-title {
+  width: 126px;
+}
+.transaction-result .result-card .card-content-button {
   position: relative;
+  top: 6px;
 }
-.transaction-result .transaction-result-item .top-line{
+.transaction-show-more {
+  font-size: 18px;
+  font-weight: 400;
+  color: #004D71;
+  text-align: center;
+  padding: 16px 0;
+}
+.popup-brown-area-content-item {
+
+  gap: 12px;
+  flex-direction: row !important;
+}
+.associate-area {
   width: 100%;
-  height: 9px;
-  background: linear-gradient(90deg, #887341 45.42%, #E0C583 98.61%);
-  position: absolute;
-  top: 0;
-  left: 0;
+  padding: 16px;
+  box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  background-color: #E2EAEE;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  border: 1px solid #E2EAEE;
 }
-.transaction-result .transaction-result-item .transaction-result-item-content {
-  padding: 31px 16px 24px;
-}
-.transaction-result .transaction-result-item .transaction-result-item-content .transaction-result-item-content-top {
+
+.associate-area-title {
+  font-size: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 4px;
-}
-.transaction-result .transaction-result-item .transaction-result-item-content .transaction-result-item-content-top .transaction-result-item-content-top-operate {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-.transaction-result .transaction-result-item .transaction-result-item-content .transaction-result-item-content-top .transaction-result-item-content-top-operate .transaction-result-item-content-top-operate-button {
-  width: 28px;
-  height: 28px;
-}
-.transaction-result .transaction-result-item .transaction-result-item-content .transaction-result-item-content-bottom {
-  display: flex;
-  align-items: flex-end;
-  gap: 12px;
-  margin-top: 16px;
-}
-.transaction-result .transaction-result-item .transaction-result-item-content .transaction-result-item-content-bottom .item-content-bottom-info {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
   gap: 8px;
-  flex: 1;
+  color: #004D71;
+  font-weight: 700;
+  font-size: 18px;
+  cursor: pointer;
 }
-.transaction-result .transaction-result-item .transaction-result-item-content .transaction-result-item-content-bottom .item-content-bottom-info .transaction-result-item-content-bottom-info-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
+.associate-area-content {
+  display: none;
 }
-.transaction-result .transaction-result-item .transaction-result-item-content .transaction-result-item-content-bottom .item-content-bottom-info .transaction-result-item-content-bottom-info-item .label {
-  width: 72px;
+.associate-area.open {
+  border: 1px solid #004D71;
+  background-color: #fff;
 }
-.transaction-result .transaction-result-item .transaction-result-item-content .transaction-result-item-content-bottom .item-content-bottom-info .transaction-result-item-content-bottom-info-item .content {
-  flex: 1;
+.associate-area.open .associate-area-title {
+  padding-bottom: 16px;
 }
-.transaction-result .transaction-result-item .transaction-result-item-content .transaction-result-item-content-bottom .transaction-result-item-content-bottom-button {
-  width: 32px;
-  height: 32px;
-  min-width: 32px;
+.associate-area.open .associate-area-title img {
+  transform: rotate(180deg);
 }
-.transaction-result .transaction-result-more {
-  margin-top: 33px;
-}
-
-/* record */
-.record_table_group_container {
+.associate-area.open .associate-area-content {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
-.record_table_group_container .record_table_group {
+.associate-area.open .associate-area-content .associate-area-content-top {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 6px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #BDBDBD;
 }
-.record_table_group_container .record_table_group .record_table_group_title {
-  display: flex;
-  align-items: center;
-  gap: 4px;
+.associate-area-content-top .top-title {
+  font-size: 18px;
+  font-weight: 400;
+  color: #9E7F54;
+}
+.associate-area-content-top .top-sub-title {  
   font-size: 20px;
   font-weight: 700;
   color: #9E7F54;
 }
-.record_table_group_container .record_table_group .record_table_group_title img {
-  width: 24px;
-  height: 24px;
+.associate-area-content-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #EFEFEF;
 }
-.record_table_group_container .record_table_group table {
-  width: 100%;
-  border-collapse: collapse;
+.associate-area-content-item:last-child {
+  border-bottom: none;
 }
-.record_table_group_container .record_table_group table th {
-  background-color: #EFEFEF;
-  border-bottom: 1px solid #DCDCDC;
-  text-align: left;
-  padding: 8px 16px;
-  border-left: 1px solid #DCDCDC;
-  font-size: 16px;
-  font-weight: 400;
-  color: #292929;
-}
-.record_table_group_container .record_table_group table td{
-  border-left: 1px solid #DCDCDC;
-  border-bottom: 1px solid #DCDCDC;
-  padding: 8px 16px;
-  font-size: 16px;
-  font-weight: 400;
-  color: #292929;
-}
-.record_table_group_container .record_table_group table th:first-child,
-.record_table_group_container .record_table_group table td:first-child {
-  border-left: none;
-  text-align: left;
-}
-.record_table_group_container .record_table_group table th:nth-child(2),
-.record_table_group_container .record_table_group table th:nth-child(3),
-.record_table_group_container .record_table_group table td:nth-child(2),
-.record_table_group_container .record_table_group table td:nth-child(3) {
-  text-align: center;
+.associate-area-content-item-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
 }
 
-
-
-.record_table_group_container .record_table_group table td.no {
-  color: #F0423C;
-}
 </style>

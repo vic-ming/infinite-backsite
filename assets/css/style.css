@@ -59,6 +59,19 @@ button {
   font-weight: 400;
   color: #989898; 
 }
+.common-text-primary {
+  font-size: 18px;
+  font-weight: 400;
+  color: #004D71; 
+}
+.common-text-light {
+  font-size: 18px;
+  font-weight: 400;
+  color: #429DFF;
+}
+.common-text-light.bold {
+  font-weight: 700;
+}
 
 /* 左右呈現的資料 */
 .common-info-item {
