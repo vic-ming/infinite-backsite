@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <link rel="icon" href="/assets/favicon.ico"> -->
     <title>Infinite</title>
+
+    <!-- 共用樣式 -->
+    <link rel="stylesheet" href="/assets/css/style.css">
     <!-- 字體 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
     
-    <!-- 共用樣式 -->
-    <link rel="stylesheet" href="/assets/css/style.css">
   </head>
   <body>
     <div class="container customer-add">
@@ -77,12 +78,12 @@
               <input type="date" id="company-date" class="form-input" placeholder="請輸入">
             </div>
             <div class="form-group">
-              <label for="company-account">歸戶編號<span>*</span></label>
-              <input type="text" id="company-account" class="form-input search" placeholder="請選擇" readonly>
+              <label for="company-associate-id">歸戶編號<span>*</span></label>
+              <input type="text" id="company-associate-id" class="form-input search" placeholder="請選擇" readonly>
             </div>
             <div class="form-group">
-              <label for="company-account-name">歸戶名稱<span>*</span></label>
-              <input type="text" id="company-account-name" class="form-input search" placeholder="請選擇" disabled>
+              <label for="company-associate-name">歸戶名稱<span>*</span></label>
+              <input type="text" id="company-associate-name" class="form-input search" placeholder="請選擇" disabled>
             </div>
             <div class="form-group">
               <label for="company-industry">職業別代號</label>
@@ -188,11 +189,27 @@
             </div>
             <div class="form-group">
               <label for="company-manager-id">負責人身分證字號<span>*</span></label>
-              <input type="text" id="company-manager-id" class="form-input" placeholder="請輸入">
+              <div class="input-flex">
+                <select id="company-manager-id-prefix" class="form-input prefix">
+                  <option value="">請選擇</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+                <input type="text" id="company-manager-id" class="form-input flex-1" placeholder="請輸入">
+              </div>
             </div>
             <div class="form-group">
               <label for="company-manager-birth">負責人生日</label>
-              <input type="date" id="company-manager-birth" class="form-input" placeholder="請輸入">
+              <div class="input-flex">
+                <select id="company-manager-birth-prefix" class="form-input prefix">
+                  <option value="">請選擇</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+                <input type="date" id="company-manager-birth" class="form-input flex-1" placeholder="請輸入">
+              </div>
             </div>
             <div class="form-group">
               <label for="company-manager-actual">實際經營者<span>*</span></label>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="icon" href="/assets/favicon.ico"> -->
+    <title>Infinite</title>
+    <!-- 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- 共用樣式 -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+    <div class="container customer-list">
+      <!-- header -->
+      <div class="header">
+        <button class="header-menu">
+          <img src="/assets/images/icon_back.svg" alt="back">
+        </button>
+        <div class="header-logo">
+          <img src="/assets/images/logo.png" alt="logo">
+        </div>
+      </div>
+      <!-- content -->
+      <main class="main">
+        <!-- top -->
+        <div class="customer-list-top">
+          <div class="common-title">歸戶資料挑選</div>
+        </div>
+        <div class="select-associate-form">
+          <div class="select-associate-form-item">
+            <div class="w-100">
+              <input type="text" id="keyword" class="form-input" placeholder="請輸入關鍵字搜尋" onkeyup="searchSubmit()">
+              <div id="error-message" class="error-message"></div>
+            </div>
+          </div>
+        </div>
+        <!-- no data -->
+        <div class="no-data" id="no-data" style="display: none;">查無此歸戶代號資料</div>
+        <!-- table -->
+        <table class="select-associate-table" id="table" style="display: none;">
+          <thead>
+            <tr>
+              <th>歸戶代碼</th>
+              <th>歸戶名稱</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            
+          </tbody>
+        </table>
+        
+      </main>
+
+    </div>
+    <script>
+      const keyword = document.getElementById('keyword');
+      let filteredData = [];
+      const data = [
+        {
+          id: '00026901',
+          name: '利恩交通股份有限公司'
+        },
+        {
+          id: '00026902',
+          name: '利恩交通股份有限公司'
+        },
+        {
+          id: '00026903',
+          name: '利恩交通股份有限公司'
+        },
+        {
+          id: '00026904',
+          name: '利恩交通股份有限公司'
+        },
+        {
+          id: '00026905',
+          name: '利恩交通股份有限公司'
+        },
+      ]
+      function searchSubmit() {
+        const keywordValue = keyword.value.trim();
+        if (keywordValue === '') {
+          filteredData = [];
+          const noData = document.getElementById('no-data');
+          const table = document.getElementById('table');
+          noData.style.display = 'none';
+          table.style.display = 'none';
+          return;
+        } else {
+          filteredData = data.filter(item => item.id.includes(keywordValue) || item.name.includes(keywordValue));
+          const noData = document.getElementById('no-data');
+          const table = document.getElementById('table');
+          if (filteredData.length === 0) {
+            noData.style.display = 'block';
+            table.style.display = 'none';
+          } else {
+            noData.style.display = 'none';
+            table.style.display = 'table';
+          }
+          const tableBody = document.getElementById('table-body');
+          tableBody.innerHTML = '';
+          filteredData.forEach(item => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${item.id}</td><td>${item.name}</td>`;
+            tableBody.appendChild(tr);
+          });
+        }
+      
+      }
+    </script>
+  </body>
+</html>
+<style scoped>
+.select-associate-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+  margin-top: 16px;
+}
+.select-associate-form-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+}
+.select-associate-form-item .form-input {
+  height: 46px;
+  padding: 0 16px;
+  border: 1px solid #BDBDBD;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #292929;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+.select-associate-form-item .form-input.error {
+  border-color: #FF0900;
+}
+.select-associate-form-item .error-message {
+  color: #FF0900;
+  font-size: 16px;
+  font-weight: 400;
+  display: none;
+  margin-top: 8px;
+}
+
+.form-input:focus {
+  box-shadow: 0px 0px 0px 1px #9E7F54;
+  border-color: #9E7F54;
+}
+
+.form-input::placeholder {
+  color: #BDBDBD;
+}
+.w-100 {
+  width: 100%;
+}
+.no-data {
+  font-size: 16px;
+  font-weight: 400;
+  color: #7C7C7C;
+  text-align: center;
+  margin-top: 16px;
+  padding: 32px 0;
+}
+</style>
