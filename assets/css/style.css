@@ -567,7 +567,8 @@ button {
   /* 调整图标大小 */
   width: 24px;
   height: 24px;
-  background-color: #fff;
+  background-color: #fff !important;
+  text-align: left;
   /* 隐藏原始图标 */
   /* opacity: 0; */
 }
@@ -580,7 +581,7 @@ select.form-input{
   width: 100%;
   padding-right: 40px;
   appearance: none;
-  background-color: #fff;
+  background-color: #fff !important;
 }
 
 
