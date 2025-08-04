@@ -33,7 +33,8 @@ button {
   min-height: 100vh;
 }
 .container main {
-  padding: 16px;
+  padding: 16px 16px 50px;
+  box-sizing: border-box;
 }
 
 /* 文字 */
@@ -312,11 +313,12 @@ button {
 }
 
 .popup-body {
-  padding: 16px 16px 0;
+  padding: 16px 16px 40px;
   display: flex;
   flex-direction: column;
   flex: 1;
   overflow-y: auto;
+  box-sizing: border-box;
 }
 .popup-body.no-x-padding {
   padding: 16px 0 0;
@@ -410,9 +412,9 @@ button {
   border-color: #FF0900;
 }
 .form-group .form-input:disabled {
-  background-color: #EFEFEF;
-  border-color: #BDBDBD;
-  color: #989898;
+  background-color: #EFEFEF !important;
+  border-color: #BDBDBD !important;
+  color: #989898 !important;
 }
 
 .form-input:focus {
@@ -565,6 +567,7 @@ button {
   /* 调整图标大小 */
   width: 24px;
   height: 24px;
+  background-color: #fff;
   /* 隐藏原始图标 */
   /* opacity: 0; */
 }
