@@ -23,6 +23,9 @@ button {
   padding: 0;
 }
 
+.w-100 {
+  width: 100%;
+}
 /* common */
 .container {
   width: 100%;
@@ -400,6 +403,8 @@ button {
   color: #292929;
   outline: none;
   position: relative;
+  width: 100%;
+  box-sizing: border-box;
 }
 .form-group textarea {
   resize: none;
@@ -421,6 +426,9 @@ button {
   box-shadow: 0px 0px 0px 1px #9E7F54;
   border-color: #9E7F54;
 }
+.form-group .form-input.error:focus {
+  box-shadow: 0px 0px 0px 1px #FF0900;
+}
 .form-group.error {
   border-color: #F0423C;
 }
@@ -429,6 +437,15 @@ button {
   font-size: 16px;
   font-weight: 400;
   margin-top: 8px;
+  display: none; /* 預設隱藏 */
+}
+
+.form-group .error-message.show {
+  display: block; /* 錯誤時顯示 */
+}
+
+.w-100 {
+  width: 100%;
 }
 
 
@@ -787,5 +804,59 @@ table td:last-child {
 .side-panel .main {
   flex: 1;
   overflow-y: auto;
+}
+
+/* Toast 樣式 */
+.toast {
+  position: fixed;
+  top: 180px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px);
+  background-color: #F0423C;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 400;
+  z-index: 1001;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.toast img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1); /* 將圖示變成白色 */
+  position: relative;
+  top: 1px;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast.toast-success {
+  background-color: #28a745;
+}
+
+.toast.toast-error {
+  background-color: #FF0900;
+}
+
+.toast.toast-warning {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.toast.toast-info {
+  background-color: #17a2b8;
 }
 

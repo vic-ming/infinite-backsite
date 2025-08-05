@@ -61,7 +61,7 @@
                 <!-- operate -->
                 <div class="customer-list-item-content-top-operate">
                   <!-- edit -->
-                  <button class="customer-list-item-content-top-operate-button" >
+                  <button class="customer-list-item-content-top-operate-button" onclick="handelEdit()" >
                     <img src="/assets/images/icon_edit.svg" alt="edit">
                   </button>
                   <!-- record -->
@@ -102,7 +102,7 @@
                 <!-- operate -->
                 <div class="customer-list-item-content-top-operate">
                   <!-- edit -->
-                  <button class="customer-list-item-content-top-operate-button" >
+                  <button class="customer-list-item-content-top-operate-button" onclick="handelEdit()" >
                     <img src="/assets/images/icon_edit.svg" alt="edit">
                   </button>
                   <!-- record -->
@@ -143,7 +143,7 @@
                 <!-- operate -->
                 <div class="customer-list-item-content-top-operate">
                   <!-- edit -->
-                  <button class="customer-list-item-content-top-operate-button" >
+                  <button class="customer-list-item-content-top-operate-button" onclick="handelEdit()" >
                     <img src="/assets/images/icon_edit.svg" alt="edit">
                   </button>
                   <!-- record -->
@@ -184,7 +184,7 @@
                 <!-- operate -->
                 <div class="customer-list-item-content-top-operate">
                   <!-- edit -->
-                  <button class="customer-list-item-content-top-operate-button" >
+                  <button class="customer-list-item-content-top-operate-button" onclick="handelEdit()" >
                     <img src="/assets/images/icon_edit.svg" alt="edit">
                   </button>
                   <!-- record -->
@@ -225,7 +225,7 @@
                 <!-- operate -->
                 <div class="customer-list-item-content-top-operate">
                   <!-- edit -->
-                  <button class="customer-list-item-content-top-operate-button" >
+                  <button class="customer-list-item-content-top-operate-button" onclick="handelEdit()" >
                     <img src="/assets/images/icon_edit.svg" alt="edit">
                   </button>
                   <!-- record -->
@@ -266,7 +266,7 @@
                 <!-- operate -->
                 <div class="customer-list-item-content-top-operate">
                   <!-- edit -->
-                  <button class="customer-list-item-content-top-operate-button" >
+                  <button class="customer-list-item-content-top-operate-button" onclick="handelEdit()" >
                     <img src="/assets/images/icon_edit.svg" alt="edit">
                   </button>
                   <!-- record -->
@@ -307,7 +307,7 @@
                 <!-- operate -->
                 <div class="customer-list-item-content-top-operate">
                   <!-- edit -->
-                  <button class="customer-list-item-content-top-operate-button" >
+                  <button class="customer-list-item-content-top-operate-button" onclick="handelEdit()" >
                     <img src="/assets/images/icon_edit.svg" alt="edit">
                   </button>
                   <!-- record -->
@@ -348,7 +348,7 @@
                 <!-- operate -->
                 <div class="customer-list-item-content-top-operate">
                   <!-- edit -->
-                  <button class="customer-list-item-content-top-operate-button" >
+                  <button class="customer-list-item-content-top-operate-button" onclick="handelEdit()" >
                     <img src="/assets/images/icon_edit.svg" alt="edit">
                   </button>
                   <!-- record -->
@@ -615,6 +615,10 @@
       }
       function handleRecord() {
         popupManager.show('customerRecord');
+        event.stopPropagation();
+      }
+      function handelEdit() {
+        window.location.href = '/customer-detail.html';
         event.stopPropagation();
       }
     </script>

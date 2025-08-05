@@ -18,9 +18,14 @@
     <div class="container">
       <!-- header -->
       <div class="header">
-        <a class="header-menu" href="/">
+        <!-- 如果沒有客戶資料，則顯示 -->
+        <div id="menuButton" class="header-menu" onclick="window.location.href='/'">
           <img src="/assets/images/icon_menu.svg" alt="menu">
-        </a>
+        </div>
+        <!-- 如果有客戶資料，則顯示 -->
+        <div id="backButton" class="header-menu" onclick="handleBack()" style="display: none;">
+          <img src="/assets/images/icon_back.svg" alt="back">
+        </div>
         <div class="header-logo">
           <img src="/assets/images/logo.png" alt="logo">
         </div>
@@ -34,17 +39,59 @@
             <input type="date" id="date" class="form-input">
           </div>
           <div class="form-group w-100">
-            <label for="name">客戶</label>
-            <input type="text" id="name" class="form-input" placeholder="請輸入" >
+            <label for="customer">客戶</label>
+            <input type="text" id="customer" class="form-input" placeholder="請輸入" >
           </div>
-          <button class="button-primary w-100 search-btn" onclick="window.location.href='/transaction-result.html'">查詢</button>
+          <button class="button-primary w-100 search-btn" onclick="handleSearch()">查詢</button>
         </div>
-        
       </main>
 
     </div>
     <script>
-    
+      // 獲取目前 url 的參數
+      const urlParams = new URLSearchParams(window.location.search);
+      const date = urlParams.get('date');
+      const customer = urlParams.get('customer');
+      
+      // 根據 URL 參數決定顯示哪個按鈕
+      function updateHeaderButtons() {
+        const menuButton = document.getElementById('menuButton');
+        const backButton = document.getElementById('backButton');
+        
+        if (date && customer) {
+          // 有 customer 和 date 參數時顯示 back 按鈕
+          menuButton.style.display = 'none';
+          backButton.style.display = 'block';
+        } else {
+          // 沒有參數時顯示 menu 按鈕
+          menuButton.style.display = 'block';
+          backButton.style.display = 'none';
+        }
+      }
+
+      // 返回到上一頁面
+      function handleBack() {
+        window.history.back();
+      }
+
+      // 頁面載入時執行
+      document.addEventListener('DOMContentLoaded', function() {
+        updateHeaderButtons();
+        
+        // 如果有參數，填入表單
+        if (date) {
+          document.getElementById('date').value = date;
+        }
+        if (customer) {
+          document.getElementById('customer').value = customer;
+        }
+      });
+
+      function handleSearch() {
+        const date = document.getElementById('date').value;
+        const customer = document.getElementById('customer').value;
+        window.location.href = `/transaction-result.html?date=${date}&customer=${customer}`;
+      }
     </script>
   </body>
 </html>

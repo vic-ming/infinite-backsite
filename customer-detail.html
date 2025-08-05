@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="/assets/css/style.css">
     <!-- 側邊面板管理器 -->
     <script src="/assets/js/side-panel.js"></script>
+    <!-- Toast 通知功能 -->
+    <script src="/assets/js/toast.js"></script>
     <!-- 字體 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,7 +45,7 @@
             <img src="/assets/images/icon_info.svg" alt="info">
             已更新為最新商業司資料
           </div>
-          <button class="customer-detail-check-data-button">查看詳情</button>
+          <button class="customer-detail-check-data-button" onclick="popupManager.show('businessUpdateDetail')">查看詳情</button>
         </div>
         <!-- 內容 -->
         <div class="customer-detail-content">
@@ -69,11 +71,17 @@
             </div>
             <div class="form-group">
               <label for="company-tax">客戶統編<span>*</span></label>
-              <input type="text" id="company-tax" class="form-input" placeholder="請輸入">
+              <div class="w-100">
+                <input type="text" id="company-tax" class="form-input" placeholder="請輸入">
+                <div class="error-message">此欄位必須填寫</div>
+              </div>
             </div>
             <div class="form-group">
               <label for="company-name">客戶名稱<span>*</span></label>
-              <input type="text" id="company-name" class="form-input" placeholder="請輸入">
+              <div class="w-100">
+                <input type="text" id="company-name" class="form-input" placeholder="請輸入">
+                <div class="error-message">此欄位必須填寫</div>
+              </div>
             </div>
             <div class="form-group">
               <label for="company-date">成立日期</label>
@@ -81,11 +89,17 @@
             </div>
             <div class="form-group">
               <label for="company-associate-id">歸戶編號<span>*</span></label>
-              <input type="text" id="company-associate-id" class="form-input search" placeholder="請選擇" readonly>
+              <div class="w-100">
+                <input type="text" id="company-associate-id" class="form-input search" placeholder="請選擇" readonly>
+                <div class="error-message">此欄位必須填寫</div>
+              </div>
             </div>
             <div class="form-group">
               <label for="company-associate-name">歸戶名稱<span>*</span></label>
-              <input type="text" id="company-associate-name" class="form-input search" placeholder="請選擇" disabled>
+              <div class="w-100">
+                <input type="text" id="company-associate-name" class="form-input search" placeholder="請選擇" disabled>
+                <div class="error-message">此欄位必須填寫</div>
+              </div>
             </div>
             <div class="form-group">
               <label for="company-industry">職業別代號</label>
@@ -93,7 +107,10 @@
             </div>
             <div class="form-group">
               <label for="company-occupation">行業別<span>*</span></label>
-              <input type="text" id="company-occupation" class="form-input search" placeholder="請輸入" readonly>
+              <div class="w-100">
+                <input type="text" id="company-occupation" class="form-input search" placeholder="請輸入" readonly>
+                <div class="error-message">此欄位必須填寫</div>
+              </div>
             </div>
             <div class="form-group">
               <label for="company-capital">實收資本額</label>
@@ -158,7 +175,10 @@
             </div>
             <div class="form-group">
               <label for="company-department">維護部門<span>*</span></label>
-              <input type="text" id="company-department" class="form-input" placeholder="" disabled>
+              <div class="w-100">
+                <input type="text" id="company-department" class="form-input" placeholder="" disabled>
+                <div class="error-message">此欄位必須填寫</div>
+              </div>
             </div>
             <!-- note -->
             <div class="edit-note">
@@ -187,18 +207,24 @@
             </div>
             <div class="form-group">
               <label for="company-manager">負責人<span>*</span></label>
-              <input type="text" id="company-manager" class="form-input" placeholder="請輸入">
+              <div class="w-100">
+                <input type="text" id="company-manager" class="form-input" placeholder="請輸入">
+                <div class="error-message">此欄位必須填寫</div>
+              </div>
             </div>
             <div class="form-group">
               <label for="company-manager-id">負責人身分證字號<span>*</span></label>
-              <div class="input-flex">
-                <select id="company-manager-id-prefix" class="form-input prefix">
-                  <option value="">請選擇</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
-                <input type="text" id="company-manager-id" class="form-input flex-1" placeholder="請輸入">
+              <div class="w-100">
+                <div class="input-flex">
+                  <select id="company-manager-id-prefix" class="form-input prefix">
+                    <option value="">請選擇</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </select>
+                  <input type="text" id="company-manager-id" class="form-input flex-1" placeholder="請輸入">
+                </div>
+                <div class="error-message">此欄位必須填寫</div>
               </div>
             </div>
             <div class="form-group">
@@ -215,7 +241,10 @@
             </div>
             <div class="form-group">
               <label for="company-manager-actual">實際經營者<span>*</span></label>
-              <input type="text" id="company-manager-actual" class="form-input" placeholder="請輸入">
+              <div class="w-100">
+                <input type="text" id="company-manager-actual" class="form-input" placeholder="請輸入">
+                <div class="error-message">此欄位必須填寫</div>
+              </div>
             </div>
 
             <div class="form-group">
@@ -354,7 +383,7 @@
         </div>
 
         <!-- 儲存 -->
-        <div class="customer-detail-save">
+        <div class="customer-detail-save" id="save-button" onclick="saveCustomer()">
           <button class="button-primary">儲存</button>
         </div>
       </main>
@@ -422,6 +451,51 @@
           <h3>營業租賃</h3>
           <p>提供企業車輛、設備等資產的租賃服務，讓企業能彈性運用資產，降低固定資產的持有成本。 </p>
         </div>
+      </div>
+    </div>
+
+    <!-- 商業司資料更新詳情 popup -->
+    <div class="popup-overlay business-update-popup-overlay" id="businessUpdateDetailOverlay">
+      <div class="popup-content business-update-popup">
+        <div class="popup-header">
+          <div class="common-sub-title">以下欄位已更新為最新商業司資料</div>
+        </div>
+        <div class="popup-body business-update-body">
+          <div class="business-update-item">
+            <div class="common-text-gray">公司地址</div>
+            <div class="business-update-field-content">
+              <div class="common-text-gray business-update-old">台北市松山區南京東路一段13號</div>
+              <div class="common-text">台北市松山區南京東路二段130號</div>
+            </div>
+          </div>
+          
+          <div class="business-update-item">
+            <div class="common-text-gray">客戶英文名稱</div>
+            <div class="business-update-field-content">
+              <div class="common-text-gray business-update-old">Abc company</div>
+              <div class="common-text">Super abc Company</div>
+            </div>
+          </div>
+          
+          <div class="business-update-item">
+            <div class="common-text-gray">負責人</div>
+            <div class="business-update-field-content">
+              <div class="common-text-gray business-update-old">王小明</div>
+              <div class="common-text">王小花</div>
+            </div>
+          </div>
+          
+          <div class="business-update-item">
+            <div class="common-text-gray">戶籍地址</div>
+            <div class="business-update-field-content">
+              <div class="common-text-gray business-update-old">台北市松山區南京東路一段13號</div>
+              <div class="common-text">台北市松山區南京東路二段130號</div>
+            </div>
+          </div>
+          
+          
+        </div>
+        <button class="button-primary" onclick="popupManager.hide('businessUpdateDetail')">知道了</button>
       </div>
     </div>
 
@@ -613,6 +687,99 @@
      
     }
 
+    // 移除所有表單錯誤樣式
+    function clearFormErrors() {
+      const formInputs = document.querySelectorAll('.form-input');
+      formInputs.forEach(input => {
+        input.classList.remove('error');
+      });
+      
+      // 隱藏所有錯誤訊息
+      const errorMessages = document.querySelectorAll('.error-message');
+      errorMessages.forEach(message => {
+        message.classList.remove('show');
+      });
+    }
+
+    // 為指定的表單欄位添加錯誤樣式
+    function addFieldError(fieldId) {
+      const field = document.getElementById(fieldId);
+      if (field) {
+        field.classList.add('error');
+        
+        // 顯示對應的錯誤訊息
+        const formGroup = field.closest('.form-group');
+        if (formGroup) {
+          const errorMessage = formGroup.querySelector('.error-message');
+          if (errorMessage) {
+            errorMessage.classList.add('show');
+          }
+        }
+      }
+    }
+
+    // 驗證必填欄位
+    function validateRequiredFields() {
+      // 定義必填欄位
+      const requiredFields = [
+        { id: 'company-tax', name: '客戶統編' },
+        { id: 'company-name', name: '客戶名稱' },
+        { id: 'company-associate-id', name: '歸戶編號' },
+        { id: 'company-associate-name', name: '歸戶名稱' },
+        { id: 'company-occupation', name: '行業別' },
+        { id: 'company-department', name: '維護部門' },
+        { id: 'company-manager', name: '負責人' },
+        { id: 'company-manager-id', name: '負責人身分證字號' },
+        { id: 'company-manager-actual', name: '實際經營者' }
+      ];
+
+      // 清除之前的錯誤樣式
+      clearFormErrors();
+
+      const emptyFields = [];
+
+      // 檢查每個必填欄位
+      requiredFields.forEach(field => {
+        const element = document.getElementById(field.id);
+        if (element) {
+          const value = element.value.trim();
+          if (!value) {
+            emptyFields.push(field.name);
+            addFieldError(field.id);
+          }
+        }
+      });
+
+      return emptyFields;
+    }
+
+    // 儲存客戶資料
+    function saveCustomer() {
+      // 驗證必填欄位
+      const emptyFields = validateRequiredFields();
+      
+      if (emptyFields.length > 0) {
+        // 有未填寫的必填欄位
+        showToast('尚有必要欄位未填寫', 'error');
+        
+        // 滾動到第一個錯誤欄位
+        const firstErrorField = document.querySelector('.form-input.error');
+        if (firstErrorField) {
+          firstErrorField.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
+          });
+          firstErrorField.focus();
+        }
+        
+        return;
+      }
+
+      // 如果所有必填欄位都已填寫，可以繼續儲存邏輯
+      showToast('客戶資料儲存成功！', 'success');
+      // TODO: 在這裡添加實際的儲存邏輯
+    }
+    
     // 等待 DOM 載入完成後初始化
     document.addEventListener('DOMContentLoaded', function() {
 
@@ -1061,6 +1228,68 @@ main{
   color: #292929;
 }
 
+/* 商業司資料更新彈窗 */
+.business-update-popup-overlay {
+  align-items: center;
+}
+.business-update-popup {
+  border-radius: 20px ;
+  height: calc(100% - 240px);
+  width: calc(500px - 32px);
+  margin: 0 auto;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  box-sizing: border-box;
+}
+@media (max-width: 500px) {
+  .business-update-popup {
+    width: calc(100% - 32px);
+  }
+}
+.business-update-popup .popup-header {
+  padding: 0;
+  border-bottom: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.business-update-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+  padding: 0;
+}
+
+.business-update-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #EFEFEF;
+}
+.business-update-item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+
+.business-update-field-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.business-update-old {
+  text-decoration: line-through;
+}
+
+
+.business-update-popup .button-primary {
+ flex: none;
+}
 </style>
 

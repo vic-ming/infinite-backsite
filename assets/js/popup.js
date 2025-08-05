@@ -41,6 +41,11 @@ class MultiPopupManager {
       overlayId: 'transactionDetailOverlay',
       closeButtons: ['transactionDetailCloseButton'],
     });
+
+    this.registerPopup('businessUpdateDetail', {
+      overlayId: 'businessUpdateDetailOverlay',
+      closeButtons: [],
+    });
   }
   
   registerPopup(name, config) {

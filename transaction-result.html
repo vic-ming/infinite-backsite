@@ -18,9 +18,14 @@
     <div class="container transaction-result">
       <!-- header -->
       <div class="header">
-        <a class="header-menu" href="/transaction-search.html">
+        <!-- 如果沒有客戶資料，則顯示 -->
+        <div id="menuButton" class="header-menu" onclick="window.location.href='/'">
+          <img src="/assets/images/icon_menu.svg" alt="menu">
+        </div>
+        <!-- 如果有客戶資料，則顯示 -->
+        <div id="backButton" class="header-menu" onclick="handleBack()" style="display: none;">
           <img src="/assets/images/icon_back.svg" alt="back">
-        </a>
+        </div>
         <div class="header-logo">
           <img src="/assets/images/logo.png" alt="logo">
         </div>
@@ -32,7 +37,7 @@
           <div class="transaction-result-top">
             <div class="common-title">客戶交易狀況</div>
             <div class="transaction-result-buttons">
-              <button class="transaction-result-button" onclick="window.location.href='/transaction-search.html'">
+              <button class="transaction-result-button" onclick="handleSearch()">
                 <img src="/assets/images/icon_search.svg" alt="search">
               </button>
             </div>
@@ -421,9 +426,17 @@
     </div>
     <script src="/assets/js/popup.js"></script>
     <script>
+      // 獲取目前 url 的參數
+      const urlParams = new URLSearchParams(window.location.search);
+      const date = urlParams.get('date');
+      const customer = urlParams.get('customer');
+
+      function handleSearch() {
+        window.location.href = '/transaction-search.html?date=' + date + '&customer=' + customer;
+      }
 
       function showMore() {
-     
+
       }
       function showAssociate() {
         document.getElementById('associateArea').classList.toggle('open');
@@ -437,6 +450,7 @@
   flex-direction: column;
   gap: 32px;
   padding-bottom: 100px !important;
+  padding-top: 12px !important;
 }
 .transaction-area {
   display: flex;
