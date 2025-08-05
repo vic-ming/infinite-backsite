@@ -141,7 +141,7 @@
               <div class="common-sub-title">南亞公司</div>
             </div>
             <div class="line"></div>
-            <div class="card-content-group">
+            <div class="card-content-group" onclick="popupManager.show('transactionDetail')">
               <div class="card-content">
                 <div class="card-content-item">
                   <div class="card-content-item-title common-text-gray">承作公司</div>
@@ -157,12 +157,12 @@
                 </div>
               </div>
               <!-- go to detail -->
-              <button class="card-content-button" onclick="popupManager.show('transactionDetail')">
+              <button class="card-content-button">
                 <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
               </button>
             </div>
             <div class="line"></div>
-            <div class="card-content-group">
+            <div class="card-content-group" onclick="popupManager.show('transactionDetail')">
               <div class="card-content">
                 <div class="card-content-item">
                   <div class="card-content-item-title common-text-gray">承作公司</div>
@@ -178,7 +178,7 @@
                 </div>
               </div>
               <!-- go to detail -->
-              <button class="card-content-button" onclick="popupManager.show('transactionDetail')">
+              <button class="card-content-button">
                 <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
               </button>
             </div>
@@ -197,7 +197,7 @@
               <div class="common-sub-title">南亞公司</div>
             </div>
             <div class="line"></div>
-            <div class="card-content-group">
+            <div class="card-content-group" onclick="popupManager.show('transactionDetail')">
               <div class="card-content">
                 <div class="group-title">55432222 台台實業公司</div>
                 <div class="card-content-item">
@@ -214,12 +214,12 @@
                 </div>
               </div>
               <!-- go to detail -->
-              <button class="card-content-button" onclick="popupManager.show('transactionDetail')">
+              <button class="card-content-button">
                 <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
               </button>
             </div>
             <div class="line"></div>
-            <div class="card-content-group">
+            <div class="card-content-group" onclick="popupManager.show('transactionDetail')">
               <div class="card-content">
                 <div class="group-title">55432222 台台實業公司</div>
                 <div class="card-content-item">
@@ -236,12 +236,12 @@
                 </div>
               </div>
               <!-- go to detail -->
-              <button class="card-content-button" onclick="popupManager.show('transactionDetail')">
+              <button class="card-content-button">
                 <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
               </button>
             </div>
             <div class="line"></div>
-            <div class="card-content-group">
+            <div class="card-content-group" onclick="popupManager.show('transactionDetail')">
               <div class="card-content">
                 <div class="group-title">55432222 台台實業公司</div>
                 <div class="card-content-item">
@@ -258,7 +258,7 @@
                 </div>
               </div>
               <!-- go to detail -->
-              <button class="card-content-button" onclick="popupManager.show('transactionDetail')">
+              <button class="card-content-button">
                 <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
               </button>
             </div>
@@ -277,7 +277,7 @@
               <div class="common-sub-title">南亞公司</div>
             </div>
             <div class="line"></div>
-            <div class="card-content-group">
+            <div class="card-content-group" onclick="popupManager.show('transactionDetail')">
               <div class="card-content">
                 <div class="card-content-item">
                   <div class="card-content-item-title common-text-gray">承作公司</div>
@@ -293,12 +293,12 @@
                 </div>
               </div>
               <!-- go to detail -->
-              <button class="card-content-button" onclick="popupManager.show('transactionDetail')">
+              <button class="card-content-button">
                 <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
               </button>
             </div>
             <div class="line"></div>
-            <div class="card-content-group">
+            <div class="card-content-group" onclick="popupManager.show('transactionDetail')">
               <div class="card-content">
                 <div class="card-content-item">
                   <div class="card-content-item-title common-text-gray">承作公司</div>
@@ -314,7 +314,7 @@
                 </div>
               </div>
               <!-- go to detail -->
-              <button class="card-content-button" onclick="popupManager.show('transactionDetail')">
+              <button class="card-content-button">
                 <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
               </button>
             </div>
@@ -326,16 +326,17 @@
       <!-- detail popup -->
       <div class="popup-overlay" id="transactionDetailOverlay">
         <div class="popup-content">
-          <div class="popup-brown-area">
-            <div class="popup-header">
-              <div class="common-title">案件明細
-                <span class="transaction-type-1">保證</span>
-                <span class="transaction-type-2">徵信</span>
-              </div>
-              <button class="popup-close-btn" onclick="popupManager.hide('transactionDetail')">
-                <img src="/assets/images/icon_close.svg" alt="close">
-              </button>
+          <div class="popup-header brown-header">
+            <div class="common-title">案件明細
+              <span class="transaction-type-1">保證</span>
+              <span class="transaction-type-2">徵信</span>
             </div>
+            <button class="popup-close-btn" onclick="popupManager.hide('transactionDetail')">
+              <img src="/assets/images/icon_close.svg" alt="close">
+            </button>
+          </div>
+          <div class="popup-brown-area">
+            
             <div class="popup-brown-area-content">
               <div class="popup-brown-area-content-item">
                 <div class="common-text">11111111</div>
