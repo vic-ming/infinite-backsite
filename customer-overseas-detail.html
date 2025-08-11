@@ -113,9 +113,19 @@
                 <img src="/assets/images/icon_quill.svg" alt="quill">
                 負責人
               </div>
-              <button>
-                <img src="/assets/images/icon_scan.svg" alt="ai">
-              </button>
+              <div class="dropdown-container" id="manager-dropdown">
+                <button class="dropdown-trigger">
+                  <img src="/assets/images/icon_scan.svg" alt="ai">
+                </button>
+                <div class="dropdown-menu">
+                  <div class="dropdown-item" onclick="openSidePanel('select-file')">
+                    <span>上傳檔案</span>
+                  </div>
+                  <div class="dropdown-item" onclick="openSidePanel('select-photo')">
+                    <span>選擇照片</span>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <label for="company-manager">負責人<span>*</span></label>
@@ -459,8 +469,84 @@
         const occupationData = event.detail;
         console.log('行業選擇事件觸發:', occupationData);
       });
+
+      //  ========== 選擇相片 ============
+      // 註冊拍照面板
+      registerSidePanel(
+        'select-photo', 
+        '/select-view/select-photo.html',
+        function(data) {
+          selectedOccupationData = {};
+
+          // 填入表單欄位
+          // document.getElementById('company-occupation').value = data.name || '';
+
+          // 觸發自定義事件，讓其他地方可以監聽
+          const event = new CustomEvent('selectPhoto', {
+            detail: selectedOccupationData
+          });
+          document.dispatchEvent(event);
+        },
+      );
+
+      // 監聽行業選擇事件（範例用法）
+      document.addEventListener('selectPhoto', function(event) {
+        const takePhotoData = event.detail;
+      });
+
+      //  ========== 選擇檔案 ============
+      // 註冊拍照面板
+      registerSidePanel(
+        'select-file', 
+        '/select-view/select-file.html',
+        function(data) {
+          selectedOccupationData = {};
+
+          // 填入表單欄位
+          // document.getElementById('company-occupation').value = data.name || '';
+
+          // 觸發自定義事件，讓其他地方可以監聽
+          const event = new CustomEvent('selectFile', {
+            detail: selectedOccupationData
+          });
+          document.dispatchEvent(event);
+        },
+      );
+
+      // 監聽行業選擇事件（範例用法）
+      document.addEventListener('selectPhoto', function(event) {
+        const takePhotoData = event.detail;
+      });
+
     });
   </script>
+  <script>
+    // Dropdown 功能
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropdownContainer = document.querySelector('.dropdown-container');
+        const dropdownTrigger = document.querySelector('.dropdown-trigger');
+        
+        if (dropdownTrigger) {
+            dropdownTrigger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                dropdownContainer.classList.toggle('active');
+            });
+        }
+        
+        // 點擊外部關閉下拉選單
+        document.addEventListener('click', function(e) {
+            if (!dropdownContainer.contains(e.target)) {
+                dropdownContainer.classList.remove('active');
+            }
+        });
+    });
+    
+    // 關閉下拉選單
+    function closeDropdown() {
+        const dropdownContainer = document.querySelector('.dropdown-container');
+        dropdownContainer.classList.remove('active');
+    }
+    </script>
 </html>
 <style scoped>
 

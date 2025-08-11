@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="icon" href="/assets/favicon.ico"> -->
+    <title>Infinite</title>
+    <!-- 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- 共用樣式 -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <!-- header -->
+      <div class="header">
+        <button class="header-menu" onclick="closePanel()">
+          
+          <img src="/assets/images/icon_back.svg" alt="back">
+        </button>
+        <div class="header-logo">
+          <img src="/assets/images/logo.png" alt="logo">
+        </div>
+      </div>
+      <!-- content -->
+      <main class="main">
+        <div class="file-container" id="fileContainer">
+          <!-- 圖片將通過 JavaScript 動態生成 -->
+        </div>
+        
+        <div class="take-photo-button-container">
+          <button class="button-primary-outline take-photo-button" onclick="uploadFile()">
+            <img src="/assets/images/icon_file.svg" alt="file" class="icon-file">
+            上傳檔案
+          </button>
+          <button class="button-primary w-100" id="confirmButton" onclick="confirmFile()">
+            確認辨識
+          </button> 
+        </div>
+      </main>
+      <!-- 確認彈窗 -->
+      <div id="confirm-modal" class="confirm-modal">
+        <div class="confirm-modal-content">
+          <div class="confirm-modal-title" id="confirm-modal-title"></div>
+          <div class="confirm-modal-message" id="confirm-modal-message"></div>
+          <div class="confirm-modal-buttons">
+            <button class="confirm-modal-cancel" onclick="hideConfirmModal()">取消</button>
+            <button class="confirm-modal-confirm" id="confirm-modal-confirm"></button>
+          </div>
+        </div>
+      </div>
+      <script src="/assets/js/popup.js"></script>
+      <script src="/assets/js/dialog.js"></script>
+    </div>
+    <script>
+      const fileList = [];
+
+      // 初始化頁面
+      function initPage() {
+        const container = document.getElementById('fileContainer');
+        const confirmButton = document.getElementById('confirmButton');
+        
+        if (fileList.length === 0) {
+          // 沒有檔案時顯示提示區塊
+          const emptyItem = document.createElement('div');
+          emptyItem.className = 'file-item empty-state';
+          
+          emptyItem.innerHTML = `
+            <div class="empty-message">
+              請上傳至少一個檔案已進行辨識
+            </div>
+          `;
+          
+          container.appendChild(emptyItem);
+          
+          // 禁用確認辨識按鈕
+          confirmButton.disabled = true;
+          confirmButton.classList.add('disabled');
+        } else {
+          // 有檔案時顯示檔案列表
+          fileList.forEach((fileInfo, index) => {
+            const fileItem = document.createElement('div');
+            fileItem.className = 'file-item';
+            
+            fileItem.innerHTML = `
+              <div class="file-info">
+                <span class="file-name">${fileInfo.name}</span>
+              </div>
+              <button class="file-item-delete" onclick="deleteFile(${index})">
+                <img src="/assets/images/icon_delete.svg" alt="delete">
+              </button>
+            `;
+            
+            container.appendChild(fileItem);
+          });
+          
+          // 啟用確認辨識按鈕
+          confirmButton.disabled = false;
+          confirmButton.classList.remove('disabled');
+        }
+      }
+
+      // 上傳檔案功能
+      function uploadFile() {
+        // 創建 input 元素來觸發檔案選擇
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.multiple = true; // 允許多選
+        // 接受所有類型的檔案
+        
+        input.onchange = function(event) {
+          const files = event.target.files;
+          if (files && files.length > 0) {
+            // 處理多個文件
+            for (let i = 0; i < files.length; i++) {
+              const file = files[i];
+              
+              // 建立檔案資訊物件
+              const fileInfo = {
+                name: file.name,
+                size: file.size,
+                type: file.type,
+                file: file // 保存原始檔案物件
+              };
+              
+              fileList.push(fileInfo);
+            }
+            
+            // 重新渲染頁面
+            const container = document.getElementById('fileContainer');
+            container.innerHTML = '';
+            initPage();
+          }
+        };
+        
+        // 觸發文件選擇
+        input.click();
+      }
+
+      // 刪除文件
+      function deleteFile(index) {
+        showConfirmModal(
+          '確定要刪除這個檔案嗎？',
+          '刪除後將無法復原',
+          '刪除',
+          function() {  
+            fileList.splice(index, 1);
+            // 重新渲染
+            const container = document.getElementById('fileContainer');
+            container.innerHTML = '';
+            initPage();
+            hideConfirmModal();
+          }
+        );
+      }
+
+      function confirmFile() {
+        window.parent.postMessage({
+          type: 'selectFile',
+          fileList: fileList
+        }, '*');
+      }
+      
+      // 關閉面板，發送訊息給父頁面
+      function closePanel() {
+        window.parent.postMessage({
+          type: 'closePanel'
+        }, '*');
+      }
+
+      // 頁面載入完成後初始化
+      document.addEventListener('DOMContentLoaded', initPage);
+    </script>
+  </body>
+</html>
+<style scoped>
+main{
+
+  padding: 32px 16px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+}
+.file-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0 23px;
+  gap: 48px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.file-container .file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  background-color: #EFEFEF;
+  padding: 16px;
+  box-sizing: border-box;
+  
+  gap: 10px;
+}
+.file-container .file-item .file-info {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 12px;
+}
+.file-container .file-item .file-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+.file-container .file-item .file-name {
+  color: #292929;
+  font-size: 18px;
+  font-weight: 400;
+  word-break: break-all;
+  line-height: 1.4;
+}
+.file-container .file-item .file-item-delete {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  flex-shrink: 0;
+}
+.file-container .file-item .file-item-delete img {
+  width: 24px;
+  height: 24px;
+}
+.take-photo-button-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+ .take-photo-button img {
+   width: 22px;
+   height: 22px;
+   margin-right: 8px;
+ }
+ .file-item.empty-state {
+   height: 89px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
+ .empty-message {
+   color: #989898;
+   font-size: 18px;
+   font-weight: 700;
+   text-align: center;
+ }
+ .loading-state {
+   height: 89px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: #EFEFEF;
+   border-radius: 8px;
+   padding: 16px;
+   box-sizing: border-box;
+ }
+ .loading-message {
+   color: #666;
+   font-size: 16px;
+   text-align: center;
+ }
+</style>

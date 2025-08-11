@@ -186,6 +186,16 @@ class SidePanelManager {
             panelType: 'comment',
             comment: event.data.comment
           });
+        } else if (event.data.type === 'selectPhoto') {
+          this.handleSelectItem({
+            panelType: 'photo',
+            imgList: event.data.imgList
+          });
+        } else if (event.data.type === 'selectFile') {
+          this.handleSelectItem({
+            panelType: 'file',
+            fileList: event.data.fileList
+          });
         } else if (event.data.type === 'closePanel') {
           this.closePanel();
         }

@@ -201,9 +201,19 @@
                 <img src="/assets/images/icon_quill.svg" alt="quill">
                 負責人
               </div>
-              <button>
-                <img src="/assets/images/icon_scan.svg" alt="ai">
-              </button>
+              <div class="dropdown-container" id="manager-dropdown">
+                <button class="dropdown-trigger">
+                  <img src="/assets/images/icon_scan.svg" alt="ai">
+                </button>
+                <div class="dropdown-menu">
+                  <div class="dropdown-item" onclick="openSidePanel('select-file')">
+                    <span>上傳檔案</span>
+                  </div>
+                  <div class="dropdown-item" onclick="openSidePanel('select-photo')">
+                    <span>選擇照片</span>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <label for="company-manager">負責人<span>*</span></label>
@@ -285,9 +295,19 @@
                 <img src="/assets/images/icon_quill.svg" alt="quill">
                 登記資料
               </div>
-              <button>
-                <img src="/assets/images/icon_scan.svg" alt="ai">
-              </button>
+              <div class="dropdown-container" id="registration-dropdown">
+                <button class="dropdown-trigger">
+                  <img src="/assets/images/icon_scan.svg" alt="ai">
+                </button>
+                <div class="dropdown-menu">
+                  <div class="dropdown-item" onclick="openSidePanel('select-file')">
+                    <span>上傳檔案</span>
+                  </div>
+                  <div class="dropdown-item" onclick="openSidePanel('select-photo')">
+                    <span>選擇照片</span>
+                  </div>
+                </div>
+              </div>
             </div>
             <div class="form-group">
               <label for="company-register-number">登記字號</label>
@@ -1001,9 +1021,109 @@
         const postalData = event.detail;
         console.log('郵遞區號選擇事件觸發:', postalData);
       });
-    
+
+
+
+      //  ========== 選擇相片 ============
+      // 註冊拍照面板
+      registerSidePanel(
+        'select-photo', 
+        '/select-view/select-photo.html',
+        function(data) {
+          selectedOccupationData = {};
+
+          // 填入表單欄位
+          // document.getElementById('company-occupation').value = data.name || '';
+
+          // 觸發自定義事件，讓其他地方可以監聽
+          const event = new CustomEvent('selectPhoto', {
+            detail: selectedOccupationData
+          });
+          document.dispatchEvent(event);
+        },
+      );
+
+      // 監聽行業選擇事件（範例用法）
+      document.addEventListener('selectPhoto', function(event) {
+        const takePhotoData = event.detail;
+      });
+
+      //  ========== 選擇檔案 ============
+      // 註冊拍照面板
+      registerSidePanel(
+        'select-file', 
+        '/select-view/select-file.html',
+        function(data) {
+          selectedOccupationData = {};
+
+          // 填入表單欄位
+          // document.getElementById('company-occupation').value = data.name || '';
+
+          // 觸發自定義事件，讓其他地方可以監聽
+          const event = new CustomEvent('selectFile', {
+            detail: selectedOccupationData
+          });
+          document.dispatchEvent(event);
+        },
+      );
+
+      // 監聽行業選擇事件（範例用法）
+      document.addEventListener('selectPhoto', function(event) {
+        const takePhotoData = event.detail;
+      });
     });
   </script>
+
+  <script>
+  // Dropdown 功能
+  document.addEventListener('DOMContentLoaded', function() {
+      // 初始化所有下拉選單
+      initializeDropdown('manager-dropdown');
+      initializeDropdown('registration-dropdown');
+      
+      // 點擊外部關閉所有下拉選單
+      document.addEventListener('click', function(e) {
+          const dropdownContainers = document.querySelectorAll('.dropdown-container');
+          dropdownContainers.forEach(container => {
+              if (!container.contains(e.target)) {
+                  container.classList.remove('active');
+              }
+          });
+      });
+  });
+  
+  // 初始化單個下拉選單
+  function initializeDropdown(dropdownId) {
+      const dropdownContainer = document.getElementById(dropdownId);
+      const dropdownTrigger = dropdownContainer?.querySelector('.dropdown-trigger');
+      
+      if (dropdownTrigger) {
+          dropdownTrigger.addEventListener('click', function(e) {
+              e.stopPropagation();
+              
+              // 關閉其他下拉選單
+              const allDropdowns = document.querySelectorAll('.dropdown-container');
+              allDropdowns.forEach(dropdown => {
+                  if (dropdown.id !== dropdownId) {
+                      dropdown.classList.remove('active');
+                  }
+              });
+              
+              // 切換當前下拉選單
+              dropdownContainer.classList.toggle('active');
+          });
+      }
+  }
+  
+  // 關閉所有下拉選單
+  function closeDropdown() {
+      const dropdownContainers = document.querySelectorAll('.dropdown-container');
+      dropdownContainers.forEach(container => {
+          container.classList.remove('active');
+      });
+  }
+  </script>
+  
 </html>
 <style scoped>
 

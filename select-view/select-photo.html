@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="icon" href="/assets/favicon.ico"> -->
+    <title>Infinite</title>
+    <!-- 字體 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!-- 共用樣式 -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <!-- header -->
+      <div class="header">
+        <button class="header-menu" onclick="closePanel()">
+          
+          <img src="/assets/images/icon_back.svg" alt="back">
+        </button>
+        <div class="header-logo">
+          <img src="/assets/images/logo.png" alt="logo">
+        </div>
+      </div>
+      <!-- content -->
+      <main class="main">
+        <div class="file-container" id="fileContainer">
+          <!-- 圖片將通過 JavaScript 動態生成 -->
+        </div>
+        
+        <div class="take-photo-button-container">
+          <button class="button-primary-outline take-photo-button" onclick="takePhoto()">
+            <img src="/assets/images/icon_scan.svg" alt="scan" class="icon-scan">
+            拍攝照片
+          </button> 
+          <button class="button-primary-outline take-photo-button" onclick="selectPhoto()">
+            <img src="/assets/images/icon_plus.svg" alt="plus" class="icon-plus">
+            選擇照片
+          </button> 
+          <button class="button-primary w-100" id="confirmButton" onclick="confirmPhoto()">
+            確認辨識
+          </button> 
+        </div>
+      </main>
+      <!-- 確認彈窗 -->
+      <div id="confirm-modal" class="confirm-modal">
+        <div class="confirm-modal-content">
+          <div class="confirm-modal-title" id="confirm-modal-title"></div>
+          <div class="confirm-modal-message" id="confirm-modal-message"></div>
+          <div class="confirm-modal-buttons">
+            <button class="confirm-modal-cancel" onclick="hideConfirmModal()">取消</button>
+            <button class="confirm-modal-confirm" id="confirm-modal-confirm"></button>
+          </div>
+        </div>
+      </div>
+      <script src="/assets/js/popup.js"></script>
+      <script src="/assets/js/dialog.js"></script>
+    </div>
+    <script>
+      const imgList = [];
+
+      // 初始化頁面
+      function initPage() {
+        const container = document.getElementById('fileContainer');
+        const confirmButton = document.getElementById('confirmButton');
+        
+        if (imgList.length === 0) {
+          // 沒有圖片時顯示提示區塊
+          const emptyItem = document.createElement('div');
+          emptyItem.className = 'file-item empty-state';
+          
+          emptyItem.innerHTML = `
+            <div class="empty-message">
+              請拍攝至少一張照片已進行辨識
+            </div>
+          `;
+          
+          container.appendChild(emptyItem);
+          
+          // 禁用確認辨識按鈕
+          confirmButton.disabled = true;
+          confirmButton.classList.add('disabled');
+        } else {
+          // 有圖片時顯示圖片列表
+          imgList.forEach((imgSrc, index) => {
+            const fileItem = document.createElement('div');
+            fileItem.className = 'file-item';
+            
+            fileItem.innerHTML = `
+              <button class="file-item-delete" onclick="deleteFile(${index})">
+                <img src="/assets/images/icon_delete.svg" alt="delete">
+              </button>
+              <img src="${imgSrc}" alt="id">
+            `;
+            
+            container.appendChild(fileItem);
+          });
+          
+          // 啟用確認辨識按鈕
+          confirmButton.disabled = false;
+          confirmButton.classList.remove('disabled');
+        }
+      }
+
+      // 壓縮圖片
+      function compressImage(file, maxWidth = 800, quality = 0.8) {
+        return new Promise((resolve) => {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          const img = new Image();
+          
+          img.onload = function() {
+            // 計算新尺寸
+            let { width, height } = img;
+            if (width > maxWidth) {
+              height = (height * maxWidth) / width;
+              width = maxWidth;
+            }
+            
+            canvas.width = width;
+            canvas.height = height;
+            
+            // 繪製並壓縮
+            ctx.drawImage(img, 0, 0, width, height);
+            const compressedDataUrl = canvas.toDataURL('image/jpeg', quality);
+            resolve(compressedDataUrl);
+          };
+          
+          const reader = new FileReader();
+          reader.onload = (e) => img.src = e.target.result;
+          reader.readAsDataURL(file);
+        });
+      }
+
+      // 處理選擇的文件
+      async function handleSelectedFile(file) {
+        try {
+          // 顯示加載狀態
+          const container = document.getElementById('fileContainer');
+          const loadingDiv = document.createElement('div');
+          loadingDiv.className = 'loading-state';
+          loadingDiv.innerHTML = '<div class="loading-message">正在處理照片...</div>';
+          container.appendChild(loadingDiv);
+          
+          // 壓縮圖片
+          const compressedImage = await compressImage(file);
+          
+          // 將新照片添加到 imgList
+          imgList.push(compressedImage);
+          
+          // 重新渲染頁面
+          container.innerHTML = '';
+          initPage();
+          
+        } catch (error) {
+          console.error('處理照片時出錯:', error);
+          alert('照片處理失敗，請重試');
+        }
+      }
+
+      // 拍照功能 - 打開相機
+      function takePhoto() {
+        // 創建 input 元素來觸發相機
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.capture = 'environment'; // 使用後置相機
+        
+        input.onchange = async function(event) {
+          const file = event.target.files[0];
+          if (file) {
+            await handleSelectedFile(file);
+          }
+        };
+        
+        // 觸發文件選擇
+        input.click();
+      }
+
+      // 選擇照片功能 - 打開相簿
+      function selectPhoto() {
+        // 創建 input 元素來觸發相簿選擇
+        const input = document.createElement('input');
+        input.type = 'file';
+        input.accept = 'image/*';
+        input.multiple = true; // 允許多選
+        // 不設置 capture 屬性，這樣會打開相簿而不是相機
+        
+        input.onchange = async function(event) {
+          const files = event.target.files;
+          if (files && files.length > 0) {
+            // 處理多個文件
+            for (let i = 0; i < files.length; i++) {
+              await handleSelectedFile(files[i]);
+            }
+          }
+        };
+        
+        // 觸發文件選擇
+        input.click();
+      }
+
+      // 刪除文件
+      function deleteFile(index) {
+        showConfirmModal(
+          '確定要刪除這張圖片嗎？',
+          '刪除後將無法復原',
+          '刪除',
+          function() {  
+            imgList.splice(index, 1);
+            // 重新渲染
+            const container = document.getElementById('fileContainer');
+            container.innerHTML = '';
+            initPage();
+            hideConfirmModal();
+          }
+        );
+      }
+
+      function confirmPhoto() {
+        window.parent.postMessage({
+          type: 'selectPhoto',
+          imgList: imgList
+        }, '*');
+      }
+      
+      // 關閉面板，發送訊息給父頁面
+      function closePanel() {
+        window.parent.postMessage({
+          type: 'closePanel'
+        }, '*');
+      }
+
+      // 頁面載入完成後初始化
+      document.addEventListener('DOMContentLoaded', initPage);
+    </script>
+  </body>
+</html>
+<style scoped>
+main{
+
+  padding: 32px 16px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+}
+.file-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0 23px;
+  gap: 48px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.file-container .file-item {
+  position: relative;
+  width: 100%;
+  background-color: #EFEFEF;
+  padding: 16px;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+.file-container .file-item img {
+  width: 100%;
+  height: 100%;
+}
+.file-container .file-item .file-item-delete {
+  margin-left: auto;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1;
+  margin-bottom: 10px;
+}
+.file-container .file-item .file-item-delete img {
+  width: 24px;
+  height: 24px;
+}
+.take-photo-button-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+ .take-photo-button img {
+   width: 22px;
+   height: 22px;
+   margin-right: 8px;
+ }
+ .file-item.empty-state {
+   height: 89px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+ }
+ .empty-message {
+   color: #989898;
+   font-size: 18px;
+   font-weight: 700;
+   text-align: center;
+ }
+ .loading-state {
+   height: 89px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: #EFEFEF;
+   border-radius: 8px;
+   padding: 16px;
+   box-sizing: border-box;
+ }
+ .loading-message {
+   color: #666;
+   font-size: 16px;
+   text-align: center;
+ }
+</style>
