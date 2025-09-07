@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="icon" href="/assets/favicon.ico"> -->
+    <!-- <link rel="icon" href="../assets/favicon.ico"> -->
     <title>Infinite</title>
     <!-- 字體 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
     
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- 共用樣式 -->
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
   </head>
   <body>
     <div class="container">
@@ -20,10 +22,10 @@
       <div class="header">
         <button class="header-menu" onclick="closePanel()">
           
-          <img src="/assets/images/icon_back.svg" alt="back">
+          <img src="../assets/images/icon_back.svg" alt="back">
         </button>
         <div class="header-logo">
-          <img src="/assets/images/logo.png" alt="logo">
+          <img src="../assets/images/logo.png" alt="logo">
         </div>
       </div>
       <!-- content -->
@@ -34,11 +36,11 @@
         
         <div class="take-photo-button-container">
           <button class="button-primary-outline take-photo-button" onclick="takePhoto()">
-            <img src="/assets/images/icon_scan.svg" alt="scan" class="icon-scan">
+            <img src="../assets/images/icon_scan.svg" alt="scan" class="icon-scan">
             拍攝照片
           </button> 
           <button class="button-primary-outline take-photo-button" onclick="selectPhoto()">
-            <img src="/assets/images/icon_plus.svg" alt="plus" class="icon-plus">
+            <img src="../assets/images/icon_plus.svg" alt="plus" class="icon-plus">
             選擇照片
           </button> 
           <button class="button-primary w-100" id="confirmButton" onclick="confirmPhoto()">
@@ -57,8 +59,8 @@
           </div>
         </div>
       </div>
-      <script src="/assets/js/popup.js"></script>
-      <script src="/assets/js/dialog.js"></script>
+      <script src="../assets/js/popup.js"></script>
+      <script src="../assets/js/dialog.js"></script>
     </div>
     <script>
       const imgList = [];
@@ -72,7 +74,7 @@
           // 沒有圖片時顯示提示區塊
           const emptyItem = document.createElement('div');
           emptyItem.className = 'file-item empty-state';
-          
+          emptyItem.style.gridColumn = 'span 4';
           emptyItem.innerHTML = `
             <div class="empty-message">
               請拍攝至少一張照片已進行辨識
@@ -92,7 +94,7 @@
             
             fileItem.innerHTML = `
               <button class="file-item-delete" onclick="deleteFile(${index})">
-                <img src="/assets/images/icon_delete.svg" alt="delete">
+                <img src="../assets/images/icon_delete.svg" alt="delete">
               </button>
               <img src="${imgSrc}" alt="id">
             `;
@@ -238,7 +240,9 @@
       // 頁面載入完成後初始化
       document.addEventListener('DOMContentLoaded', initPage);
     </script>
-  </body>
+      <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
 </html>
 <style scoped>
 main{
@@ -251,13 +255,29 @@ main{
   gap: 48px;
 }
 .file-container {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   flex-direction: column;
   align-items: center;
   padding: 16px 0 23px;
   gap: 48px;
   width: 100%;
   box-sizing: border-box;
+}
+@media (max-width: 1196px) {
+  .file-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 991px) {
+  .file-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 576px) {
+  .file-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 .file-container .file-item {
   position: relative;

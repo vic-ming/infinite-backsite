@@ -4,30 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="icon" href="/assets/favicon.ico"> -->
+    <!-- <link rel="icon" href="./assets/favicon.ico"> -->
     <title>Infinite</title>
     <!-- 字體 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
     
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- 共用樣式 -->
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
   </head>
   <body>
     <div class="container customer-add">
       <!-- header -->
       <div class="header">
         <a class="header-menu" href="/customer-list.html">
-          <img src="/assets/images/icon_back.svg" alt="menu">
+          <img src="./assets/images/icon_back.svg" alt="menu">
         </a>
         <div class="header-logo">
-          <img src="/assets/images/logo.png" alt="logo">
+          <img src="./assets/images/logo.png" alt="logo">
         </div>
       </div>
       <!-- content -->
       <main class="main">
-        <img src="/assets/images/add-customer-img.png" alt="customer-add" class="add-customer-img">
+        <img src="./assets/images/add-customer-img.png" alt="customer-add" class="add-customer-img">
 
         <div class="add-customer-form">
           <div class="add-customer-form-item">
@@ -45,8 +47,10 @@
 
 
     </div>
-  
   </body>
+  
+  <!-- Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   <script>
     const customerTaxIdInput = document.getElementById('customer-tax-id');
     customerTaxIdInput.addEventListener('input', () => {
@@ -72,8 +76,8 @@
 </html>
 <style scoped>
 main{
-  max-width: 300px;
-  margin: 0 auto;
+  /* max-width: 300px; */
+  margin: 0 45px;
   display: flex;
   flex-direction: column;
   align-items: center;

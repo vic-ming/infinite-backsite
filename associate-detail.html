@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="icon" href="/assets/favicon.ico"> -->
+    <!-- <link rel="icon" href="./assets/favicon.ico"> -->
     <title>Infinite</title>
 
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- 共用樣式 -->
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <!-- 側邊面板管理器 -->
-    <script src="/assets/js/side-panel.js"></script>
+    <script src="./assets/js/side-panel.js"></script>
     <!-- Toast 通知功能 -->
-    <script src="/assets/js/toast.js"></script>
+    <script src="./assets/js/toast.js"></script>
     <!-- 字體 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,10 +26,10 @@
       <!-- header -->
       <div class="header">
         <a class="header-menu" href="/">
-          <img src="/assets/images/icon_back.svg" alt="menu">
+          <img src="./assets/images/icon_back.svg" alt="menu">
         </a>
         <div class="header-logo">
-          <img src="/assets/images/logo.png" alt="logo">
+          <img src="./assets/images/logo.png" alt="logo">
         </div>
       </div>
       <!-- content -->
@@ -45,81 +47,83 @@
           <div class="customer-detail-content-area gray" id="basic-section">
             <div class="detail-group-top">
               <div class="detail-group-title">
-                <img src="/assets/images/icon_quill.svg" alt="quill">
+                <img src="./assets/images/icon_quill.svg" alt="quill">
                 基本資料
               </div>
               <button class="customer-detail-switch-button" onclick="popupManager.show('businessDetail')">商業司資料</button>
             </div>
-            <div class="form-group">
-              <label for="associate-code">歸戶編號<span>*</span></label>
-              <div class="w-100">
-                <input type="text" id="associate-code" class="form-input" placeholder="請輸入">
-                <div class="error-message">此欄位必須填寫</div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="associate-name">歸戶名稱<span>*</span></label>
-              <div class="w-100">
-                <input type="text" id="associate-name" class="form-input" placeholder="請輸入">
-                <div class="error-message">此欄位必須填寫</div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="associate-date">成立日期<span>*</span></label>
-              <div class="w-100">
-                <input type="date" id="associate-date" class="form-input" placeholder="請輸入">
-                <div class="error-message">此欄位必須填寫</div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="associate-occupation">行業別<span>*</span></label>
-              <div class="w-100">
-                <input type="text" id="associate-occupation" class="form-input search" placeholder="請輸入" readonly>
-                <div class="error-message">此欄位必須填寫</div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="associate-capital">資本額</label>
-              <div class="amount-wrapper">
-                <input type="text" id="associate-capital" class="form-input amount" placeholder="請輸入">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="associate-scale">營業規模</label>
-              <div class="amount-wrapper">
-                <input type="text" id="associate-scale" class="form-input amount" placeholder="請輸入">
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="associate-address">登記地址</label>
-              <div class="address-wrapper">
-                <div class="address-wrapper-item">
-                  <input type="text" id="associate-address-code" class="form-input search" placeholder="請選擇" readonly>
-                  <input type="text" id="associate-address-city" class="form-input" placeholder="" disabled>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="associate-code">歸戶編號<span>*</span></label>
+                <div class="w-100">
+                  <input type="text" id="associate-code" class="form-input" placeholder="請輸入">
+                  <div class="error-message">此欄位必須填寫</div>
                 </div>
-                <input type="text" id="company-address-detail" class="form-input" placeholder="請輸入">
               </div>
-            </div>
-            <div class="form-group">
-              <label for="company-employee">經辦人員</label>
-              <input type="text" id="company-employee" class="form-input" placeholder="" disabled>
-            </div>
-            <div class="form-group">
-              <label for="company-department">維護部門<span>*</span></label>
-              <div class="w-100">
-                <input type="text" id="company-department" class="form-input" placeholder="" disabled>
-                <div class="error-message">此欄位必須填寫</div>
+              <div class="form-group">
+                <label for="associate-name">歸戶名稱<span>*</span></label>
+                <div class="w-100">
+                  <input type="text" id="associate-name" class="form-input" placeholder="請輸入">
+                  <div class="error-message">此欄位必須填寫</div>
+                </div>
               </div>
-            </div>
-            <!-- note -->
-            <div class="edit-note">
-              <div class="note-item">
-                <div class="label">新增人員</div>
-                <div class="content">王小明<span>2025/5/1 16:30</span></div>
+              <div class="form-group">
+                <label for="associate-date">成立日期<span>*</span></label>
+                <div class="w-100">
+                  <input type="date" id="associate-date" class="form-input" placeholder="請輸入">
+                  <div class="error-message">此欄位必須填寫</div>
+                </div>
               </div>
-              <div class="note-item">
-                <div class="label">修改人員</div>
-                <div class="content">王小明<span>2025/5/2 16:30</span></div>
+              <div class="form-group">
+                <label for="associate-occupation">行業別<span>*</span></label>
+                <div class="w-100">
+                  <input type="text" id="associate-occupation" class="form-input search" placeholder="請輸入" readonly>
+                  <div class="error-message">此欄位必須填寫</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="associate-capital">資本額</label>
+                <div class="amount-wrapper">
+                  <input type="text" id="associate-capital" class="form-input amount" placeholder="請輸入">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="associate-scale">營業規模</label>
+                <div class="amount-wrapper">
+                  <input type="text" id="associate-scale" class="form-input amount" placeholder="請輸入">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="associate-address">登記地址</label>
+                <div class="address-wrapper">
+                  <div class="address-wrapper-item">
+                    <input type="text" id="associate-address-code" class="form-input search" placeholder="請選擇" readonly>
+                    <input type="text" id="associate-address-city" class="form-input" placeholder="" disabled>
+                  </div>
+                  <input type="text" id="company-address-detail" class="form-input" placeholder="請輸入">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="company-employee">經辦人員</label>
+                <input type="text" id="company-employee" class="form-input" placeholder="" disabled>
+              </div>
+              <div class="form-group">
+                <label for="company-department">維護部門<span>*</span></label>
+                <div class="w-100">
+                  <input type="text" id="company-department" class="form-input" placeholder="" disabled>
+                  <div class="error-message">此欄位必須填寫</div>
+                </div>
+              </div>
+              <!-- note -->
+              <div class="edit-note">
+                <div class="note-item">
+                  <div class="label">新增人員</div>
+                  <div class="content">王小明<span>2025/5/1 16:30</span></div>
+                </div>
+                <div class="note-item">
+                  <div class="label">修改人員</div>
+                  <div class="content">王小明<span>2025/5/2 16:30</span></div>
+                </div>
               </div>
             </div>
 
@@ -130,7 +134,7 @@
               <div class="detail-group-title"> </div>
               <div class="dropdown-container" id="registration-dropdown">
                 <button class="dropdown-trigger">
-                  <img src="/assets/images/icon_scan.svg" alt="ai">
+                  <img src="./assets/images/icon_scan.svg" alt="ai">
                 </button>
                 <div class="dropdown-menu">
                   <div class="dropdown-item" onclick="openSidePanel('select-file')">
@@ -142,36 +146,38 @@
                 </div>
               </div>
             </div>
-            <div class="form-group">
-              <label for="company-manager">負責人<span>*</span></label>
-              <div class="w-100">
-                <input type="text" id="company-manager" class="form-input" placeholder="請輸入">
-                <div class="error-message">此欄位必須填寫</div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="company-manager-id">負責人身分證字號<span>*</span></label>
-              <div class="w-100">
-                <div class="input-flex">
-                  <select id="company-manager-id-prefix" class="form-input prefix">
-                    <option value="">請選擇</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                  </select>
-                  <input type="text" id="company-manager-id" class="form-input flex-1" placeholder="請輸入">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="company-manager">負責人<span>*</span></label>
+                <div class="w-100">
+                  <input type="text" id="company-manager" class="form-input" placeholder="請輸入">
+                  <div class="error-message">此欄位必須填寫</div>
                 </div>
-                <div class="error-message">此欄位必須填寫</div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="company-address">通訊地址</label>
-              <div class="address-wrapper">
-                <div class="address-wrapper-item">
-                  <input type="text" id="contact-address-code" class="form-input search" placeholder="請選擇" readonly>
-                  <input type="text" id="contact-address-city" class="form-input" placeholder="" disabled>
+              <div class="form-group">
+                <label for="company-manager-id">負責人身分證字號<span>*</span></label>
+                <div class="w-100">
+                  <div class="input-flex">
+                    <select id="company-manager-id-prefix" class="form-input prefix">
+                      <option value="">請選擇</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                    </select>
+                    <input type="text" id="company-manager-id" class="form-input flex-1" placeholder="請輸入">
+                  </div>
+                  <div class="error-message">此欄位必須填寫</div>
                 </div>
-                <input type="text" id="contact-address-detail" class="form-input" placeholder="請輸入">
+              </div>
+              <div class="form-group">
+                <label for="company-address">通訊地址</label>
+                <div class="address-wrapper">
+                  <div class="address-wrapper-item">
+                    <input type="text" id="contact-address-code" class="form-input search" placeholder="請選擇" readonly>
+                    <input type="text" id="contact-address-city" class="form-input" placeholder="" disabled>
+                  </div>
+                  <input type="text" id="contact-address-detail" class="form-input" placeholder="請輸入">
+                </div>
               </div>
             </div>
 
@@ -180,31 +186,33 @@
             <div class="customer-detail-contact-list">
               <div class="customer-detail-contact-item">
                 <div class="customer-detail-contact-item-title">聯絡人1</div>
-                <div class="form-group">
-                  <label for="company-contact-phone">聯絡電話</label>
-                  <input type="text" id="company-contact-phone" class="form-input" placeholder="">
-                </div>
-                <div class="form-group">
-                  <label for="company-contact-mobile">行動電話</label>
-                  <input type="text" id="company-contact-mobile" class="form-input" placeholder="">
-                </div>
-                <div class="form-group">
-                  <label for="company-contact-fax">傳真號碼</label>
-                  <input type="text" id="company-contact-fax" class="form-input" placeholder="">
-                </div>
-                <div class="form-group">
-                  <label for="company-contact-email">E-Mail</label>
-                  <input type="text" id="company-contact-email" class="form-input" placeholder="">
-                </div>
-                <div class="form-group">
-                  <label for="company-contact-line">LINE ID</label>
-                  <input type="text" id="company-contact-line" class="form-input" placeholder="">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label for="company-contact-phone">聯絡電話</label>
+                    <input type="text" id="company-contact-phone" class="form-input" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="company-contact-mobile">行動電話</label>
+                    <input type="text" id="company-contact-mobile" class="form-input" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="company-contact-fax">傳真號碼</label>
+                    <input type="text" id="company-contact-fax" class="form-input" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="company-contact-email">E-Mail</label>
+                    <input type="text" id="company-contact-email" class="form-input" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="company-contact-line">LINE ID</label>
+                    <input type="text" id="company-contact-line" class="form-input" placeholder="">
+                  </div>
                 </div>
               </div>
             </div>
             <!-- 新增聯絡人 -->
             <button class="button-primary-outline" id="add-contact-button" onclick="addContact()">
-              <img src="/assets/images/icon_plus.svg" alt="plus" class="icon-plus">
+              <img src="./assets/images/icon_plus.svg" alt="plus" class="icon-plus">
               新增聯絡人
             </button> 
             
@@ -214,118 +222,120 @@
           <div class="customer-detail-content-area gray" id="car-section">
             <div class="detail-group-top">
               <div class="detail-group-title">
-                <img src="/assets/images/icon_quill.svg" alt="quill">
+                <img src="./assets/images/icon_quill.svg" alt="quill">
                 車行概況
               </div>
             </div>
-            <div class="form-group">
-              <label for="associate-business">主要營業項目<span>*</span></label>
-              <div class="w-100">
-                <input type="text" id="associate-business" class="form-input" placeholder="請輸入">
-                <div class="error-message">此欄位必須填寫</div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="associate-business">主要營業項目<span>*</span></label>
+                <div class="w-100">
+                  <input type="text" id="associate-business" class="form-input" placeholder="請輸入">
+                  <div class="error-message">此欄位必須填寫</div>
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="associate-type">車行行性</label>
-              <select id="associate-type" class="form-input">
-                <option value="">請選擇</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="associate-property">車行屬性</label>
-              <select id="associate-property" class="form-input">
-                <option value="">請選擇</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="associate-income">主要營收<span>*</span></label>
-              <div class="w-100">
-                <select id="associate-income" class="form-input">
+              <div class="form-group">
+                <label for="associate-type">車行行性</label>
+                <select id="associate-type" class="form-input">
                   <option value="">請選擇</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                 </select>
-                <div class="error-message">此欄位必須填寫</div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="associate-business-property">經營屬性<span>*</span></label>
-              <div class="w-100">
-                <select id="associate-business-property" class="form-input">
+              <div class="form-group">
+                <label for="associate-property">車行屬性</label>
+                <select id="associate-property" class="form-input">
                   <option value="">請選擇</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                 </select>
-                <div class="error-message">此欄位必須填寫</div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="associate-location">公司場所<span>*</span></label>
-              <div class="w-100">
-                <select id="associate-location" class="form-input">
-                  <option value="">請選擇</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
-                <div class="error-message">此欄位必須填寫</div>
+              <div class="form-group">
+                <label for="associate-income">主要營收<span>*</span></label>
+                <div class="w-100">
+                  <select id="associate-income" class="form-input">
+                    <option value="">請選擇</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </select>
+                  <div class="error-message">此欄位必須填寫</div>
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="associate-factory">車場/工廠場地<span>*</span></label>
-              <div class="w-100">
-                <select id="associate-factory" class="form-input">
-                  <option value="">請選擇</option>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
-                <div class="error-message">此欄位必須填寫</div>
+              <div class="form-group">
+                <label for="associate-business-property">經營屬性<span>*</span></label>
+                <div class="w-100">
+                  <select id="associate-business-property" class="form-input">
+                    <option value="">請選擇</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </select>
+                  <div class="error-message">此欄位必須填寫</div>
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="associate-year-experience">本業資歷</label>
-              <div class="year-wrapper">
-                <input type="text" id="associate-year-experience" class="form-input year" placeholder="請輸入">
+              <div class="form-group">
+                <label for="associate-location">公司場所<span>*</span></label>
+                <div class="w-100">
+                  <select id="associate-location" class="form-input">
+                    <option value="">請選擇</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </select>
+                  <div class="error-message">此欄位必須填寫</div>
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="associate-business-year">經營公司</label>
-              <div class="year-wrapper">
-                <input type="text" id="associate-business-year" class="form-input year" placeholder="請輸入">
+              <div class="form-group">
+                <label for="associate-factory">車場/工廠場地<span>*</span></label>
+                <div class="w-100">
+                  <select id="associate-factory" class="form-input">
+                    <option value="">請選擇</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                  </select>
+                  <div class="error-message">此欄位必須填寫</div>
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="associate-equipment">自有機具</label>
-              <div class="unit-wrapper">
-                <input type="text" id="associate-equipment" class="form-input unit" placeholder="請輸入">
+              <div class="form-group">
+                <label for="associate-year-experience">本業資歷</label>
+                <div class="year-wrapper">
+                  <input type="text" id="associate-year-experience" class="form-input year" placeholder="請輸入">
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="associate-vehicle">靠行車輛</label>
-              <div class="unit-wrapper">
-                <input type="text" id="associate-vehicle" class="form-input unit" placeholder="請輸入" disabled>
+              <div class="form-group">
+                <label for="associate-business-year">經營公司</label>
+                <div class="year-wrapper">
+                  <input type="text" id="associate-business-year" class="form-input year" placeholder="請輸入">
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="associate-employee">雇用員工</label>
-              <div class="person-wrapper">
-                <input type="text" id="associate-employee" class="form-input person" placeholder="請輸入">
+              <div class="form-group">
+                <label for="associate-equipment">自有機具</label>
+                <div class="unit-wrapper">
+                  <input type="text" id="associate-equipment" class="form-input unit" placeholder="請輸入">
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="associate-comment">總評<span>*</span></label>
-              <div class="w-100">
-                <input type="text" id="associate-comment" class="form-input search" placeholder="請輸入" readonly>
-                <div class="error-message">此欄位必須填寫</div>
+              <div class="form-group">
+                <label for="associate-vehicle">靠行車輛</label>
+                <div class="unit-wrapper">
+                  <input type="text" id="associate-vehicle" class="form-input unit" placeholder="請輸入" disabled>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="associate-employee">雇用員工</label>
+                <div class="person-wrapper">
+                  <input type="text" id="associate-employee" class="form-input person" placeholder="請輸入">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="associate-comment">總評<span>*</span></label>
+                <div class="w-100">
+                  <input type="text" id="associate-comment" class="form-input search" placeholder="請輸入" readonly>
+                  <div class="error-message">此欄位必須填寫</div>
+                </div>
               </div>
             </div>
           
@@ -336,7 +346,7 @@
           <div class="customer-detail-content-area" id="enterprise-section">
             <div class="detail-group-top">
               <div class="detail-group-title">
-                <img src="/assets/images/icon_quill.svg" alt="quill">
+                <img src="./assets/images/icon_quill.svg" alt="quill">
                 關係企業
               </div>
             </div>
@@ -345,24 +355,26 @@
                 <div class="customer-detail-contact-item-title">
                   企業 1
                 </div>
-                <div class="form-group">
-                  <label for="enterprise-tax-1">統一編號</label>
-                  <input type="text" id="enterprise-tax-1" class="form-input search" placeholder="請輸入" readonly>
-                </div>
-                <div class="form-group">
-                  <label for="enterprise-name-1">公司名稱</label>
-                  <input type="text" id="enterprise-name-1" class="form-input" placeholder="" disabled>
-                </div>
-                <div class="form-group">
-                  <label for="enterprise-manager-1">負責人</label>
-                  <input type="text" id="enterprise-manager-1" class="form-input" placeholder="" disabled>
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label for="enterprise-tax-1">統一編號</label>
+                    <input type="text" id="enterprise-tax-1" class="form-input search" placeholder="請輸入" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label for="enterprise-name-1">公司名稱</label>
+                    <input type="text" id="enterprise-name-1" class="form-input" placeholder="" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label for="enterprise-manager-1">負責人</label>
+                    <input type="text" id="enterprise-manager-1" class="form-input" placeholder="" disabled>
+                  </div>
                 </div>
               </div>
             </div>
           
             <!-- 新增企業 -->
             <button class="button-primary-outline" id="add-enterprise-button" onclick="addEnterprise()">
-              <img src="/assets/images/icon_plus.svg" alt="plus" class="icon-plus">
+              <img src="./assets/images/icon_plus.svg" alt="plus" class="icon-plus">
               新增企業
             </button> 
             
@@ -372,7 +384,7 @@
           <div class="customer-detail-content-area gray" id="relation-section">
             <div class="detail-group-top">
               <div class="detail-group-title">
-                <img src="/assets/images/icon_quill.svg" alt="quill">
+                <img src="./assets/images/icon_quill.svg" alt="quill">
                 關係人
               </div>
             </div>
@@ -381,37 +393,39 @@
                  <div class="customer-detail-contact-item-title">
                    關係人 1
                  </div>
-                 <div class="form-group">
-                   <label for="relation-id-1">身分證字號</label>
-                   <input type="text" id="relation-id-1" class="form-input" placeholder="請輸入">
-                 </div>
-                 <div class="form-group">
-                   <label for="relation-name-1">姓名</label>
-                   <input type="text" id="relation-name-1" class="form-input" placeholder="請輸入">
-                 </div>
-                 <div class="form-group">
-                   <label for="relation-birthday-1">出生日期</label>
-                   <input type="date" id="relation-birthday-1" class="form-input" placeholder="請輸入">
-                 </div>
-                 <div class="form-group">
-                   <label for="relation-relationship-1">與實際行主關係</label>
-                   <select id="relation-relationship-1" class="form-input">
-                     <option value="0">實際行主或負責人</option>
-                     <option value="1">1</option>
-                     <option value="2">2</option>
-                     <option value="3">3</option>
-                   </select>
-                 </div>
-                 <div class="form-group">
-                   <label for="relation-note-1">說明</label>
-                   <input type="text" id="relation-note-1" class="form-input" placeholder="請輸入">
-                 </div>
+                 <div class="form-grid">
+                  <div class="form-group">
+                    <label for="relation-id-1">身分證字號</label>
+                    <input type="text" id="relation-id-1" class="form-input" placeholder="請輸入">
+                  </div>
+                  <div class="form-group">
+                    <label for="relation-name-1">姓名</label>
+                    <input type="text" id="relation-name-1" class="form-input" placeholder="請輸入">
+                  </div>
+                  <div class="form-group">
+                    <label for="relation-birthday-1">出生日期</label>
+                    <input type="date" id="relation-birthday-1" class="form-input" placeholder="請輸入">
+                  </div>
+                  <div class="form-group">
+                    <label for="relation-relationship-1">與實際行主關係</label>
+                    <select id="relation-relationship-1" class="form-input">
+                      <option value="0">實際行主或負責人</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="relation-note-1">說明</label>
+                    <input type="text" id="relation-note-1" class="form-input" placeholder="請輸入">
+                  </div>
+                </div>
                </div>
              </div>
           
             <!-- 新增關係人 -->
             <button class="button-primary-outline" id="add-relation-button" onclick="addRelation()">
-              <img src="/assets/images/icon_plus.svg" alt="plus" class="icon-plus">
+              <img src="./assets/images/icon_plus.svg" alt="plus" class="icon-plus">
               新增關係人
             </button> 
             
@@ -421,7 +435,7 @@
           <div class="customer-detail-content-area">
             <div class="detail-group-top">
               <div class="detail-group-title">
-                <img src="/assets/images/icon_quill.svg" alt="quill">
+                <img src="./assets/images/icon_quill.svg" alt="quill">
                 票信資料
               </div>
             </div>
@@ -430,36 +444,38 @@
                  <div class="customer-detail-contact-item-title">
                    票信資料 1
                  </div>
-                 <div class="form-group">
-                   <label for="credit-id-1">統編字號</label>
-                   <input type="text" id="credit-id-1" class="form-input" placeholder="請輸入">
-                 </div>
-                 <div class="form-group">
-                   <label for="credit-name-1">戶名</label>
-                   <input type="text" id="credit-name-1" class="form-input" placeholder="請輸入">
-                 </div>
-                 <div class="form-group">
-                   <label for="credit-bank-1">銀行分行</label>
-                   <input type="text" id="credit-bank-1" class="form-input search" placeholder="請輸入" readonly>
-                 </div>
-                 <div class="form-group">
-                   <label for="credit-account-1">帳號</label>
-                   <input type="text" id="credit-account-1" class="form-input" placeholder="請輸入">
-                 </div>
-                 <div class="form-group">
-                   <label for="credit-date-1">開戶年月</label>
-                   <input type="date" id="credit-date-1" class="form-input" placeholder="請輸入">
-                 </div>
-                 <div class="form-group">
-                   <label for="credit-phone-1">照會電話</label>
-                   <input type="text" id="credit-phone-1" class="form-input" placeholder="請輸入">
-                 </div>
+                 <div class="form-grid">
+                  <div class="form-group">
+                    <label for="credit-id-1">統編字號</label>
+                    <input type="text" id="credit-id-1" class="form-input" placeholder="請輸入">
+                  </div>
+                  <div class="form-group">
+                    <label for="credit-name-1">戶名</label>
+                    <input type="text" id="credit-name-1" class="form-input" placeholder="請輸入">
+                  </div>
+                  <div class="form-group">
+                    <label for="credit-bank-1">銀行分行</label>
+                    <input type="text" id="credit-bank-1" class="form-input search" placeholder="請輸入" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label for="credit-account-1">帳號</label>
+                    <input type="text" id="credit-account-1" class="form-input" placeholder="請輸入">
+                  </div>
+                  <div class="form-group">
+                    <label for="credit-date-1">開戶年月</label>
+                    <input type="date" id="credit-date-1" class="form-input" placeholder="請輸入">
+                  </div>
+                  <div class="form-group">
+                    <label for="credit-phone-1">照會電話</label>
+                    <input type="text" id="credit-phone-1" class="form-input" placeholder="請輸入">
+                  </div>
+                  </div>
                </div>
              </div>
           
             <!-- 新增票信資料 -->
             <button class="button-primary-outline" id="add-credit-button" onclick="addCredit()">
-              <img src="/assets/images/icon_plus.svg" alt="plus" class="icon-plus">
+              <img src="./assets/images/icon_plus.svg" alt="plus" class="icon-plus">
               新增票信資料
             </button> 
             
@@ -482,7 +498,7 @@
           <div class="popup-header">
             <div class="common-title">商業司資料</div>
             <button class="popup-close-btn" onclick="popupManager.hide('businessDetail')">
-              <img src="/assets/images/icon_close.svg" alt="close">
+              <img src="./assets/images/icon_close.svg" alt="close">
             </button>
           </div>
           <div class="popup-brown-area-content">
@@ -532,9 +548,11 @@
       </div>
     </div>
 
-    <script src="/assets/js/popup.js"></script>
-    <script src="/assets/js/dialog.js"></script>
-  </body>
+    <script src="./assets/js/popup.js"></script>
+    <script src="./assets/js/dialog.js"></script>
+      <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
   
 
   <script>
@@ -608,28 +626,30 @@
         <div class="customer-detail-contact-item-title">
           聯絡人${contactCount}
           <button onclick="deleteContact(${contactCount})">
-            <img src="/assets/images/icon_delete.svg" alt="delete">
+            <img src="./assets/images/icon_delete.svg" alt="delete">
           </button>
         </div>
-        <div class="form-group">
-          <label for="company-contact-phone-${contactCount}">聯絡電話</label>
-          <input type="text" id="company-contact-phone-${contactCount}" class="form-input" placeholder="">
-        </div>
-        <div class="form-group">
-          <label for="company-contact-mobile-${contactCount}">行動電話</label>
-          <input type="text" id="company-contact-mobile-${contactCount}" class="form-input" placeholder="">
-        </div>
-        <div class="form-group">
-          <label for="company-contact-fax-${contactCount}">傳真號碼</label>
-          <input type="text" id="company-contact-fax-${contactCount}" class="form-input" placeholder="">
-        </div>
-        <div class="form-group">
-          <label for="company-contact-email-${contactCount}">E-Mail</label>
-          <input type="text" id="company-contact-email-${contactCount}" class="form-input" placeholder="">
-        </div>
-        <div class="form-group">
-          <label for="company-contact-line-${contactCount}">LINE ID</label>
-          <input type="text" id="company-contact-line-${contactCount}" class="form-input" placeholder="">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="company-contact-phone-${contactCount}">聯絡電話</label>
+            <input type="text" id="company-contact-phone-${contactCount}" class="form-input" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="company-contact-mobile-${contactCount}">行動電話</label>
+            <input type="text" id="company-contact-mobile-${contactCount}" class="form-input" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="company-contact-fax-${contactCount}">傳真號碼</label>
+            <input type="text" id="company-contact-fax-${contactCount}" class="form-input" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="company-contact-email-${contactCount}">E-Mail</label>
+            <input type="text" id="company-contact-email-${contactCount}" class="form-input" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="company-contact-line-${contactCount}">LINE ID</label>
+            <input type="text" id="company-contact-line-${contactCount}" class="form-input" placeholder="">
+          </div>
         </div>
       `;
       
@@ -665,20 +685,22 @@
         <div class="customer-detail-contact-item-title">
           企業${enterpriseCount}
           <button onclick="deleteEnterprise(${enterpriseCount})">
-            <img src="/assets/images/icon_delete.svg" alt="delete">
+            <img src="./assets/images/icon_delete.svg" alt="delete">
           </button>
         </div>
-        <div class="form-group">
-          <label for="enterprise-tax-${enterpriseCount}">統一編號</label>
-          <input type="text" id="enterprise-tax-${enterpriseCount}" class="form-input search" placeholder="請輸入" readonly>
-        </div>
-        <div class="form-group">
-          <label for="enterprise-name-${enterpriseCount}">公司名稱</label>
-          <input type="text" id="enterprise-name-${enterpriseCount}" class="form-input" placeholder="" disabled>
-        </div>
-        <div class="form-group">
-          <label for="enterprise-manager-${enterpriseCount}">負責人</label>
-          <input type="text" id="enterprise-manager-${enterpriseCount}" class="form-input" placeholder="" disabled>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="enterprise-tax-${enterpriseCount}">統一編號</label>
+            <input type="text" id="enterprise-tax-${enterpriseCount}" class="form-input search" placeholder="請輸入" readonly>
+          </div>
+          <div class="form-group">
+            <label for="enterprise-name-${enterpriseCount}">公司名稱</label>
+            <input type="text" id="enterprise-name-${enterpriseCount}" class="form-input" placeholder="" disabled>
+          </div>
+          <div class="form-group">
+            <label for="enterprise-manager-${enterpriseCount}">負責人</label>
+            <input type="text" id="enterprise-manager-${enterpriseCount}" class="form-input" placeholder="" disabled>
+          </div>
         </div>
       `;
       
@@ -717,33 +739,35 @@
         <div class="customer-detail-contact-item-title">
           關係人${relationCount}
           <button onclick="deleteRelation(${relationCount})">
-            <img src="/assets/images/icon_delete.svg" alt="delete">
+            <img src="./assets/images/icon_delete.svg" alt="delete">
           </button>
         </div>
-        <div class="form-group">
-          <label for="relation-id-${relationCount}">身分證字號</label>
-          <input type="text" id="relation-id-${relationCount}" class="form-input" placeholder="請輸入">
-        </div>
-        <div class="form-group">
-          <label for="relation-name-${relationCount}">姓名</label>
-          <input type="text" id="relation-name-${relationCount}" class="form-input" placeholder="請輸入">
-        </div>
-        <div class="form-group">
-          <label for="relation-birthday-${relationCount}">出生日期</label>
-          <input type="date" id="relation-birthday-${relationCount}" class="form-input" placeholder="請輸入">
-        </div>
-        <div class="form-group">
-          <label for="relation-relationship-${relationCount}">與實際行主關係</label>
-          <select id="relation-relationship-${relationCount}" class="form-input">
-            <option value="0">實際行主或負責人</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="relation-note-${relationCount}">說明</label>
-          <input type="text" id="relation-note-${relationCount}" class="form-input" placeholder="請輸入">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="relation-id-${relationCount}">身分證字號</label>
+            <input type="text" id="relation-id-${relationCount}" class="form-input" placeholder="請輸入">
+          </div>
+          <div class="form-group">
+            <label for="relation-name-${relationCount}">姓名</label>
+            <input type="text" id="relation-name-${relationCount}" class="form-input" placeholder="請輸入">
+          </div>
+          <div class="form-group">
+            <label for="relation-birthday-${relationCount}">出生日期</label>
+            <input type="date" id="relation-birthday-${relationCount}" class="form-input" placeholder="請輸入">
+          </div>
+          <div class="form-group">
+            <label for="relation-relationship-${relationCount}">與實際行主關係</label>
+            <select id="relation-relationship-${relationCount}" class="form-input">
+              <option value="0">實際行主或負責人</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="relation-note-${relationCount}">說明</label>
+            <input type="text" id="relation-note-${relationCount}" class="form-input" placeholder="請輸入">
+          </div>
         </div>
       `;
       
@@ -779,32 +803,34 @@
         <div class="customer-detail-contact-item-title">
           票信資料${creditCount}
           <button onclick="deleteCredit(${creditCount})">
-            <img src="/assets/images/icon_delete.svg" alt="delete">
+            <img src="./assets/images/icon_delete.svg" alt="delete">
           </button>
         </div>
-        <div class="form-group">
-          <label for="credit-id-${creditCount}">統編字號</label>
-          <input type="text" id="credit-id-${creditCount}" class="form-input" placeholder="請輸入">
-        </div>
-        <div class="form-group">
-          <label for="credit-name-${creditCount}">戶名</label>
-          <input type="text" id="credit-name-${creditCount}" class="form-input" placeholder="請輸入">
-        </div>
-        <div class="form-group">
-          <label for="credit-bank-${creditCount}">銀行分行</label>
-          <input type="text" id="credit-bank-${creditCount}" class="form-input search" placeholder="請輸入" readonly>
-        </div>
-        <div class="form-group">
-          <label for="credit-account-${creditCount}">帳號</label>
-          <input type="text" id="credit-account-${creditCount}" class="form-input" placeholder="請輸入">
-        </div>
-        <div class="form-group">
-          <label for="credit-date-${creditCount}">開戶年月</label>
-          <input type="date" id="credit-date-${creditCount}" class="form-input" placeholder="請輸入">
-        </div>
-        <div class="form-group">
-          <label for="credit-phone-${creditCount}">照會電話</label>
-          <input type="text" id="credit-phone-${creditCount}" class="form-input" placeholder="請輸入">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="credit-id-${creditCount}">統編字號</label>
+            <input type="text" id="credit-id-${creditCount}" class="form-input" placeholder="請輸入">
+          </div>
+          <div class="form-group">
+            <label for="credit-name-${creditCount}">戶名</label>
+            <input type="text" id="credit-name-${creditCount}" class="form-input" placeholder="請輸入">
+          </div>
+          <div class="form-group">
+            <label for="credit-bank-${creditCount}">銀行分行</label>
+            <input type="text" id="credit-bank-${creditCount}" class="form-input search" placeholder="請輸入" readonly>
+          </div>
+          <div class="form-group">
+            <label for="credit-account-${creditCount}">帳號</label>
+            <input type="text" id="credit-account-${creditCount}" class="form-input" placeholder="請輸入">
+          </div>
+          <div class="form-group">
+            <label for="credit-date-${creditCount}">開戶年月</label>
+            <input type="date" id="credit-date-${creditCount}" class="form-input" placeholder="請輸入">
+          </div>
+          <div class="form-group">
+            <label for="credit-phone-${creditCount}">照會電話</label>
+            <input type="text" id="credit-phone-${creditCount}" class="form-input" placeholder="請輸入">
+          </div>
         </div>
       `;
       

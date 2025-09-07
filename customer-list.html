@@ -4,25 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="icon" href="/assets/favicon.ico"> -->
+    <!-- <link rel="icon" href="./assets/favicon.ico"> -->
     <title>Infinite</title>
     <!-- 字體 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
     
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
     <!-- 共用樣式 -->
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
   </head>
   <body>
     <div class="container customer-list">
       <!-- header -->
       <div class="header">
         <a class="header-menu" href="/">
-          <img src="/assets/images/icon_menu.svg" alt="menu">
+          <img src="./assets/images/icon_menu.svg" alt="menu">
         </a>
         <div class="header-logo">
-          <img src="/assets/images/logo.png" alt="logo">
+          <img src="./assets/images/logo.png" alt="logo">
         </div>
       </div>
       <!-- content -->
@@ -33,11 +36,11 @@
           <div class="customer-list-buttons">
             <!-- search -->
             <button class="customer-list-button" onclick="popupManager.show('customerSearch')">
-              <img src="/assets/images/icon_search.svg" alt="search">
+              <img src="./assets/images/icon_search.svg" alt="search">
             </button>
             <!-- add -->
             <button class="customer-list-button" onclick="window.location.href='/customer-add.html'">
-              <img src="/assets/images/icon_add.svg" alt="add">
+              <img src="./assets/images/icon_add.svg" alt="add">
             </button>
           </div>
         </div>
@@ -45,7 +48,7 @@
         <div class="customer-list-total">
           <div class="customer-list-total-text">共有 20 筆資料</div>
           <button class="customer-list-clean-button" id="cleanSearchButton" onclick="cleanSearch()"> 
-            <img src="/assets/images/icon_close_primary.svg" alt="clean">
+            <img src="./assets/images/icon_close_primary.svg" alt="clean">
             清除查詢條件
           </button>
         </div>
@@ -62,11 +65,11 @@
                 <div class="customer-list-item-content-top-operate">
                   <!-- edit -->
                   <button class="customer-list-item-content-top-operate-button" onclick="handelEdit()" >
-                    <img src="/assets/images/icon_edit.svg" alt="edit">
+                    <img src="./assets/images/icon_edit.svg" alt="edit">
                   </button>
                   <!-- record -->
                   <button class="customer-list-item-content-top-operate-button" onclick="handleRecord()">
-                    <img src="/assets/images/icon_record.svg" alt="record">
+                    <img src="./assets/images/icon_record.svg" alt="record">
                   </button>
                 </div>
               </div>
@@ -87,7 +90,7 @@
                 </div>
                 <!-- go to detail -->
                 <button class="customer-list-item-content-bottom-button">
-                  <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+                  <img src="./assets/images/icon_square_arrow.svg" alt="arrow">
                 </button>
               </div>
             </div>
@@ -103,11 +106,11 @@
                 <div class="customer-list-item-content-top-operate">
                   <!-- edit -->
                   <button class="customer-list-item-content-top-operate-button" onclick="handelEdit()" >
-                    <img src="/assets/images/icon_edit.svg" alt="edit">
+                    <img src="./assets/images/icon_edit.svg" alt="edit">
                   </button>
                   <!-- record -->
                   <button class="customer-list-item-content-top-operate-button" onclick="handleRecord()">
-                    <img src="/assets/images/icon_record.svg" alt="record">
+                    <img src="./assets/images/icon_record.svg" alt="record">
                   </button>
                 </div>
               </div>
@@ -128,7 +131,7 @@
                 </div>
                 <!-- go to detail -->
                 <button class="customer-list-item-content-bottom-button">
-                  <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+                  <img src="./assets/images/icon_square_arrow.svg" alt="arrow">
                 </button>
               </div>
             </div>
@@ -144,11 +147,11 @@
                 <div class="customer-list-item-content-top-operate">
                   <!-- edit -->
                   <button class="customer-list-item-content-top-operate-button" onclick="handelEdit()" >
-                    <img src="/assets/images/icon_edit.svg" alt="edit">
+                    <img src="./assets/images/icon_edit.svg" alt="edit">
                   </button>
                   <!-- record -->
                   <button class="customer-list-item-content-top-operate-button" onclick="handleRecord()">
-                    <img src="/assets/images/icon_record.svg" alt="record">
+                    <img src="./assets/images/icon_record.svg" alt="record">
                   </button>
                 </div>
               </div>
@@ -169,7 +172,7 @@
                 </div>
                 <!-- go to detail -->
                 <button class="customer-list-item-content-bottom-button">
-                  <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+                  <img src="./assets/images/icon_square_arrow.svg" alt="arrow">
                 </button>
               </div>
             </div>
@@ -185,11 +188,11 @@
                 <div class="customer-list-item-content-top-operate">
                   <!-- edit -->
                   <button class="customer-list-item-content-top-operate-button" onclick="handelEdit()" >
-                    <img src="/assets/images/icon_edit.svg" alt="edit">
+                    <img src="./assets/images/icon_edit.svg" alt="edit">
                   </button>
                   <!-- record -->
                   <button class="customer-list-item-content-top-operate-button" onclick="handleRecord()">
-                    <img src="/assets/images/icon_record.svg" alt="record">
+                    <img src="./assets/images/icon_record.svg" alt="record">
                   </button>
                 </div>
               </div>
@@ -210,7 +213,7 @@
                 </div>
                 <!-- go to detail -->
                 <button class="customer-list-item-content-bottom-button">
-                  <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+                  <img src="./assets/images/icon_square_arrow.svg" alt="arrow">
                 </button>
               </div>
             </div>
@@ -226,11 +229,11 @@
                 <div class="customer-list-item-content-top-operate">
                   <!-- edit -->
                   <button class="customer-list-item-content-top-operate-button" onclick="handelEdit()" >
-                    <img src="/assets/images/icon_edit.svg" alt="edit">
+                    <img src="./assets/images/icon_edit.svg" alt="edit">
                   </button>
                   <!-- record -->
                   <button class="customer-list-item-content-top-operate-button" onclick="handleRecord()">
-                    <img src="/assets/images/icon_record.svg" alt="record">
+                    <img src="./assets/images/icon_record.svg" alt="record">
                   </button>
                 </div>
               </div>
@@ -251,7 +254,7 @@
                 </div>
                 <!-- go to detail -->
                 <button class="customer-list-item-content-bottom-button">
-                  <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+                  <img src="./assets/images/icon_square_arrow.svg" alt="arrow">
                 </button>
               </div>
             </div>
@@ -267,11 +270,11 @@
                 <div class="customer-list-item-content-top-operate">
                   <!-- edit -->
                   <button class="customer-list-item-content-top-operate-button" onclick="handelEdit()" >
-                    <img src="/assets/images/icon_edit.svg" alt="edit">
+                    <img src="./assets/images/icon_edit.svg" alt="edit">
                   </button>
                   <!-- record -->
                   <button class="customer-list-item-content-top-operate-button" onclick="handleRecord()">
-                    <img src="/assets/images/icon_record.svg" alt="record">
+                    <img src="./assets/images/icon_record.svg" alt="record">
                   </button>
                 </div>
               </div>
@@ -292,7 +295,7 @@
                 </div>
                 <!-- go to detail -->
                 <button class="customer-list-item-content-bottom-button">
-                  <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+                  <img src="./assets/images/icon_square_arrow.svg" alt="arrow">
                 </button>
               </div>
             </div>
@@ -308,11 +311,11 @@
                 <div class="customer-list-item-content-top-operate">
                   <!-- edit -->
                   <button class="customer-list-item-content-top-operate-button" onclick="handelEdit()" >
-                    <img src="/assets/images/icon_edit.svg" alt="edit">
+                    <img src="./assets/images/icon_edit.svg" alt="edit">
                   </button>
                   <!-- record -->
                   <button class="customer-list-item-content-top-operate-button" onclick="handleRecord()">
-                    <img src="/assets/images/icon_record.svg" alt="record">
+                    <img src="./assets/images/icon_record.svg" alt="record">
                   </button>
                 </div>
               </div>
@@ -333,7 +336,7 @@
                 </div>
                 <!-- go to detail -->
                 <button class="customer-list-item-content-bottom-button">
-                  <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+                  <img src="./assets/images/icon_square_arrow.svg" alt="arrow">
                 </button>
               </div>
             </div>
@@ -349,11 +352,11 @@
                 <div class="customer-list-item-content-top-operate">
                   <!-- edit -->
                   <button class="customer-list-item-content-top-operate-button" onclick="handelEdit()" >
-                    <img src="/assets/images/icon_edit.svg" alt="edit">
+                    <img src="./assets/images/icon_edit.svg" alt="edit">
                   </button>
                   <!-- record -->
                   <button class="customer-list-item-content-top-operate-button" onclick="handleRecord()">
-                    <img src="/assets/images/icon_record.svg" alt="record">
+                    <img src="./assets/images/icon_record.svg" alt="record">
                   </button>
                 </div>
               </div>
@@ -374,7 +377,7 @@
                 </div>
                 <!-- go to detail -->
                 <button class="customer-list-item-content-bottom-button">
-                  <img src="/assets/images/icon_square_arrow.svg" alt="arrow">
+                  <img src="./assets/images/icon_square_arrow.svg" alt="arrow">
                 </button>
               </div>
             </div>
@@ -395,26 +398,28 @@
           <div class="popup-header">
             <div class="common-title">查詢客戶資料</div>
             <button class="popup-close-btn" onclick="popupManager.hide('customerSearch')">
-              <img src="/assets/images/icon_close.svg" alt="close">
+              <img src="./assets/images/icon_close.svg" alt="close">
             </button>
           </div>
-          <div class="popup-body">
-            <div class="popup-body-from">
-              <div class="form-group">
-                <label class="form-label common-text-md">客戶統編</label>
-                <input type="text" class="form-input" placeholder="請輸入">
-              </div>
-              <div class="form-group">
-                <label class="form-label common-text-md">客戶名稱</label>
-                <input type="text" class="form-input" placeholder="請輸入">
-              </div>
-              <div class="form-group">
-                <label class="form-label common-text-md">成立日期</label>
-                <input type="date" class="form-input" placeholder="請輸入">
-              </div>
-              <div class="form-group">
-                <label class="form-label common-text-md">歸戶名稱</label>
-                <input type="text" class="form-input" placeholder="請輸入">
+          <div class="popup-body search-popup-body">
+            <div class="popup-body-flex-1">
+              <div class="popup-body-from">
+                <div class="form-group">
+                  <label class="form-label common-text-md">客戶統編</label>
+                  <input type="text" class="form-input" placeholder="請輸入">
+                </div>
+                <div class="form-group">
+                  <label class="form-label common-text-md">客戶名稱</label>
+                  <input type="text" class="form-input" placeholder="請輸入">
+                </div>
+                <div class="form-group">
+                  <label class="form-label common-text-md">成立日期</label>
+                  <input type="date" class="form-input" placeholder="請輸入">
+                </div>
+                <div class="form-group">
+                  <label class="form-label common-text-md">歸戶名稱</label>
+                  <input type="text" class="form-input" placeholder="請輸入">
+                </div>
               </div>
             </div>
             <div class="popup-form-button">
@@ -430,7 +435,7 @@
           <div class="popup-header brown-header">
             <div class="common-title">案件承作歷程</div>
             <button class="popup-close-btn" onclick="popupManager.hide('customerRecord')">
-              <img src="/assets/images/icon_close.svg" alt="close">
+              <img src="./assets/images/icon_close.svg" alt="close">
             </button>
           </div>
           <div class="popup-brown-area">
@@ -456,7 +461,7 @@
             <div class="record_table_group_container">
               <div class="record_table_group">
                 <div class="record_table_group_title">
-                  <img src="/assets/images/icon_quill.svg" alt="quill">
+                  <img src="./assets/images/icon_quill.svg" alt="quill">
                   分期
                 </div>
                 <table>
@@ -483,7 +488,7 @@
               </div>
               <div class="record_table_group">
                 <div class="record_table_group_title">
-                  <img src="/assets/images/icon_quill.svg" alt="quill">
+                  <img src="./assets/images/icon_quill.svg" alt="quill">
                   企金
                 </div>
                 <table>
@@ -519,7 +524,7 @@
           <div class="popup-header brown-header">
             <div class="common-title">客戶基本資料</div>
             <button class="popup-close-btn" onclick="popupManager.hide('customerDetail')">
-              <img src="/assets/images/icon_close.svg" alt="close">
+              <img src="./assets/images/icon_close.svg" alt="close">
             </button>
           </div>
           <div class="popup-brown-area">
@@ -536,7 +541,7 @@
               <!-- 公司 -->
               <div class="detail-group">
                 <div class="detail-group-title">
-                  <img src="/assets/images/icon_quill.svg" alt="quill">
+                  <img src="./assets/images/icon_quill.svg" alt="quill">
                   公司
                 </div>
                 <div class="detail-group-content">
@@ -586,7 +591,7 @@
               <!-- 負責人 -->
               <div class="detail-group">
                 <div class="detail-group-title">
-                  <img src="/assets/images/icon_quill.svg" alt="quill">
+                  <img src="./assets/images/icon_quill.svg" alt="quill">
                   負責人
                 </div>
                 <div class="detail-group-content">
@@ -605,7 +610,7 @@
         </div>
       </div>
     </div>
-    <script src="/assets/js/popup.js"></script>
+    <script src="./assets/js/popup.js"></script>
     <script>
       function searchSubmit() {
         popupManager.hide('customerSearch');
@@ -623,6 +628,9 @@
         event.stopPropagation();
       }
     </script>
+    
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>
 </html>
 <style scoped>
@@ -665,9 +673,24 @@
   height: 24px;
 }
 .customer-list .customer-list-list {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 12px;
+}
+@media (max-width: 1196px) {
+  .customer-list .customer-list-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 991px) {
+  .customer-list .customer-list-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 576px) {
+  .customer-list .customer-list-list {
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 .customer-list .customer-list-item {
   background-color: #FFFFFF;
@@ -762,6 +785,7 @@
 .record_table_group_container .record_table_group table {
   width: 100%;
   border-collapse: collapse;
+  margin-top: 0px;
 }
 .record_table_group_container .record_table_group table th {
   background-color: #EFEFEF;

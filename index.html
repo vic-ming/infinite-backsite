@@ -4,25 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="icon" href="/assets/favicon.ico"> -->
+    <!-- <link rel="icon" href="./assets/favicon.ico"> -->
     <title>Infinite</title>
     <!-- 字體 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
     
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
     <!-- 共用樣式 -->
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
   </head>
   <body>
     <div class="container">
       <!-- header -->
       <div class="header">
         <button class="header-menu">
-          <img src="/assets/images/icon_menu.svg" alt="menu">
+          <img src="./assets/images/icon_menu.svg" alt="menu">
         </button>
         <div class="header-logo">
-          <img src="/assets/images/logo.png" alt="logo">
+          <img src="./assets/images/logo.png" alt="logo">
         </div>
       </div>
       <!-- content -->
@@ -33,47 +36,52 @@
         </div>
         
         <div class="index-menu">
+          
           <button class="index-menu-button" onclick="window.location.href='/customer-list.html'">
             <div class="index-menu-button-icon">
-              <img src="/assets/images/icon_world.svg" alt="客戶管理">
+              <img src="./assets/images/icon_world.svg" alt="客戶管理">
             </div>
+            
             <div class="index-menu-button-content">
               <div class="index-menu-button-title">客戶管理</div>
               <div class="index-menu-button-desc">查看和管理客戶基本資料</div>
             </div>
             <div class="index-menu-button-arrow">
-              <img src="/assets/images/icon_square_arrow.svg" alt="進入">
+              <img src="./assets/images/icon_square_arrow.svg" alt="進入">
             </div>
           </button>
           
           <button class="index-menu-button" onclick="window.location.href='/transaction-search.html'">
             <div class="index-menu-button-icon">
-              <img src="/assets/images/icon_search.svg" alt="交易查詢">
+              <img src="./assets/images/icon_search.svg" alt="交易查詢">
             </div>
             <div class="index-menu-button-content">
               <div class="index-menu-button-title">交易查詢</div>
               <div class="index-menu-button-desc">搜尋和查詢交易相關資料</div>
             </div>
             <div class="index-menu-button-arrow">
-              <img src="/assets/images/icon_square_arrow.svg" alt="進入">
+              <img src="./assets/images/icon_square_arrow.svg" alt="進入">
             </div>
           </button>
 
           <button class="index-menu-button" onclick="window.location.href='/associate-detail.html'">
             <div class="index-menu-button-icon">
-              <img src="/assets/images/icon_world.svg" alt="歸戶管理">
+              <img src="./assets/images/icon_world.svg" alt="歸戶管理">
             </div>
             <div class="index-menu-button-content">
               <div class="index-menu-button-title">歸戶管理</div>
               <div class="index-menu-button-desc">查看和管理歸戶相關資料</div>
             </div>
             <div class="index-menu-button-arrow">
-              <img src="/assets/images/icon_square_arrow.svg" alt="進入">
+              <img src="./assets/images/icon_square_arrow.svg" alt="進入">
             </div>
           </button>
         </div>
       </main>
     </div>
+    
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   </body>
 </html>
 <style scoped>

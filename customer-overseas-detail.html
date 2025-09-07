@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link rel="icon" href="/assets/favicon.ico"> -->
+    <!-- <link rel="icon" href="./assets/favicon.ico"> -->
     <title>Infinite</title>
 
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- 共用樣式 -->
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <!-- 側邊面板管理器 -->
-    <script src="/assets/js/side-panel.js"></script>
+    <script src="./assets/js/side-panel.js"></script>
     <!-- Toast 通知功能 -->
-    <script src="/assets/js/toast.js"></script>
+    <script src="./assets/js/toast.js"></script>
     <!-- 字體 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,10 +26,10 @@
       <!-- header -->
       <div class="header">
         <a class="header-menu" href="/customer-detail.html">
-          <img src="/assets/images/icon_back.svg" alt="menu">
+          <img src="./assets/images/icon_back.svg" alt="menu">
         </a>
         <div class="header-logo">
-          <img src="/assets/images/logo.png" alt="logo">
+          <img src="./assets/images/logo.png" alt="logo">
         </div>
       </div>
       <!-- content -->
@@ -44,78 +46,80 @@
           <div class="customer-detail-content-area gray" id="company-section">
             <div class="detail-group-top">
               <div class="detail-group-title">
-                <img src="/assets/images/icon_quill.svg" alt="quill">
+                <img src="./assets/images/icon_quill.svg" alt="quill">
                 公司
               </div>
             </div>
-            <div class="form-group">
-              <label for="company-tax">跨海客戶統編<span>*</span></label>
-              <div class="w-100">
-                <input type="text" id="company-tax" class="form-input" placeholder="請輸入">
-                <div class="error-message">此欄位必須填寫</div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="company-tax">跨海客戶統編<span>*</span></label>
+                <div class="w-100">
+                  <input type="text" id="company-tax" class="form-input" placeholder="請輸入">
+                  <div class="error-message">此欄位必須填寫</div>
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="company-name">跨海客戶名稱</label>
-              <input type="text" id="company-name" class="form-input" placeholder="請輸入">
-            </div>
-            <div class="form-group">
-              <label for="company-date">成立日期</label>
-              <input type="date" id="company-date" class="form-input" placeholder="請輸入" disabled>
-            </div>
-            <div class="form-group">
-              <label for="company-occupation">行業別</label>
-              <input type="text" id="company-occupation" class="form-input search" placeholder="請輸入" readonly>
-            </div>
-            <div class="form-group">
-              <label for="company-capital">資本額</label>
-              <input type="text" id="company-capital" class="form-input" placeholder="請輸入">
-            </div>
-            <div class="form-group">
-              <label for="company-country">國別</label>
-              <input type="text" id="company-country" class="form-input search" placeholder="請選擇" readonly disabled>
-            </div>
-            <div class="form-group">
-              <label for="company-country">證照登記地址</label>
-              <input type="text" id="company-country" class="form-input search" placeholder="請輸入">
-            </div>
-            <div class="form-group">
-              <label for="company-country">營業通訊地址</label>
-              <input type="text" id="company-country" class="form-input search" placeholder="請輸入">
-            </div>
-            <div class="form-group">
-              <label for="company-employee">經辦人員</label>
-              <input type="text" id="company-employee" class="form-input" placeholder="" disabled>
-            </div>
-            <div class="form-group">
-              <label for="company-department">維護部門<span>*</span></label>
-              <div class="w-100">
-                <input type="text" id="company-department" class="form-input" placeholder="" disabled>
-                <div class="error-message">此欄位必須填寫</div>
+              <div class="form-group">
+                <label for="company-name">跨海客戶名稱</label>
+                <input type="text" id="company-name" class="form-input" placeholder="請輸入">
               </div>
-            </div>
-            <!-- note -->
-            <div class="edit-note">
-              <div class="note-item">
-                <div class="label">新增人員</div>
-                <div class="content">王小明<span>2025/5/1 16:30</span></div>
+              <div class="form-group">
+                <label for="company-date">成立日期</label>
+                <input type="date" id="company-date" class="form-input" placeholder="請輸入" disabled>
               </div>
-              <div class="note-item">
-                <div class="label">修改人員</div>
-                <div class="content">王小明<span>2025/5/2 16:30</span></div>
+              <div class="form-group">
+                <label for="company-occupation">行業別</label>
+                <input type="text" id="company-occupation" class="form-input search" placeholder="請輸入" readonly>
               </div>
-            </div>          
+              <div class="form-group">
+                <label for="company-capital">資本額</label>
+                <input type="text" id="company-capital" class="form-input" placeholder="請輸入">
+              </div>
+              <div class="form-group">
+                <label for="company-country">國別</label>
+                <input type="text" id="company-country" class="form-input search" placeholder="請選擇" readonly disabled>
+              </div>
+              <div class="form-group">
+                <label for="company-country">證照登記地址</label>
+                <input type="text" id="company-country" class="form-input search" placeholder="請輸入">
+              </div>
+              <div class="form-group">
+                <label for="company-country">營業通訊地址</label>
+                <input type="text" id="company-country" class="form-input search" placeholder="請輸入">
+              </div>
+              <div class="form-group">
+                <label for="company-employee">經辦人員</label>
+                <input type="text" id="company-employee" class="form-input" placeholder="" disabled>
+              </div>
+              <div class="form-group">
+                <label for="company-department">維護部門<span>*</span></label>
+                <div class="w-100">
+                  <input type="text" id="company-department" class="form-input" placeholder="" disabled>
+                  <div class="error-message">此欄位必須填寫</div>
+                </div>
+              </div>
+              <!-- note -->
+              <div class="edit-note">
+                <div class="note-item">
+                  <div class="label">新增人員</div>
+                  <div class="content">王小明<span>2025/5/1 16:30</span></div>
+                </div>
+                <div class="note-item">
+                  <div class="label">修改人員</div>
+                  <div class="content">王小明<span>2025/5/2 16:30</span></div>
+                </div>
+              </div>  
+            </div>        
           </div>
           <!-- 負責人 -->
           <div class="customer-detail-content-area" id="manager-section">
             <div class="detail-group-top">
               <div class="detail-group-title">
-                <img src="/assets/images/icon_quill.svg" alt="quill">
+                <img src="./assets/images/icon_quill.svg" alt="quill">
                 負責人
               </div>
               <div class="dropdown-container" id="manager-dropdown">
                 <button class="dropdown-trigger">
-                  <img src="/assets/images/icon_scan.svg" alt="ai">
+                  <img src="./assets/images/icon_scan.svg" alt="ai">
                 </button>
                 <div class="dropdown-menu">
                   <div class="dropdown-item" onclick="openSidePanel('select-file')">
@@ -127,63 +131,67 @@
                 </div>
               </div>
             </div>
-            <div class="form-group">
-              <label for="company-manager">負責人<span>*</span></label>
-              <div class="w-100">
-                <input type="text" id="company-manager" class="form-input" placeholder="請輸入">
-                <div class="error-message">此欄位必須填寫</div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="company-manager">負責人<span>*</span></label>
+                <div class="w-100">
+                  <input type="text" id="company-manager" class="form-input" placeholder="請輸入">
+                  <div class="error-message">此欄位必須填寫</div>
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="company-manager-actual">實際經營者<span>*</span></label>
-              <div class="w-100">
-                <input type="text" id="company-manager-actual" class="form-input" placeholder="請輸入">
-                <div class="error-message">此欄位必須填寫</div>
+              <div class="form-group">
+                <label for="company-manager-actual">實際經營者<span>*</span></label>
+                <div class="w-100">
+                  <input type="text" id="company-manager-actual" class="form-input" placeholder="請輸入">
+                  <div class="error-message">此欄位必須填寫</div>
+                </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label for="company-manager-address">負責人通訊地址</label>
-              <input type="text" id="company-manager-address" class="form-input search" placeholder="請輸入">
+              <div class="form-group">
+                <label for="company-manager-address">負責人通訊地址</label>
+                <input type="text" id="company-manager-address" class="form-input search" placeholder="請輸入">
+              </div>
             </div>
           </div>
           <!-- 聯絡人 -->
           <div class="customer-detail-content-area" id="contact-section">
             <div class="detail-group-top">
               <div class="detail-group-title">
-                <img src="/assets/images/icon_quill.svg" alt="quill">
+                <img src="./assets/images/icon_quill.svg" alt="quill">
                 聯絡人
               </div>
             </div>
             <div class="customer-detail-contact-list">
               <div class="customer-detail-contact-item">
                 <div class="customer-detail-contact-item-title">聯絡人1</div>
-                <div class="form-group">
-                  <label for="company-contact-title">聯絡人職稱</label>
-                  <input type="text" id="company-contact-title" class="form-input" placeholder="">
-                </div>
-                <div class="form-group">
-                  <label for="company-contact-name">聯絡人</label>
-                  <input type="text" id="company-contact-name" class="form-input" placeholder="">
-                </div>
-                <div class="form-group">
-                  <label for="company-contact-phone">聯絡電話</label>
-                  <input type="text" id="company-contact-phone" class="form-input" placeholder="">
-                </div>
-                <div class="form-group">
-                  <label for="company-contact-mobile">行動電話</label>
-                  <input type="text" id="company-contact-mobile" class="form-input" placeholder="">
-                </div>
-                <div class="form-group">
-                  <label for="company-contact-fax">傳真號碼</label>
-                  <input type="text" id="company-contact-fax" class="form-input" placeholder="">
-                </div>
-                <div class="form-group">
-                  <label for="company-contact-email">E-Mail</label>
-                  <input type="text" id="company-contact-email" class="form-input" placeholder="">
-                </div>
-                <div class="form-group">
-                  <label for="company-contact-line">LINE ID</label>
-                  <input type="text" id="company-contact-line" class="form-input" placeholder="">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label for="company-contact-title">聯絡人職稱</label>
+                    <input type="text" id="company-contact-title" class="form-input" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="company-contact-name">聯絡人</label>
+                    <input type="text" id="company-contact-name" class="form-input" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="company-contact-phone">聯絡電話</label>
+                    <input type="text" id="company-contact-phone" class="form-input" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="company-contact-mobile">行動電話</label>
+                    <input type="text" id="company-contact-mobile" class="form-input" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="company-contact-fax">傳真號碼</label>
+                    <input type="text" id="company-contact-fax" class="form-input" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="company-contact-email">E-Mail</label>
+                    <input type="text" id="company-contact-email" class="form-input" placeholder="">
+                  </div>
+                  <div class="form-group">
+                    <label for="company-contact-line">LINE ID</label>
+                    <input type="text" id="company-contact-line" class="form-input" placeholder="">
+                  </div>
                 </div>
               </div>
             </div>
@@ -191,13 +199,16 @@
 
             <!-- 新增聯絡人 -->
             <button class="button-primary-outline" id="add-contact-button" onclick="addContact()">
-              <img src="/assets/images/icon_plus.svg" alt="plus" class="icon-plus">
+              <img src="./assets/images/icon_plus.svg" alt="plus" class="icon-plus">
               新增聯絡人
             </button> 
 
-            <div class="form-group">
-              <label for="note">備註</label>
-              <textarea type="text" id="note" class="form-input" placeholder="請輸入"></textarea>
+            
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="note">備註</label>
+                <textarea type="text" id="note" class="form-input" placeholder="請輸入"></textarea>
+              </div>
             </div>
             
           </div>
@@ -212,7 +223,9 @@
       </main>
     </div>
 
-  </body>
+      <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
   
 
   <script>
@@ -286,36 +299,38 @@
         <div class="customer-detail-contact-item-title">
           聯絡人${contactCount}
           <button onclick="deleteContact(${contactCount})">
-            <img src="/assets/images/icon_delete.svg" alt="delete">
+            <img src="./assets/images/icon_delete.svg" alt="delete">
           </button>
         </div>
-        <div class="form-group">
-          <label for="company-contact-title-${contactCount}">聯絡人職稱</label>
-          <input type="text" id="company-contact-title-${contactCount}" class="form-input" placeholder="">
-        </div>
-        <div class="form-group">
-          <label for="company-contact-name-${contactCount}">聯絡人</label>
-          <input type="text" id="company-contact-name-${contactCount}" class="form-input" placeholder="">
-        </div>
-        <div class="form-group">
-          <label for="company-contact-phone-${contactCount}">聯絡電話</label>
-          <input type="text" id="company-contact-phone-${contactCount}" class="form-input" placeholder="">
-        </div>
-        <div class="form-group">
-          <label for="company-contact-mobile-${contactCount}">行動電話</label>
-          <input type="text" id="company-contact-mobile-${contactCount}" class="form-input" placeholder="">
-        </div>
-        <div class="form-group">
-          <label for="company-contact-fax-${contactCount}">傳真號碼</label>
-          <input type="text" id="company-contact-fax-${contactCount}" class="form-input" placeholder="">
-        </div>
-        <div class="form-group">
-          <label for="company-contact-email-${contactCount}">E-Mail</label>
-          <input type="text" id="company-contact-email-${contactCount}" class="form-input" placeholder="">
-        </div>
-        <div class="form-group">
-          <label for="company-contact-line-${contactCount}">LINE ID</label>
-          <input type="text" id="company-contact-line-${contactCount}" class="form-input" placeholder="">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="company-contact-title-${contactCount}">聯絡人職稱</label>
+            <input type="text" id="company-contact-title-${contactCount}" class="form-input" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="company-contact-name-${contactCount}">聯絡人</label>
+            <input type="text" id="company-contact-name-${contactCount}" class="form-input" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="company-contact-phone-${contactCount}">聯絡電話</label>
+            <input type="text" id="company-contact-phone-${contactCount}" class="form-input" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="company-contact-mobile-${contactCount}">行動電話</label>
+            <input type="text" id="company-contact-mobile-${contactCount}" class="form-input" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="company-contact-fax-${contactCount}">傳真號碼</label>
+            <input type="text" id="company-contact-fax-${contactCount}" class="form-input" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="company-contact-email-${contactCount}">E-Mail</label>
+            <input type="text" id="company-contact-email-${contactCount}" class="form-input" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="company-contact-line-${contactCount}">LINE ID</label>
+            <input type="text" id="company-contact-line-${contactCount}" class="form-input" placeholder="">
+          </div>
         </div>
       `;
       
